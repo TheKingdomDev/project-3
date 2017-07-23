@@ -45,7 +45,7 @@ const app = express()
 const PORT = process.env.PORT || 3000
 
 //Setting up connection to MongoDB
-mongoose.connect("mongodb://localhost/graphQLHelloWorld")
+mongoose.connect("mongodb://localhost/project3")
 const db = mongoose.connection
 
 //Setting up ./public as a static directory to facilitate access to public assets
@@ -61,6 +61,7 @@ app.use('/graphql', graphHTTP({
 //Basically telling Express: "whenever a request is made to '/' endpoint,
 //hand it over to pageRouter module so it can handle it accordingly"
 app.use('/', pageRouter)
+
 
 //Telling our server to listen for activity on Port 3000
 app.listen(PORT, function() {
