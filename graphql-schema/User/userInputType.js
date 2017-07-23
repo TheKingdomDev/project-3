@@ -1,9 +1,9 @@
-const {GraphQLInputObjectType, GraphQLString } = require('qraphql')
+const {GraphQLInputObjectType, GraphQLString } = require('graphql')
 
 module.exports = new GraphQLInputObjectType({
-  name: 'userCreate',
+  name: 'userInput',
   fields: {
-    username: {
+    userName: {
       type: GraphQLString
     },
     firstName: {

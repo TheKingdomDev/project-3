@@ -22,7 +22,7 @@ app.use('/graphql', graphHTTP({
 
 app.use('/', pageRouter)
 
-mongoose.connect("mongodb://localhost/graphQLHelloWorld")
+mongoose.connect("mongodb://localhost/project3")
 
 const db = mongoose.connection
 
