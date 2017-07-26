@@ -45,8 +45,6 @@ const authRouter = require('./routes/auth-router.js')
 //Declaring an instance of Express
 const app = express()
 
-
-
 //Setting our port # to the environment variable PORT or to 3000
 const PORT = process.env.PORT || 3000
 

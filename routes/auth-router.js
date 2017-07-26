@@ -1,11 +1,14 @@
 const passport = require('passport')
 const jwt = require('jsonwebtoken')
+const expressJwt = require('express-jwt')
 const dbUser = require('../models/User.js')
 const express = require('express')
 const router = express.Router()
 
+//  custom Middleware for authentication, locates/creates a user and attaches their id
+//  to the req object as req.user
 const serialize = (req, res, next) => {
-  //  todo make sure that 
+  // call custom static method to find and/or create User, then return that dbUser
   dbUser.findOneOrCreate(req.user)
     .then(dbUser => { 
       req.user = { id: dbUser._id }
@@ -14,6 +17,7 @@ const serialize = (req, res, next) => {
     .catch(err => { next(err) })
 }
 
+//  custom Middleware which generates a JWT based on the req.user object
 const generateToken = (req, res, next) => {  
   req.token = jwt.sign(
     { id: req.user.id, }, 
@@ -22,8 +26,8 @@ const generateToken = (req, res, next) => {
   next()
 }
 
-router.post('/local/login', passport.authenticate(
-  'local', { session: false}),
+router.post('/local/login', 
+  passport.authenticate( 'local', { session: false}),
   serialize,
   generateToken,
   (req, res) => {  
@@ -34,8 +38,8 @@ router.post('/local/login', passport.authenticate(
   } 
 )
 
-router.post('/logout', (req, res) => {
-  //  stuff  
+router.post('/stuff', (req, res) => {
+  res.json 
 })
 
 module.exports = router
