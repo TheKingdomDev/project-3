@@ -1,4 +1,4 @@
-const {GraphQLInputObjectType, GraphQLString } = require('graphql')
+const {GraphQLInputObjectType, GraphQLString} = require('graphql')
 
 module.exports = new GraphQLInputObjectType({
   name: 'userInput',
@@ -13,6 +13,15 @@ module.exports = new GraphQLInputObjectType({
       type: GraphQLString
     },
     email: {
+      type: GraphQLString
+    },
+    codeWars: {
+      type: GraphQLString
+    },
+    codeSchool: {
+      type: GraphQLString
+    },
+    treehouse: {
       type: GraphQLString
     }
   }
