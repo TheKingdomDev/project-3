@@ -2,8 +2,12 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 
-const CommentModel = new Schema({
+const ForumThreadModel = new Schema({
   edit: [{
+    title: {
+      type: String,
+      required: true
+    },
     text: {
       type: String,
       required: true
@@ -17,7 +21,15 @@ const CommentModel = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true
+  },
+  comments: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Comment'
+  }],
+  sticky: {
+    type: Boolean,
+    default: false
   }
 })
 
-module.exports = mongoose.model('Comment', CommentModel)
+module.exports = mongoose.model('ForumThread', ForumThreadModel)
