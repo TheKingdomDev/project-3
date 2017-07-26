@@ -1,11 +1,12 @@
 const passport = require('passport')
 const jwt = require('jsonwebtoken')
+const dbUser = require('../models/User.js')
 const express = require('express')
 const router = express.Router()
 
 const serialize = (req, res, next) => {
   //  todo make sure that 
-  User.findOneOrCreate(req.user)
+  dbUser.findOneOrCreate(req.user)
     .then(dbUser => { 
       req.user = { id: dbUser._id }
       next()
@@ -17,7 +18,7 @@ const generateToken = (req, res, next) => {
   req.token = jwt.sign(
     { id: req.user.id, }, 
     process.env.JWT_SECRET, 
-    { expiresInMinutes: 120 })
+    { expiresIn: '4h' })
   next()
 }
 

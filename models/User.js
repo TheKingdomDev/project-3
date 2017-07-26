@@ -46,10 +46,10 @@ UserSchema.methods.setPassword = function () {
       bcrypt.hash(this.password, salt, (err, hash) => {
         this.password = hash
         if (err) {
-          reject(err);
+          reject(err)
         }
         else {
-          resolve(this);
+          resolve(this)
         }
       })
     })
