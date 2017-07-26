@@ -30,7 +30,16 @@ const UserSchema = new Schema({
   tasks: [{
     type: Schema.Types.ObjectId,
     ref: 'Task'
-  }]
+  }],
+  codeWars: {
+    type: String
+  },
+  codeSchool: {
+    type: String
+  },
+  treehouse: {
+    type: String
+  }
 })
 
 
