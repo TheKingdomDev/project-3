@@ -1,5 +1,7 @@
 const {GraphQLObjectType, GraphQLNonNull ,GraphQLString, GraphQLList} = require('graphql')
 
+const projectType = require('../Project/projectType.js')
+
 module.exports = new GraphQLObjectType({
   name: 'User',
   description: 'This is a User',
@@ -7,38 +9,44 @@ module.exports = new GraphQLObjectType({
     return {
       id: {
         type: new GraphQLNonNull(GraphQLString),
-        resolve (person) {
-          return person._id
+        resolve (user) {
+          return user._id
         }
       },
       userName: {
         type: GraphQLString,
-        resolve (person) {
-          return person.userName
+        resolve (user) {
+          return user.userName
         }
       },
       firstName: {
         type: GraphQLString,
-        resolve (person) {
-          return person.firstName
+        resolve (user) {
+          return user.firstName
         }
       },
       lastName: {
         type: GraphQLString,
-        resolve (person) {
-          return person.lastName
+        resolve (user) {
+          return user.lastName
         }
       },
       email: {
         type: GraphQLString,
-        resolve (person) {
-          return person.email
+        resolve (user) {
+          return user.email
         }
       },
       skills: {
         type: new GraphQLList(GraphQLString),
-        resolve (person) {
-          return person.skills
+        resolve (user) {
+          return user.skills
+        }
+      },
+      projects: {
+        type: projectType,
+        resolve (user) {
+          
         }
       }
     }

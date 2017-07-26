@@ -14,7 +14,12 @@ const userCreate = {
     }
   },
   resolve (root, { data }) {
-    return dbUser.create(data)
+    
+    return new dbUser(data)
+    .setPassword()
+    .then(user => user.save() )
+    .then(dbUser => dbUser)
+    .catch(err => err)
   }
 }
 
