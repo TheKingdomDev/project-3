@@ -26,6 +26,8 @@ const generateToken = (req, res, next) => {
   next()
 }
 
+const authenticateToken = expressJwt({secret : process.env.JWT_SECRET})
+
 router.post('/local/login', 
   passport.authenticate( 'local', { session: false}),
   serialize,
@@ -38,8 +40,20 @@ router.post('/local/login',
   } 
 )
 
-router.post('/stuff', (req, res) => {
-  res.json 
+router.get('/github/login',
+  passport.authenticate('github', { scope: ['user:email'] })
+)
+
+router.get('/github/callback',
+  passport.authenticate('github', { failureRedirect: '/login' }),
+  function (req, res) {
+    res.redirect('/');
+  })
+
+//  NOT 
+router.get('/stuff', authenticateToken,(req, res) => {
+  console.log(req.user)
+  res.json('your token was authenticated successfully.')
 })
 
 module.exports = router
