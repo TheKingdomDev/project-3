@@ -35,7 +35,15 @@ const UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Task'
   }],
-
+  codeWars: {
+    type: String
+  },
+  codeSchool: {
+    type: String
+  },
+  treehouse: {
+    type: String
+  }
 })
 
 //  Designed for user on a New User, salts/hashes a User's Password and returns a Promise.

@@ -20,6 +20,14 @@ module.exports = new GraphQLInputObjectType({
     },
     skills: {
       type: new GraphQLList(GraphQLString)
+    codeWars: {
+      type: GraphQLString
+    },
+    codeSchool: {
+      type: GraphQLString
+    },
+    treehouse: {
+      type: GraphQLString
     }
   }
 })
