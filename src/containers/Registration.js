@@ -8,9 +8,13 @@ import Login from '../components/Login'
 class Registration extends Component {
   render () {
     return (
-      <div className='container'>
+      <div>
         <Navbar />
-        <SignUp />
+        <div className='container'>
+          {/* <div className='col s8 offset-s2'> */}
+            <SignUp />
+          {/* </div> */}
+        </div>
         <Footer />
       </div>
     )
