@@ -9,7 +9,8 @@ class Home extends Component {
   constructor () {
     super()
     this.state = {
-      projects: []
+      projects: [],
+      users: []
     }
   }
   render () {
