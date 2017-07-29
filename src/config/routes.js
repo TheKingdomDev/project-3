@@ -6,6 +6,7 @@ import Profile from '../containers/Profile'
 import Project from '../containers/Project'
 import App from '../App'
 import Registration from '../containers/Registration'
+import Access from '../containers/Access'
 // routing
 const routes = (
   <Router>
@@ -13,10 +14,11 @@ const routes = (
       <Route exact path='/' component={App} />
       <Route path='/home' component={Home} />
       <Route path='/registration' component={Registration} />
+      <Route path='login' component={Access} />
       <Route path='/profile' component={Profile} />
       <Route path='/project' component={Project} />
     </Switch>
   </Router>
 )
-// export
+
 export default routes
