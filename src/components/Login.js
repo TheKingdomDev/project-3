@@ -5,7 +5,7 @@ const Login = () => (
     <form className='col s12'>
       <div className='row'>
         <div className='input-field col s6'>
-          <input placeholder='Placeholder' id='user' type='text' className='validate' />
+          <input id='user' type='text' className='validate' />
           <label htmlFor='user'>Username: </label>
         </div>
         <div className='input-field col s6'>

@@ -3,7 +3,7 @@ import Navbar from './Navbar'
 import Footer from './Footer'
 
 const Landing = (props) => (
-  <div>
+  <div className='container'>
     <Navbar />
     <p>Content</p>
     <Footer />
