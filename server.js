@@ -21,12 +21,15 @@
                 *Please bear in mind that this is a work in progress.*
                         Comment made on: July 23rd, 2017
  =============================================================================== */
+require('dotenv').config()
 
 //Bringing in our dependencies
 const path = require('path')
 const express = require('express')
 const graphHTTP = require('express-graphql')
 const mongoose = require('mongoose')
+const passport = require('passport')
+const bodyParser = require('body-parser')
 
 //We do this to be able to use Promises with mongoose
 mongoose.Promise = Promise
@@ -37,6 +40,7 @@ console.log(Schema._queryType)
 
 //Bringing in the module that serves our site
 const pageRouter = require('./routes/page-router.js')
+const authRouter = require('./routes/auth-router.js')
 
 //Declaring an instance of Express
 const app = express()
@@ -51,6 +55,9 @@ const db = mongoose.connection
 //Setting up ./public as a static directory to facilitate access to public assets
 app.use(express.static(path.join(__dirname, 'public')))
 
+app.use(passport.initialize()); 
+require('./auth-strategies/localStrategy')(passport)
+
 //Telling express to mount our GraphQL API to the 'graphql' route
 app.use('/graphql', graphHTTP({
   schema: Schema,
@@ -58,15 +65,21 @@ app.use('/graphql', graphHTTP({
   graphiql: true
 }))
 
+  app.use(bodyParser.json())
+  app.use(bodyParser.urlencoded({ extended: true }))
+  app.use(bodyParser.text())
+  app.use(bodyParser.json({ type: 'application/vnd.api+json' }))
+
 //Basically telling Express: "whenever a request is made to '/' endpoint,
 //hand it over to pageRouter module so it can handle it accordingly"
 app.use('/', pageRouter)
+app.use('/auth', authRouter)
 
 
 //Telling our server to listen for activity on Port 3000
 app.listen(PORT, function() {
   //Notify the console that server is running on given PORT
-  console.log("App running on port 3000!");
+  console.log(`App running on port ${PORT}`);
   //If there's an error connecting to the database, display
   //error on console
   db.on("error", function (error) {

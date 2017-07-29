@@ -1,9 +1,12 @@
-const {GraphQLInputObjectType, GraphQLString} = require('graphql')
+const {GraphQLInputObjectType, GraphQLString, GraphQLList } = require('graphql')
 
 module.exports = new GraphQLInputObjectType({
   name: 'userInput',
   fields: {
     userName: {
+      type: GraphQLString
+    },
+    password: {
       type: GraphQLString
     },
     firstName: {
@@ -15,6 +18,8 @@ module.exports = new GraphQLInputObjectType({
     email: {
       type: GraphQLString
     },
+    skills: {
+      type: new GraphQLList(GraphQLString)
     codeWars: {
       type: GraphQLString
     },
