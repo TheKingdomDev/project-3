@@ -1,0 +1,24 @@
+import React, {Component} from 'react'
+// import {Link} from 'react-router-dom'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
+import SignUp from '../components/SignUp'
+import Login from '../components/Login'
+
+class Registration extends Component {
+  render () {
+    return (
+      <div>
+        <Navbar />
+        <div className='container'>
+          {/* <div className='col s8 offset-s2'> */}
+            <SignUp />
+          {/* </div> */}
+        </div>
+        <Footer />
+      </div>
+    )
+  }
+}
+
+export default Registration
