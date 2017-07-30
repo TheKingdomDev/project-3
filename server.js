@@ -56,7 +56,6 @@ const db = mongoose.connection
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use(passport.initialize()) 
-require('./auth-strategies/localStrategy')(passport)
 require('./auth-strategies/githubStrategy')(passport)
 
 //Telling express to mount our GraphQL API to the 'graphql' route
