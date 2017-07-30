@@ -49,7 +49,20 @@ const UserSchema = new Schema({
   treehouse: {
     type: String
   },
-  UserSettings: UserSettingsSchema
+  UserSettings: {
+    showCodewars: {
+      type: Boolean,
+      default: false
+    },
+    showcCodeSchool: {
+      type: Boolean,
+      default: false
+    },
+    showTreehouse: {
+      type: Boolean,
+      default: false
+    }
+  }
 })
 
 //  Designed for user on a New User, salts/hashes a User's Password and returns a Promise.
