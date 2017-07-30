@@ -13,28 +13,34 @@ module.exports = new GraphQLObjectType({
           return user._id
         }
       },
-      userName: {
+      email: {
         type: GraphQLString,
-        resolve (user) {
-          return user.userName
+        resolve(user) {
+          return user.email
         }
       },
-      firstName: {
-        type: GraphQLString,
-        resolve (user) {
-          return user.firstName
-        }
-      },
-      lastName: {
+      displayName: {
         type: GraphQLString,
         resolve (user) {
           return user.lastName
         }
       },
-      email: {
+      githubLogin:{
         type: GraphQLString,
         resolve (user) {
-          return user.email
+          return user.githubLogin
+        }
+      },
+      githubProfileURL: {
+        type: GraphQLString,
+        resolve(user) {
+          return user.githubProfileURL
+        }
+      },
+      profilePictureURL: {
+        type: GraphQLString,
+        resolve(user) {
+          return user.profilePictureURL
         }
       },
       skills: {

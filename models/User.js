@@ -1,5 +1,6 @@
 const mongoose = require("mongoose")
 const bcrypt = require('bcryptjs')
+const UserSettingsSchema = require('./UserSettings')
 
 const Schema = mongoose.Schema
 
@@ -47,6 +48,20 @@ const UserSchema = new Schema({
   },
   treehouse: {
     type: String
+  },
+  UserSettings: {
+    showCodewars: {
+      type: Boolean,
+      default: false
+    },
+    showcCodeSchool: {
+      type: Boolean,
+      default: false
+    },
+    showTreehouse: {
+      type: Boolean,
+      default: false
+    }
   }
 })
 

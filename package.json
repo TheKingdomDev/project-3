@@ -4,6 +4,7 @@
   "description": "Skeleton for Project 3",
   "main": "server.js",
   "dependencies": {
+    "apollo-client": "^1.9.0-1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.2",
     "dotenv": "^4.0.0",
@@ -40,7 +41,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --content-base public/ --port 3000",
     "build": "webpack",
-    "start": "node server.js"
+    "start": "webpack && node server.js"
   },
   "author": "David Lassiter",
   "license": "ISC"
