@@ -5,24 +5,6 @@ const UserInputType = require('../userInputType.js')
 
 const dbUser = require('../../../models/User.js')
 
-const userCreate = {
-  type: UserType,
-  args: {
-    data: {
-      name: 'data',
-      type: new GraphQLNonNull(UserInputType)
-    }
-  },
-  resolve (root, { data }) {
-    
-    return new dbUser(data)
-    .setPassword()
-    .then(user => user.save() )
-    .then(dbUser => dbUser)
-    .catch(err => err)
-  }
-}
-
 const userUpdate = {
   type: UserType,
   args:{
@@ -41,6 +23,5 @@ const userUpdate = {
 }
 
 module.exports = {
-  userCreate,
   userUpdate
 }
