@@ -1,5 +1,6 @@
 const mongoose = require("mongoose")
 const bcrypt = require('bcryptjs')
+const UserSettingsSchema = require('./UserSettings')
 
 const Schema = mongoose.Schema
 
@@ -47,7 +48,8 @@ const UserSchema = new Schema({
   },
   treehouse: {
     type: String
-  }
+  },
+  UserSettings: UserSettingsSchema
 })
 
 //  Designed for user on a New User, salts/hashes a User's Password and returns a Promise.
