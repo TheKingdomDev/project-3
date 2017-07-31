@@ -1,6 +1,12 @@
+const rp = require('request-promise')
 const {GraphQLObjectType, GraphQLNonNull ,GraphQLString, GraphQLList} = require('graphql')
 
 const projectType = require('../Project/projectType.js')
+const dbProject = require('../../models/Project')
+
+const codeWarsType = require('./userSubTypes/codeWarsType')
+const codeSchoolType = require('./userSubTypes/codeSchoolType')
+const treehouseType = require('./userSubTypes/treehouseType')
 
 module.exports = new GraphQLObjectType({
   name: 'User',
@@ -22,7 +28,7 @@ module.exports = new GraphQLObjectType({
       displayName: {
         type: GraphQLString,
         resolve (user) {
-          return user.lastName
+          return user.displayName
         }
       },
       githubLogin:{
@@ -52,7 +58,39 @@ module.exports = new GraphQLObjectType({
       projects: {
         type: projectType,
         resolve (user) {
-          
+          return dbProject.find({_id: {$in: user.projects } })
+        }
+      },
+      codeWarsData: {
+        type: codeWarsType,
+        resolve({ codeWars }) {
+
+          return rp(`https://www.codewars.com/api/v1/users/${codeWars}`)
+            .then(response => {
+              return JSON.parse(response)
+            })
+            .catch(err => null)
+        }
+      },
+      codeSchoolData: {
+        type: codeSchoolType,
+        resolve({ codeSchool }) {
+          return rp(`https://www.codeschool.com/users/${codeSchool}.json`)
+            .then(data => {
+              return JSON.parse(data).user
+            })
+            .catch(err => null)
+        }
+      },
+      treehouseData: {
+        type: treehouseType,
+        resolve ({ treehouse }) {
+          return rp('http://teamtreehouse.com/jonathanschneider.json')
+            .then(data => {
+              console.log(JSON.parse(data).points['Development Tools'])
+              return JSON.parse(data)
+            })
+            .catch(err => null)
         }
       }
     }
