@@ -29,6 +29,7 @@ const express = require('express')
 const graphHTTP = require('express-graphql')
 const mongoose = require('mongoose')
 const passport = require('passport')
+const session = require('express-session')
 const bodyParser = require('body-parser')
 
 //We do this to be able to use Promises with mongoose
@@ -55,7 +56,25 @@ const db = mongoose.connection
 //Setting up ./public as a static directory to facilitate access to public assets
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.use(passport.initialize()) 
+app.use(session({
+  secret: 'secret',
+  saveUninitialized: true,
+  resave: true,
+}))
+
+passport.serializeUser(function (user, done) {
+  console.log('serializeUser')
+  console.log(user)
+  done(null, user);
+});
+
+passport.deserializeUser(function (obj, done) {
+  console.log('deserializeUser')
+  done(null, obj);
+});
+
+app.use(passport.initialize())
+app.use(passport.session())
 require('./auth-strategies/githubStrategy')(passport)
 
 //Telling express to mount our GraphQL API to the 'graphql' route

@@ -11,7 +11,6 @@ module.exports = function(passport) {
     callbackURL: "http://localhost:3000/auth/github/callback"
   },
   function(accessToken, _, profile, done) {
-    console.log(`EMAIL:  ${profile._json.email}`)
 
     dbUser.findOneOrCreate(
       { githubId: profile.id },
