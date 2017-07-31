@@ -12,7 +12,7 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-    lastName: {
+  lastName: {
     type: String,
     required: true
   },
@@ -23,6 +23,7 @@ const UserSchema = new Schema({
   skills: [{
     type: String,
   }],
+  //TODO: highlighted skills
   projects: [{
     type: Schema.Types.ObjectId,
     ref: 'Project'
@@ -40,6 +41,9 @@ const UserSchema = new Schema({
   treehouse: {
     type: String
   }
+  //TODO: Github stuff
+  //TODO: bio
+  //TODO: owned projects
 })
 
 
