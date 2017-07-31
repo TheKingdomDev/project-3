@@ -17,8 +17,7 @@ module.exports = new GraphQLObjectType({
           userName: { type: GraphQLString },
           email: { type: GraphQLString }
         },
-        resolve(root, args) {
-          //  TODO - Implement .select method to limit data retuned from db.
+        resolve(root, args, _, ast) {
           return dbUser.find(args)
         }
       },
