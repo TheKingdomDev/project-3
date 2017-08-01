@@ -2,6 +2,18 @@ import React, {Component} from 'react'
 // import {Link} from 'react-router-dom'
 import MainNav from '../components/MainNav'
 import Footer from '../components/Footer'
+import {
+  ApolloClient,
+  gql,
+  graphql,
+  ApolloProvider, createNetworkInterface
+} from 'react-apollo'
+
+const client = new ApolloClient({
+  networkInterface: createNetworkInterface({
+    uri: '/graphql',
+  }),
+});
 
 // Project details page to display the full description of a project as well as show tasks and comments
 // Data needed will be the specific project that was clicked.
@@ -15,6 +27,19 @@ class ProjectDetails extends Component {
       projects: []
     }
   }
+  
+  componentWillMount () {
+    client.query({
+      query: gql`{ users {
+          id
+          displayName
+        }
+      }`
+    })
+    .then(data => { console.log(data) })
+    .catch(err => { console.log(err) })
+  }
+
   render () {
     return (
       <div>

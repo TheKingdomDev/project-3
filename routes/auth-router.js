@@ -19,7 +19,7 @@ const checkAuthenticated = function (req, res, next) {
 //  TODO - send failure flash messages with the response if 'failureRedirect' is envoked 
 router.get('/github/callback',
   passport.authenticate('github', {failureredirect: '/'}),
-  (req, res) => { res.redirect('/') }
+  (req, res) => { res.redirect('/#/home') }
 )
 
 //  TESTING ROUTE, DELETE before FDEPLOYMENT to production.
