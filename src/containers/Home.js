@@ -15,10 +15,12 @@ class Home extends Component {
   }
   render () {
     return (
-      <div className='container'>
+      <div>
         <MainNav />
-        <SearchBar />
-        <HomeContent />
+        <div className='container' >
+          <SearchBar />
+          <HomeContent />
+        </div>
         <Footer />
       </div>
     )
