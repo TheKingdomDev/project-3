@@ -7,17 +7,17 @@ const userType = require('../../User/userType.js')
 
 module.exports = new GraphQLObjectType({
   name: 'Query',
-  description: 'root query',
+  description: 'Projects root query',
   fields: () => {
     return {
-      users: {
+      projects: {
         type: new GraphQLList(projectType),
         args: {
           _id: { type: GraphQLString },
           name: { type: GraphQLString },
           owner: { type: GraphQLString },
-          collaborators: { type: userType },
-          primaryTechs: { type: GraphQLString }
+          collaborators: { type: GraphQLString },
+          primaryTechs: { type: GraphQLString },
         },
         resolve(root, args) {
           //  TODO - Implement .select method to limit data retuned from db.

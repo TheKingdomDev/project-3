@@ -34,7 +34,11 @@ const ProjectModel = new Schema({
   }],
   primaryTechs: [{
     type: String
-  }]
+  }],
+  repository: {
+    type: String,
+    required: true
+  }
 })
 
 module.exports = mongoose.model('Project', ProjectModel)
