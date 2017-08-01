@@ -1,24 +1,26 @@
 import React from 'react'
+// import { Link } from 'react-router-dom'
 
 const Login = () => (
-  <div className='row'>
-    <form className='col s12'>
-      <div className='row'>
-        <div className='input-field col s6'>
-          <input placeholder='Placeholder' id='user' type='text' className='validate' />
-          <label htmlFor='user'>Username: </label>
-        </div>
-        <div className='input-field col s6'>
-          <input id='pass' type='text' className='validate' />
-          <label htmlFor='pass'>Password: </label>
-        </div>
-      </div>
-      <div className='row'>
-        <a className='waves-effect waves-light btn' type='submit' name='action'>Login</a>
-        <a className='waves-effect waves-light btn' type='submit' name='action'>Login with: </a>
-      </div>
-    </form>
+  // This row contains input forms
+  <div className='container'>
+    <div className='valign-wrapper'>
+      <p>This application requires our users to login through GitHub. If you have an account simply click the button below. If you don't have an account follow this link <a href='http://github.com'>GitHub</a></p>
+      <a className='waves-effect waves-light btn'><i className='devicons devicons-github_badge' />Login with GitHub</a>
+    </div>
   </div>
 )
 
 export default Login
+
+// const inputFormStyle = {
+//   // border: 'solid black 1px'
+//   padding: '20px'
+// }
+
+// const buttonStyles = {
+//   margin: '10px'
+// }
+
+// Note to self:
+// Should our buttons be <a> tags or <Link /> components?

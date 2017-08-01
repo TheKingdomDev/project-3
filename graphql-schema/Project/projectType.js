@@ -1,48 +1,37 @@
 const {GraphQLObjectType, GraphQLNonNull ,GraphQLString, GraphQLList} = require('graphql')
 
-const userType = require('../User/userType.js')
+const UserType = require('../User/userType.js')
 
 module.exports = new GraphQLObjectType({
   name: 'Project',
-  description: 'This is a code project.',
-  fields: function() {
+  description: 'Development Project',
+  fields: function () {
     return {
-      id: {
-        type: GraphQLString,
-        resolve(Project) {
-          return Project._id
-        }
-      },
       name: {
-        type: GraphQLString,
-        resolve(Project) {
-          return Project.name
+        type: new GraphQLNonNull(GraphQLString),
+        resolve(project) {
+          return project.name
         }
       },
       description: {
         type: GraphQLString,
-        resolve(Project) {
-          return Project.description
+        resolve(project) {
+          return project.description
         }
       },
       createdDate: {
         type: GraphQLString,
-        resolve(Project) {
-          return Project.createdDate
+        resolve (project) {
+          return project.createdDate
         }
       },
-      owner: {
-        type: userType,
-        resolve(Project) {
-          //TODO: get mongoose to pull the user information
-        }
-      },
-      collaborators: {
-        type: new GraphQLList(userType),
-        resolve(Project) {
-          //TODO: as above.
-        }
-      }
+      // owner: {
+      //   type: UserType,
+      //   resolve (project) {
+      //     retur
+      //   }
+      // }
+      //  TODO - add colaborators, 
     }
   }
 })
