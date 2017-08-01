@@ -31,6 +31,7 @@ const UserSchema = new Schema({
   skills: [{
     type: String,
   }],
+  //TODO: highlighted skills
   projects: [{
     type: Schema.Types.ObjectId,
     ref: 'Project'
@@ -62,6 +63,9 @@ const UserSchema = new Schema({
       default: false
     }
   }
+  //TODO: Github stuff
+  //TODO: bio
+  //TODO: owned projects
 })
 
 //  Designed for user on a New User, salts/hashes a User's Password and returns a Promise.

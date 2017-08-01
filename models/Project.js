@@ -10,7 +10,7 @@ const ProjectModel = new Schema({
   description: {
     type: String,
     required: true
-  },  
+  },
   createdDate: {
     type: Date,
     default: new Date()
@@ -31,7 +31,14 @@ const ProjectModel = new Schema({
   tasks: [{
     type: Schema.Types.ObjectId,
     ref: 'Task'
-  }]
+  }],
+  primaryTechs: [{
+    type: String
+  }],
+  repository: {
+    type: String,
+    required: true
+  }
 })
 
 module.exports = mongoose.model('Project', ProjectModel)
