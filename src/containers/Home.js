@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 // import {Link} from 'react-router-dom'
-import Navbar from '../components/Navbar'
+import MainNav from '../components/MainNav'
 import Footer from '../components/Footer'
 import SearchBar from '../components/SearchBar'
 import HomeContent from '../components/HomeContent'
@@ -16,10 +16,10 @@ class Home extends Component {
   render () {
     return (
       <div>
-        <Navbar />
-        <div className='container'>
-        <SearchBar />
-        <HomeContent />
+        <MainNav />
+        <div className='container' >
+          <SearchBar />
+          <HomeContent />
         </div>
         <Footer />
       </div>

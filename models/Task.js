@@ -23,6 +23,9 @@ const TaskModel = new Schema({
   },
   dueDate: {
     type: Date
+  },
+  link: {
+    type: String
   }
 })
 

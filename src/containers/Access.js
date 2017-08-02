@@ -4,13 +4,13 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import Login from '../components/Login'
 
-// This is the Login page. Named "Access" to avoid 
+// This is the Login page. Named "Access" to avoid
 // possible conflicts. We already have a Login component
 class Access extends Component {
   render () {
     return (
       <div>
-         <Navbar />
+        <Navbar />
         <div className='container'>
           <Login />
         </div>

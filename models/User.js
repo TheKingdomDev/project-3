@@ -4,29 +4,34 @@ const bcrypt = require('bcryptjs')
 const Schema = mongoose.Schema
 
 const UserSchema = new Schema({
-  userName: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  password: {
-    type: String,
-  },
-  firstName: {
-    type: String,
-    required: true
-  },
-    lastName: {
-    type: String,
-    required: true
-  },
   email: {
     type: String,
-    lowercase: true
+    lowercase: true,
+    required: true
+  },
+  displayName: {
+    type: String,
+    required: true
+  },
+  githubLogin: {
+    type: String,
+    required: true
+  },
+  githubId: {
+    type: String,
+    required: true
+  },
+  githubProfileURL: {
+    type: String,
+    required: true
+  },
+  profilePictureURL: {
+    type: String
   },
   skills: [{
     type: String,
   }],
+  //TODO: highlighted skills
   projects: [{
     type: Schema.Types.ObjectId,
     ref: 'Project'
@@ -35,17 +40,36 @@ const UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Task'
   }],
-  codeWars: {
-    type: String
-  },
-  codeSchool: {
-    type: String
-  },
-  treehouse: {
-    type: String
+  UserSettings: {
+    codeWarsUsername: {
+      type: String
+    },
+    codeSchoolUsername: {
+      type: String
+    },
+    treehouseUsername: {
+      type: String
+    },
+    showCodewars: {
+      type: Boolean,
+      default: false
+    },
+    showcCodeSchool: {
+      type: Boolean,
+      default: false
+    },
+    showTreehouse: {
+      type: Boolean,
+      default: false
+    }
   }
+  //TODO: Github stuff
+  //TODO: bio
+  //TODO: owned projects
 })
 
+
+//   ***NOTE: Currently Unused - will be reimplemented if/when Local Authentication/JWTs is developed ***
 //  Designed for user on a New User, salts/hashes a User's Password and returns a Promise.
 UserSchema.methods.setPassword = function () {
   

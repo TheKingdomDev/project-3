@@ -1,36 +1,49 @@
 
 const { GraphQLObjectType, GraphQLString, GraphQLList } = require('graphql')
-const dbUser = require('../models/User.js')
 
-const userType = require('./User/userType.js')
-const projectType = require('./Project/projectType.js')
+//  Importing User Db Model and User GraphQL Type 
+const userType = require('./User/userType')
+const dbUser = require('../models/User')
+
+//  Importing Project dbModel and Project GraphQL Type
+const projectType = require('./Project/projectType')
+const dbProject  = require('../models/Project')
 
 module.exports = new GraphQLObjectType({
   name: 'Query',
   description: 'root query',
   fields: () => {
     return {
+      me: {
+        type: userType,
+        resolve(root, args, req, ast) {
+          return req.user 
+            ? dbUser.find( { id: req.user.id } )
+              .then(res => res)
+              .catch(err => err)
+            : null
+        }
+      },
       users: {
         type: new GraphQLList(userType),
         args: {
-          id: { type: GraphQLString },
+          _id: { type: GraphQLString },
           userName: { type: GraphQLString },
           email: { type: GraphQLString }
         },
-        resolve(root, args) {
-          //  TODO - Implement .select method to limit data retuned from db.
+        resolve(root, args, _, ast) {
           return dbUser.find(args)
         }
       },
       projects: {
         type: new GraphQLList(projectType),
         args: {
-          id: { type: GraphQLString },
+          _id: { type: GraphQLString },
           owner: { type: GraphQLString },
           skills: { type: new GraphQLList(GraphQLString)},
         },
-        resolve (root, args) {
-
+        resolve (root, args, _, ast) {
+          return dbProject.find(args)
         }
       }
     }

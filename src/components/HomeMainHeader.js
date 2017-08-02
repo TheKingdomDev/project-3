@@ -3,22 +3,22 @@ import { Link } from 'react-router-dom'
 // import Background from '../assets/code-background1.jpg'
 
 const Jumbo = () => (
- <div>
-  <div className='card-panel grey lighten-2' style={jumbotronStyle}>
-   <div className='container center' >
-     <section style={intro}>
-      <h1>{'<DevAllies />'}</h1>
-      <p style={{color: 'black'}}>
-        An open source platform/community for developers to <br />
-        find collaborators for active projects, or to <br />
-        become collaborators themselves.
-      </p>
-     </section>
-    <Link to='/registration'><a className='waves-effect waves-light btn-large light-green accent-4'>
-      <i className='material-icons right'></i>Register</a></Link>
-   </div> 
+  <div>
+    <div className='card-panel grey lighten-2' style={jumbotronStyle}>
+      <div className='container center' >
+        <section style={intro}>
+          <h1>{'<StackTeam />'}</h1>
+          <p style={{color: 'black'}}>
+          An open source platform/community for developers to <br />
+          find collaborators for active projects, or to <br />
+          become collaborators themselves.
+          </p>
+        </section>
+        <Link to='/login'><a className='waves-effect waves-light btn-large light-green accent-4'>
+          <i className='material-icons right' />Register</a></Link>
+      </div>
+    </div>
   </div>
- </div>
 )
 
 const jumbotronStyle = {
