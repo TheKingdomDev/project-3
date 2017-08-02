@@ -29,8 +29,7 @@ const SignUp = () => (
           <label htmlFor='password'></label>
         </div>
         <div className='row'>
-          <a className='waves-effect waves-light btn' type='submit' name='action'>Sign Up</a>
-          <a className='waves-effect waves-light btn' type='submit' name='action'>Sign Up With: ?</a>
+          <a className='waves-effect waves-light btn light-green accent-4' type='submit' name='action'>Login With GitHub</a>
         </div>
       </div>
     </form>

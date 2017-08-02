@@ -8,7 +8,7 @@ const Jumbo = () => (
       <div className='container center' >
         <section style={intro}>
           <h1>{'<StackTeam />'}</h1>
-          <p>
+          <p style={{color: 'black'}}>
           An open source platform/community for developers to <br />
           find collaborators for active projects, or to <br />
           become collaborators themselves.
@@ -31,7 +31,18 @@ const jumbotronStyle = {
 }
 
 const intro = {
-  backgroundColor: 'rgba(224, 224, 224, 0.5)'
+  backgroundColor: 'rgba(224, 224, 224, 0.5)',
+  // padding: '5px, 0, 5px, 0', // top, right, bottom, left (tried but didn't look the same!)
+  paddingTop: '5px',
+  paddingBottom: '5px',
+  paddingLeft: 'auto',
+  paddingRight: 'auto',
+  marginBottom: '30px',
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  width: '600px',
+  borderRadius: '7px'
+  // color: 'black'
 }
 
 export default Jumbo

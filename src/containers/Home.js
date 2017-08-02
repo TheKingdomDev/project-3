@@ -6,8 +6,8 @@ import SearchBar from '../components/SearchBar'
 import HomeContent from '../components/HomeContent'
 
 class Home extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.state = {
       projects: [],
       users: []

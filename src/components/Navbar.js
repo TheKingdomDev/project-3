@@ -8,6 +8,7 @@ const Navbar = () => (
         <Link to='/' style={codeFont}>{'<ST />'}</Link></a>
       <ul id='nav-mobile' className='right hide-on-med-and-down'>
         <li><Link to='/login'>Log In</Link></li>
+        <li><Link to='/profile'>Profile</Link></li>
       </ul>
     </div>
   </nav>

@@ -11,9 +11,9 @@ import {
 
 const client = new ApolloClient({
   networkInterface: createNetworkInterface({
-    uri: '/graphql',
-  }),
-});
+    uri: '/graphql'
+  })
+})
 
 // Project details page to display the full description of a project as well as show tasks and comments
 // Data needed will be the specific project that was clicked.
