@@ -4,6 +4,7 @@ const {GraphQLObjectType, GraphQLNonNull ,GraphQLString, GraphQLList} = require(
 const projectType = require('../Project/projectType.js')
 const dbProject = require('../../models/Project')
 
+const userSettingsType = require('./userSubTypes/userSettingsType')
 const codeWarsType = require('./userSubTypes/codeWarsType')
 const codeSchoolType = require('./userSubTypes/codeSchoolType')
 const treehouseType = require('./userSubTypes/treehouseType')
@@ -13,7 +14,7 @@ module.exports = new GraphQLObjectType({
   description: 'This is a User',
   fields: function() {
     return {
-      id: {
+      _id: {
         type: new GraphQLNonNull(GraphQLString),
         resolve (user) {
           return user._id
@@ -59,6 +60,12 @@ module.exports = new GraphQLObjectType({
         type: projectType,
         resolve (user) {
           return dbProject.find({_id: {$in: user.projects } })
+        }
+      },
+      userSettings: {
+        type: userSettingsType,
+        resolve (user) {
+          return user.UserSettings
         }
       },
       codeWarsData: {
