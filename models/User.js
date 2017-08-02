@@ -40,16 +40,16 @@ const UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Task'
   }],
-  codeWars: {
-    type: String
-  },
-  codeSchool: {
-    type: String
-  },
-  treehouse: {
-    type: String
-  },
   UserSettings: {
+    codeWarsUsername: {
+      type: String
+    },
+    codeSchoolUsername: {
+      type: String
+    },
+    treehouseUsername: {
+      type: String
+    },
     showCodewars: {
       type: Boolean,
       default: false
@@ -68,6 +68,8 @@ const UserSchema = new Schema({
   //TODO: owned projects
 })
 
+
+//   ***NOTE: Currently Unused - will be reimplemented if/when Local Authentication/JWTs is developed ***
 //  Designed for user on a New User, salts/hashes a User's Password and returns a Promise.
 UserSchema.methods.setPassword = function () {
   
