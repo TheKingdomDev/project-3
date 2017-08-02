@@ -6,8 +6,8 @@ import SearchBar from '../components/SearchBar'
 import HomeContent from '../components/HomeContent'
 
 class Home extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.state = {
       projects: [],
       users: []
@@ -15,10 +15,12 @@ class Home extends Component {
   }
   render () {
     return (
-      <div className='container'>
+      <div>
         <Navbar />
+        <div className='container'>
         <SearchBar />
         <HomeContent />
+        </div>
         <Footer />
       </div>
     )

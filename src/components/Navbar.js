@@ -16,7 +16,8 @@ const Navbar = () => (
 )
 
 const codeFont = {
-  fontFamily: 'Courier'
+  fontFamily: 'Courier',
+  // color: 'black'
 }
 
 export default Navbar
