@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const CommentModel = new Schema({
-  edit: [{
+  edits: [{
     text: {
       type: String,
       required: true
@@ -13,6 +13,10 @@ const CommentModel = new Schema({
       default: new Date()
     }
   }],
+  createdDate: {
+    type: Date,
+    default: new Date()
+  },
   owner: {
     type: Schema.Types.ObjectId,
     ref: 'User',
