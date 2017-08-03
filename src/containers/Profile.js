@@ -25,12 +25,12 @@ class Profile extends Component {
     return (
       <div>
         <Navbar/>
-        <div className='container'>
+        <div className='container' style={{marginTop: '20px'}}>
           <div className='row'>
             <div className='col s4' style={{border:'1px solid blue'}}>
               <AvatarCard />   
             </div>
-            <div className='col s8' style={{border:'1px solid red'}}>
+            <div className='col s8' style={{border:'1px solid red', height: '515.5px'}}>
               <div className='container'>
                 <Skills /> 
                 <Accounts />   
@@ -38,13 +38,13 @@ class Profile extends Component {
             </div>
           </div>
           <div className='row'>
-            <div className='col s12' style={{border:'1px solid purple'}}>
+            <div className='col s12' style={{border:'1px solid purple', minHeight: '125px'}}>
               <Bio />  
             </div>
-            <div className='col s12' style={{border:'1px solid green'}}>
+            <div className='col s12' style={{border:'1px solid green', minHeight: '125px'}}>
               <Projects />   
             </div>
-            <div className='col s12' style={{border:'1px solid orange'}}>
+            <div className='col s12' style={{border:'1px solid orange', minHeight: '125px'}}>
               <Tasks />   
             </div>
           </div>
