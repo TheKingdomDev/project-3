@@ -1,6 +1,6 @@
 import React from 'react'
-import Navbar from './Navbar'
-import Footer from './Footer'
+import Navbar from '../Recurrent/Navbar'
+import Footer from '../Recurrent/Footer'
 import Jumbo from './HomeMainHeader'
 
 const Landing = (props) => (

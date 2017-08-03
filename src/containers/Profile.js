@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
+import Navbar from '../components/Recurrent/Navbar'
+import Footer from '../components/Recurrent/Footer'
 
 import { 
     AvatarCard,

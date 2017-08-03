@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 // import {Link} from 'react-router-dom'
-import MainNav from '../components/MainNav'
-import Footer from '../components/Footer'
+import MainNav from '../components/Recurrent/MainNav'
+import Footer from '../components/Recurrent/Footer'
 
 // Project container to display the user projects
 // Data required - UserProjects(Name, Desc, Primary Tech)
