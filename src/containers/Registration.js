@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import SignUp from '../components/SignUp'
-import Login from '../components/Login'
+// import Login from '../components/Login'
 
 class Registration extends Component {
   render () {
@@ -12,7 +12,7 @@ class Registration extends Component {
         <Navbar />
         <div className='container'>
           {/* <div className='col s8 offset-s2'> */}
-            <SignUp />
+          <SignUp />
           {/* </div> */}
         </div>
         <Footer />

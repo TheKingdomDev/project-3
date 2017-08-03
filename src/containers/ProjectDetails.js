@@ -27,7 +27,6 @@ class ProjectDetails extends Component {
       projects: []
     }
   }
-  
   componentWillMount () {
     client.query({
       query: gql`{ users {

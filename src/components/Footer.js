@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Footer = () => (
-  <footer className='page-footer indigo'>
+  <footer className='page-footer'style={footerStyles}>
     <div className='row'>
       {/* <div className='col 16 s12' style={{textAlign: 'center'}}>
           <h4 className='white-text'>Project 3</h4>
@@ -16,5 +16,10 @@ const Footer = () => (
     </div>
   </footer>
 )
+
+const footerStyles = {
+  backgroundColor: '#172b4c',
+  fontFamily: 'Share Tech Mono'
+}
 
 export default Footer

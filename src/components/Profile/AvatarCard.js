@@ -1,9 +1,9 @@
 import React from 'react'
 
 const AvatarCard = (props) => (
-    <div>
+  <div>
     Avatar Card
-    </div>
+  </div>
 )
 
 export default AvatarCard
