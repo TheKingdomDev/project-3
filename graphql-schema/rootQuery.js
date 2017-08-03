@@ -18,7 +18,7 @@ module.exports = new GraphQLObjectType({
         type: userType,
         resolve(root, args, req, ast) {
           return req.user 
-            ? dbUser.find( { id: req.user.id } )
+            ? dbUser.find( { _id: req.user._id } )
               .then(res => res)
               .catch(err => err)
             : null

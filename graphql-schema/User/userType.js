@@ -1,6 +1,10 @@
+//  importing request-promise for Third Party API Calls
 const rp = require('request-promise')
+
+//  Importing necessary Types from graphql library
 const {GraphQLObjectType, GraphQLNonNull ,GraphQLString, GraphQLList} = require('graphql')
 
+//  Importing Project Files
 const projectType = require('../Project/projectType.js')
 const dbProject = require('../../models/Project')
 
@@ -38,6 +42,12 @@ module.exports = new GraphQLObjectType({
           return user.githubLogin
         }
       },
+      githubId: {
+        type: GraphQLString,
+        resolve(user) {
+          return user.githubId
+        }
+      },
       githubProfileURL: {
         type: GraphQLString,
         resolve(user) {
@@ -57,7 +67,7 @@ module.exports = new GraphQLObjectType({
         }
       },
       projects: {
-        type: projectType,
+        type: new GraphQLList(projectType),
         resolve (user) {
           return dbProject.find({_id: {$in: user.projects } })
         }
