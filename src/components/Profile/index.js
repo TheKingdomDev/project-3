@@ -8,8 +8,7 @@ import Bio from './Bio'
 import Projects from './Projects'
 import Tasks from './Tasks'
 
-
- export { 
+export {
     AvatarCard,
     Skills,
     Accounts,

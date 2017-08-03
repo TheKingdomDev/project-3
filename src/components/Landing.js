@@ -7,7 +7,7 @@ const Landing = (props) => (
   <div>
     <Navbar />
     <Jumbo />
-    <div className='container'>
+    <div className='container' style={landingStyles}>
       <div className='row center'>
         <div className='col s4'>
           <p>
@@ -37,5 +37,10 @@ const Landing = (props) => (
     <Footer />
   </div>
 )
+
+const landingStyles = {
+  fontFamily: 'Cantarell',
+  fontSize: 18
+}
 
 export default Landing

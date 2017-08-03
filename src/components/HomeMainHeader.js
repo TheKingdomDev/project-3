@@ -8,26 +8,36 @@ const Jumbo = () => (
       <div className='container center' >
         <section style={intro}>
           <h1>{'<StackTeam />'}</h1>
-          <p style={{color: 'black'}}>
+          <p style={contentStyle}>
           An open source platform/community for developers to <br />
           find collaborators for active projects, or to <br />
           become collaborators themselves.
           </p>
         </section>
-        <Link to='/login'><a className='waves-effect waves-light btn-large light-green accent-4'>
+        <Link to='/login'><a className='waves-effect waves-light btn-large'style={buttonStyle}>
           <i className='material-icons right' />Register</a></Link>
       </div>
     </div>
   </div>
 )
 
+const buttonStyle = {
+  backgroundColor: '#6ece5a',
+  fontFamily: 'Share Tech Mono'
+}
+const contentStyle = {
+  color: 'black',
+  fontFamily: 'Cantarell',
+  fontSize: 22
+
+}
 const jumbotronStyle = {
   padding: '70px',
   boxShadow: '0px 0px 0px 0px rgba(0,0,0,0)',
   marginTop: 0,
   backgroundImage: `url(http://www.toddedwardsweb.com/img/teCodeVideo_bg.jpg)`,
   color: 'white',
-  fontFamily: 'Courier'
+  fontFamily: 'Share Tech Mono'
 }
 
 const intro = {
