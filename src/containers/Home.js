@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 // import {Link} from 'react-router-dom'
-import MainNav from '../components/MainNav'
-import Footer from '../components/Footer'
+import MainNav from '../components/Recurrent//MainNav'
+import Footer from '../components/Recurrent/Footer'
 import SearchBar from '../components/SearchBar'
 import HomeContent from '../components/HomeContent'
 

@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-// import Background from '../assets/code-background1.jpg'
 
 const Jumbo = () => (
   <div>
@@ -9,7 +8,7 @@ const Jumbo = () => (
         <section style={intro}>
           <h1>{'<StackTeam />'}</h1>
           <p style={contentStyle}>
-          An open source platform/community for developers to <br />
+          An open source community for developers to <br />
           find collaborators for active projects, or to <br />
           become collaborators themselves.
           </p>

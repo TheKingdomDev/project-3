@@ -9,10 +9,10 @@ import Projects from './Projects'
 import Tasks from './Tasks'
 
 export {
-    AvatarCard,
-    Skills,
-    Accounts,
-    Bio,
-    Projects,
-    Tasks
+  AvatarCard,
+  Skills,
+  Accounts,
+  Bio,
+  Projects,
+  Tasks
  }

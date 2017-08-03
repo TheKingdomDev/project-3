@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Landing from './components/Landing'
+import Landing from './components/Landing/Landing'
 
 class App extends Component {
   render () {
@@ -10,3 +10,5 @@ class App extends Component {
 }
 
 export default App
+
+// try playing around with sticky footer in this file
