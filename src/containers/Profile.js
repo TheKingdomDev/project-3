@@ -1,12 +1,7 @@
 import React, { Component } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-// import AvatarCard from '../components/Profile/index'
-// import Skills from '../components/Profile/index'
-// import Accounts from '../components/Profile/index'
-// import Bio from '../components/Profile/index'
-// import Projects from '../components/Profile/index'
-// import Tasks from '../components/Profile/index'
+
 import { 
     AvatarCard,
     Skills,
@@ -16,11 +11,16 @@ import {
     Tasks
  } from '../components/Profile/index'
 
-import TestComponent from '../components/Profile/AvatarCard'
+// import TestComponent from '../components/Profile/AvatarCard'
 
 class Profile extends Component {
     constructor (props) {
         super(props)
+        this.state = {
+            //we will set the necessary user info here
+            //and pass it DOWN as props to the respective
+            //child components
+        }
     }
     render () {
         return (
@@ -34,8 +34,8 @@ class Profile extends Component {
                     </div>
                     <div className='col s8' style={{border:'1px solid red'}}>
                         <div className='container'>
-                               <Skills /> 
-                             <Accounts />   
+                            <Skills /> 
+                            <Accounts />   
                         </div>
                     </div>
                 </div>

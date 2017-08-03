@@ -6,8 +6,11 @@ const Login = () => (
   <div className='container'>
     <div className='valign-wrapper'>
       <form method='GET' action='/auth/github/login'>
-        <p>This application requires our users to login through GitHub. If you have an account simply click the button below. If you don't have an account follow this link <a href='http://github.com'>GitHub</a></p>
-        <button type='submit' className='waves-effect waves-light btn'><i className='devicons devicons-github_badge' />Login with GitHub</button>
+        <p>This application requires our users to login through GitHub.
+          If you have an account simply click the button below. If you don't
+          have an account follow <a href='http://github.com'>this link</a></p>
+        <button type='submit' className='waves-effect waves-light btn'>
+          <i className='devicons devicons-github_badge' />Login with GitHub</button>
       </form>
     </div>
   </div>
