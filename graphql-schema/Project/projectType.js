@@ -25,13 +25,18 @@ module.exports = new GraphQLObjectType({
           return project.createdDate
         }
       },
-      // owner: {
-      //   type: UserType,
-      //   resolve (project) {
-      //     retur
-      //   }
-      // }
-      //  TODO - add colaborators, 
+      owner: {
+        type: UserType,
+        resolve (project) {
+          return project.owner
+        }
+      },
+      collaborators: {
+        type: UserType,
+        resolve (project) {
+          return project.collaborators
+        }
+      }
     }
   }
 })

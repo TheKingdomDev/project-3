@@ -4,16 +4,10 @@ module.exports = new GraphQLInputObjectType({
   name: 'projectInput',
   fields: {
     name: {
-      type: GraphQLString
+      type: new GraphQLNonNull(GraphQLString)
     },
     description: {
-      type: GraphQLString
-    },
-    createdDate: {
-      type: GraphQLString
-    },
-    owner: {
-      type: GraphQLString
+      type: new GraphQLNonNull(GraphQLString)
     },
     collaborators: {
       type: new GraphQLList(GraphQLString)
