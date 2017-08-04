@@ -6,16 +6,6 @@ router.get('/github/login',
   passport.authenticate('github', { scope: ['user:email']})
 )
 
-const checkAuthenticated = function (req, res, next) {
-  console.log(req.isAuthenticated())
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  else {
-    res.redirect('/')
-  }
-}
-
 //  TODO - send failure flash messages with the response if 'failureRedirect' is envoked 
 router.get('/github/callback',
   passport.authenticate('github', {failureredirect: '/'}),
@@ -23,9 +13,9 @@ router.get('/github/callback',
 )
 
 //  TESTING ROUTE, DELETE before FDEPLOYMENT to production.
-router.get('/stuff', checkAuthenticated,(req, res) => {
+router.get('/stuff',(req, res) => {
   console.log(req.user)
-  res.json('your token was authenticated successfully.')
+  res.json(req.user)
 })
 
 module.exports = router

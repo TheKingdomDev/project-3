@@ -37,7 +37,6 @@ mongoose.Promise = Promise
 
 //Bringing in our GraphQL Schema
 const Schema = require('./graphql-schema/schema')
-console.log(Schema._queryType)
 
 //Bringing in the module that serves our site
 const pageRouter = require('./routes/page-router')
@@ -64,7 +63,6 @@ app.use(session({
 
 passport.serializeUser(function (user, done) {
   console.log('serializeUser')
-  console.log(user)
   done(null, user);
 });
 
@@ -73,16 +71,29 @@ passport.deserializeUser(function (obj, done) {
   done(null, obj);
 });
 
+const checkAuthenticated = function (req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  else {
+    res.redirect('/')
+  }
+}
+
 app.use(passport.initialize())
 app.use(passport.session())
 require('./auth-strategies/githubStrategy')(passport)
 
 //Telling express to mount our GraphQL API to the 'graphql' route
-app.use('/graphql', graphHTTP({
-  schema: Schema,
-  pretty: true,
-  graphiql: true
-}))
+app.use('/graphql', graphHTTP(request => {
+  return {
+    schema: Schema,
+    pretty: true,
+    graphiql: true,
+    context: request
+  }
+  })
+)
 
   app.use(bodyParser.json())
   app.use(bodyParser.urlencoded({ extended: true }))
