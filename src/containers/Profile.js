@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Navbar from '../components/Recurrent/Navbar'
 import Footer from '../components/Recurrent/Footer'
+import { gql, graphql } from 'react-apollo'
 
 import {
   AvatarCard,
@@ -10,6 +11,20 @@ import {
   Projects,
   Tasks
  } from '../components/Profile/index'
+
+// We use the gql tag to parse our query string into a query document
+const CurrentUserData = gql`
+  query User {
+    me {
+      email
+      displayName
+      githubLogin
+      githubId
+      githubProfileURL
+    }
+  }
+`
+const UserProfileWithData = graphql(CurrentUserData)(Profile)
 
 class Profile extends Component {
   constructor (props) {
