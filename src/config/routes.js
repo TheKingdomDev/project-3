@@ -9,16 +9,19 @@ import ProjectDetails from '../containers/ProjectDetails'
 import App from '../App'
 // import Registration from '../containers/Registration'
 import Access from '../containers/Access'
+
+import PrivateRoute from './PrivateRoute'
+
 // routing
 const routes = (
   <Router>
     <Switch>
       <Route exact path='/' component={App} />
-      <Route path='/home' component={Home} />
+      <PrivateRoute path='/home' component={Home} />
       <Route path='/login' component={Access} />
-      <Route path='/profile' component={Profile} />
-      <Route path='/project' component={Project} />
-      <Route path='/project:details' component={ProjectDetails} />
+      <PrivateRoute path='/profile' component={Profile} />
+      <PrivateRoute path='/project' component={Project} />
+      <PrivateRoute path='/project:details' component={ProjectDetails} />
     </Switch>
   </Router>
 )
