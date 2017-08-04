@@ -26,13 +26,13 @@ module.exports = new GraphQLObjectType({
         }
       },
       owner: {
-        type: UserType,
+        type: GraphQLString,
         resolve (project) {
           return project.owner
         }
       },
       collaborators: {
-        type: UserType,
+        type: GraphQLString,
         resolve (project) {
           return project.collaborators
         }
