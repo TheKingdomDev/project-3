@@ -17,9 +17,13 @@ module.exports = new GraphQLObjectType({
       me: {
         type: userType,
         resolve(root, args, req, ast) {
+ 
           return req.user 
-            ? dbUser.find( { _id: req.user._id } )
-              .then(res => res)
+            ? dbUser.findOne( { _id: req.user._id } )
+              .then(res => {
+                console.log(res)
+                return res
+              })
               .catch(err => err)
             : null
         }
@@ -28,7 +32,6 @@ module.exports = new GraphQLObjectType({
         type: new GraphQLList(userType),
         args: {
           _id: { type: GraphQLString },
-          userName: { type: GraphQLString },
           email: { type: GraphQLString }
         },
         resolve(root, args, _, ast) {

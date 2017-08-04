@@ -104,7 +104,6 @@ module.exports = new GraphQLObjectType({
         resolve ({ treehouse }) {
           return rp('http://teamtreehouse.com/jonathanschneider.json')
             .then(data => {
-              console.log(JSON.parse(data).points['Development Tools'])
               return JSON.parse(data)
             })
             .catch(err => null)
@@ -113,3 +112,4 @@ module.exports = new GraphQLObjectType({
     }
   }
 })
+
