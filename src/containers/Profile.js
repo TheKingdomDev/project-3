@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Navbar from '../components/Recurrent/Navbar'
 import Footer from '../components/Recurrent/Footer'
-import { gql, graphql } from 'react-apollo'
+import { gql, graphql, ApolloProvider } from 'react-apollo'
+import API from '../utils/apolloHelpers'
 
 import {
   AvatarCard,
@@ -11,20 +13,6 @@ import {
   Projects,
   Tasks
  } from '../components/Profile/index'
-
-// We use the gql tag to parse our query string into a query document
-const CurrentUserData = gql`
-  query User {
-    me {
-      email
-      displayName
-      githubLogin
-      githubId
-      githubProfileURL
-    }
-  }
-`
-const UserProfileWithData = graphql(CurrentUserData)(Profile)
 
 class Profile extends Component {
   constructor (props) {
@@ -37,6 +25,12 @@ class Profile extends Component {
     }
   }
   render () {
+    // checking if data was passed as prop
+    // if (this.props.data){
+    //   let userData = this.props.data
+    //   console.log(userData)
+    // }
+    console.log(this.props)
     return (
       <div>
         <Navbar/>
@@ -69,5 +63,30 @@ class Profile extends Component {
     )
   }
 }
+
+export const ProfileWithClient = () => (
+  <ApolloProvider client={API}>
+    <Profile />
+  </ApolloProvider>
+)
+
+// We use the gql tag to parse our query string into a query document
+const CurrentUserData = gql`
+  query { 
+    User {
+      me {
+        _id
+      }
+    }
+  }
+`
+export const UserProfileWithData = graphql(CurrentUserData)(Profile)
+
+// Profile.propTypes = {
+//   data: PropTypes.shape({
+//     loading: PropTypes.bool.isRequired,
+//     currentUser: PropTypes.object,
+//   }).isRequired,
+// }
 
 export default Profile
