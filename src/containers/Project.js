@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 // import {Link} from 'react-router-dom'
-import MainNav from '../components/Recurrent/MainNav'
+import HomeNav from '../components/Recurrent/HomeNav'
 import Footer from '../components/Recurrent/Footer'
+import ProjectList from '../components/Projects/ProjectList'
+// import CreateProject from '../components/Projects/CreateProject'
 
 // Project container to display the user projects
 // Data required - UserProjects(Name, Desc, Primary Tech)
@@ -15,13 +17,8 @@ class Project extends Component {
   render () {
     return (
       <div>
-        <MainNav />
-        <div className='container'>
-          <h1>Your Projects: </h1>
-          <p>Add A New Project </p>
-          <a className='btn-floating btn-large waves-effect waves-light red'><i className='material-icons'>add</i></a>
-
-        </div>
+        <HomeNav />
+        <ProjectList />
         <Footer />
       </div>
     )

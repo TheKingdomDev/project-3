@@ -82,7 +82,7 @@ module.exports = new GraphQLObjectType({
         type: codeWarsType,
         resolve({ codeWars }) {
 
-          return rp(`https://www.codewars.com/api/v1/users/${codeWars}`)
+          return rp(`https://www.codewars.com/api/v1/users/lassiterda`)
             .then(response => {
               return JSON.parse(response)
             })

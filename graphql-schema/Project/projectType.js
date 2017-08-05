@@ -1,6 +1,7 @@
 const {GraphQLObjectType, GraphQLNonNull ,GraphQLString, GraphQLList} = require('graphql')
 
-const UserType = require('../User/userType.js')
+const UserType = require('../../graphql-schema/User/userType.js')
+console.log(UserType)
 
 module.exports = new GraphQLObjectType({
   name: 'Project',

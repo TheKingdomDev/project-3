@@ -1,20 +1,21 @@
 import {
   ApolloClient,
   gql,
-  graphql,
-  ApolloProvider, createNetworkInterface
+  // graphql,
+  /* ApolloProvider, */ createNetworkInterface
 } from 'react-apollo'
 
 const API = new ApolloClient({
   networkInterface: createNetworkInterface({
     uri: '/graphql',
     opts: {
-      credentials: 'same-origin',
+      credentials: 'same-origin'
     }
-  }),
-}) 
+  })
+})
 
-const isAuthenticated = async () => {
+
+const isAuthenticated = async function () {
   const res = await API.query({
     query: gql`{
       me {

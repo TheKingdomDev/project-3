@@ -2,7 +2,7 @@ import React from 'react'
 
 const Skills = (props) => (
   <div>
-    Skills
+    Skills go here
   </div>
 )
 

@@ -18,7 +18,4 @@ const navStyle = {
   backgroundColor: '#172b4c'
 }
 
-
-// lightgray #d1d8d0
-
 export default Navbar
