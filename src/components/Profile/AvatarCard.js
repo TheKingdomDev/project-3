@@ -5,8 +5,8 @@ const AvatarCard = (props) => (
   <div>
     <div className='card'>
       <div className='card-image'>
-        <img style={styles.profilePic} src='http://uog.edu.pk/uog/img/dummy_profile.png'/ >
-        <span className='card-title' style={{color: 'black'}}>[Developer Name]</span>
+        <img style={styles.profilePic} src={props.user.profilePictureURL}/ >
+        <span className='card-title' style={{color: 'black'}}>{props.user.displayName}</span>
       </div>
       <div className='card-content'>
         <p>I am a very simple card. I am good at containing small bits of information.
