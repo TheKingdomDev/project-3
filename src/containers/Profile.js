@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import Navbar from '../components/Recurrent/Navbar'
 import Footer from '../components/Recurrent/Footer'
 import { gql, graphql, ApolloProvider } from 'react-apollo'
 import API from '../utils/apolloHelpers'
 
+// Importing Skills and Accounts components though
+// SkillsAndAccountsContainer
+import SkillsAndAccountsContainer from './SkillsAndAccounts'
 import {
   AvatarCard,
-  Skills,
-  Accounts,
   Bio,
   Projects,
   Tasks
@@ -33,33 +34,32 @@ class Profile extends Component {
     console.log(this.props)
     return (
       <div>
-        <Navbar/>
+        <Navbar />
         <div className='container' style={{marginTop: '20px'}}>
           <div className='row'>
-            <div className='col s4' style={{border:'1px solid blue'}}>
-              <AvatarCard />   
+            <div className='col s4' style={{border: '1px solid blue'}}>
+              <AvatarCard />
             </div>
-            <div className='col s8' style={{border:'1px solid red', height: '515.5px'}}>
-              <div className='container'>
-                <Skills /> 
-                <Accounts />   
+            <div className='col s8' style={{border: '1px solid red', height: '515.5px'}}>
+              <div style={{width: '100%', padding: '0'}}>
+                <SkillsAndAccountsContainer />
               </div>
             </div>
           </div>
           <div className='row'>
-            <div className='col s12' style={{border:'1px solid purple', minHeight: '125px'}}>
-              <Bio />  
+            <div className='col s12' style={{border: '1px solid purple', minHeight: '125px'}}>
+              <Bio />
             </div>
-            <div className='col s12' style={{border:'1px solid green', minHeight: '125px'}}>
-              <Projects />   
+            <div className='col s12' style={{border: '1px solid green', minHeight: '125px'}}>
+              <Projects />
             </div>
-            <div className='col s12' style={{border:'1px solid orange', minHeight: '125px'}}>
-              <Tasks />   
+            <div className='col s12' style={{border: '1px solid orange', minHeight: '125px'}}>
+              <Tasks />
             </div>
           </div>
         </div> {/* end main container */}
         <Footer />
-      </div>   
+      </div>
     )
   }
 }

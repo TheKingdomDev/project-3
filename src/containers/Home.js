@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 // import {Link} from 'react-router-dom'
-import MainNav from '../components/Recurrent//MainNav'
+import HomeNav from '../components/Recurrent//HomeNav'
 import Footer from '../components/Recurrent/Footer'
-import SearchBar from '../components/SearchBar'
-import HomeContent from '../components/HomeContent'
+import SearchBar from '../components/UserHome/SearchBar'
+import HomeContent from '../components/UserHome/HomeContent'
+import SlidingSideBar from '../components/UserHome/SlidingSideBar'
 
 class Home extends Component {
   constructor (props) {
@@ -16,10 +17,11 @@ class Home extends Component {
   render () {
     return (
       <div>
-        <MainNav />
+        <HomeNav />
         <div className='container' >
           <SearchBar />
           <HomeContent />
+          <SlidingSideBar />
         </div>
         <Footer />
       </div>
