@@ -1,28 +1,15 @@
 const { GraphQLNonNull, GraphQLString } = require('graphql')
 
-const ProjectType = require('../projectType.js')
-const ProjectInputType = require('../projectInputType.js')
+const TaskType = require('../taskType.js')
+const TaskInputType = require('../taskInputType.js')
 
-const dbProject = require('../../../models/Project.js')
+const dbTask = require('../../../models/Task.js')
 
-const projectCreate = {
-  type: ProjectType,
+const taskCreate = {
+  type: TaskType,
   args: {
-    data: {
-      name: 'data',
-      type: new GraphQLNonNull(ProjectInputType)
-    }
-  },
-  resolve (root, { data }) {
-    return dbProject.create(data)
-  }
-}
-
-const projectUpdate = {
-  type: ProjectType,
-  args:{
-    id: {
-      name: 'id',
+    projectId: {
+      name: 'projectId',
       type: new GraphQLNonNull(GraphQLString)
     },
     data: {
@@ -30,8 +17,35 @@ const projectUpdate = {
       type: new GraphQLNonNull(ProjectInputType)
     }
   },
+  resolve (root, { data }) {
+    return dbTask.create(data)
+      .then((task) => {
+        dbProject.findByIdAndUpdate(
+          projectId,
+          {
+            $push: {
+              tasks: task._id
+            }
+          }
+        )
+      })
+  }
+}
+
+const taskUpdate = {
+  type: taskType,
+  args:{
+    id: {
+      name: 'id',
+      type: new GraphQLNonNull(GraphQLString)
+    },
+    data: {
+      name: 'data',
+      type: new GraphQLNonNull(TaskInputType)
+    }
+  },
   resolve (root, { id, data }) {
-    return dbProject.findOneAndUpdate( id, data, {new: true})
+    return dbProject.findByIdAndUpdate( id, data, {new: true})
   }
 }
 

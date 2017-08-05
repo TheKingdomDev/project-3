@@ -1,33 +1,29 @@
 const { GraphQLObjectType, GraphQLString, GraphQLList } = require('graphql')
-const dbProject = require('../../../models/Task.js')
-const dbUser = require('../../../models/User.js')
+const dbTask = require('../../../models/Task.js')
 
-const projectType = require('../projectType.js')
-const userType = require('../../User/userType.js')
+const tastType = require('../taskType.js')
 
 module.exports = new GraphQLObjectType({
   name: 'Query',
-  description: 'Projects root query',
+  description: 'Task root query',
   fields: () => {
     return {
-      projects: {
-        type: new GraphQLList(projectType),
+      tasks: {
+        type: new GraphQLList(taskType),
         args: {
           _id: { type: GraphQLString },
-          name: { type: GraphQLString },
-          owner: { type: GraphQLString },
-          collaborators: { type: GraphQLString },
-          primaryTechs: { type: GraphQLString },
+          status: { type: GraphQLString },
+          project: { type: GraphQLString },
+          assignedTo: { type: GraphQLString },
+          dueDate: { type: GraphQLString },
         },
         resolve(root, args) {
           //  TODO - Implement .select method to limit data retuned from db.
           // TODO: limit use of .populate to only calls where
-          return dbProject
+          return dbTask
             .find(args)
-            .populate('owner')
-            .populate('collaborators')
-            .populate('comments')
-            .populate('tasks')
+            .populate('assignedTo')
+            .populate('project')
             .exec()
         }
       }
