@@ -25,12 +25,8 @@ const TaskModel = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
-  dueDate: {
-    type: Date
-  },
-  link: {
-    type: String
-  }
+  dueDate: Date,
+  link: String
 })
 
-module.exports = mongoose.Model('Task', TaskModel)
+module.exports = mongoose.model('Task', TaskModel)

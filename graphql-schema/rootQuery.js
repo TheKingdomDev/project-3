@@ -1,13 +1,18 @@
 
 const { GraphQLObjectType, GraphQLString, GraphQLList } = require('graphql')
 
-//  Importing User Db Model and User GraphQL Type 
+//  Importing User Db Model and User GraphQL Type
 const userType = require('./User/userType')
 const dbUser = require('../models/User')
+
 
 //  Importing Project dbModel and Project GraphQL Type
 const projectType = require('./Project/projectType')
 const dbProject  = require('../models/Project')
+
+//Importing Task dbModel and Project GraphQL Type
+const taskType = require('./Task/taskType')
+const dbTask = require('../models/Task.js')
 
 module.exports = new GraphQLObjectType({
   name: 'Query',
@@ -17,8 +22,8 @@ module.exports = new GraphQLObjectType({
       me: {
         type: userType,
         resolve(root, args, req, ast) {
- 
-          return req.user 
+
+          return req.user
             ? dbUser.findOne( { _id: req.user._id } )
               .then(res => {
                 console.log(res)
@@ -48,8 +53,20 @@ module.exports = new GraphQLObjectType({
         resolve (root, args, _, ast) {
           return dbProject.find(args)
         }
+      },
+      tasks: {
+        type: new GraphQLList(taskType),
+        args: {
+          _id: { type: GraphQLString },
+          assignedTo: { type: GraphQLString },
+          project: { type: GraphQLString},
+          dueDate: {type: GraphQLString},
+          status: {type: GraphQLString}
+        },
+        resolve (root, args, _, ast) {
+          return dbTask.find(args)
+        }
       }
     }
   }
 })
-
