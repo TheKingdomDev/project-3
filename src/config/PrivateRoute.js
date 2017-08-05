@@ -10,19 +10,15 @@ class PrivateRoute extends Component {
       this.state = {
         loggedIn: this.checkLoggedIn()
       }
-
-      this.setStateAsync = this.setStateAsync.bind(this)
-      this.checkLoggedIn = this.checkLoggedIn.bind(this)
-
     } 
 
-  setStateAsync (state) {
+  setStateAsync = (state) => {
     return new Promise((resolve) => {
       this.setState(state, resolve)
     })
   }
 
-  async checkLoggedIn () {
+  checkLoggedIn = async () => {
     const res = await isAuthenticated()
     await this.setStateAsync({ loggedIn: res })
   }
@@ -31,7 +27,7 @@ class PrivateRoute extends Component {
     return (
        this.state.loggedIn
        ? <Route path={this.props.path} component={this.props.component} loggedIn={this.state.loggedIn}/>
-        : <Redirect to='/' />
+       : <Redirect to='/' />
     )
   }
 }
