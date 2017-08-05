@@ -1,5 +1,5 @@
 import React from 'react'
-import { StickyContainer, Sticky } from 'react-sticky'
+// import { StickyContainer, Sticky } from 'react-sticky'
 
 const Footer = () => (
   <footer className='page-footer'style={footerStyles}>
@@ -46,5 +46,3 @@ const footerStyles = {
 }
 
 export default Footer
-
-
