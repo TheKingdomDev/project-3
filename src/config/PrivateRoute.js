@@ -31,7 +31,7 @@ class PrivateRoute extends Component {
     return (
        this.state.loggedIn
        ? <Route path={this.props.path} component={this.props.component} loggedIn={this.state.loggedIn}/>
-        : <Redirect to='/' />
+       : <Redirect to='/' />
     )
   }
 }

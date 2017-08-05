@@ -11,7 +11,6 @@ module.exports = function(passport) {
     callbackURL: "http://localhost:3000/auth/github/callback"
   },
   function(accessToken, _, profile, done) {
-
     dbUser.findOneOrCreate(
       { githubId: profile.id },
     {
@@ -19,7 +18,7 @@ module.exports = function(passport) {
       displayName: profile.displayName,
       githubLogin: profile.username,
       githubId: profile.id,
-      profilePictureURL: profile.avatar_url,
+      profilePictureURL: profile._json.avatar_url,
       githubProfileURL: profile.profileUrl
     })
     .then(user => {

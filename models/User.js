@@ -61,8 +61,16 @@ const UserSchema = new Schema({
     showTreehouse: {
       type: Boolean,
       default: false
+    },
+    createdDate: {
+      type: Date,
+      default: new Date(),
+      required: true
+    },
+    modifiedDate: {
+      type: Date,
+
     }
-  }
   //TODO: Github stuff
   //TODO: bio
   //TODO: owned projects

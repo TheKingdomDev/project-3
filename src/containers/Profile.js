@@ -15,16 +15,31 @@ import {
   Tasks
  } from '../components/Profile/index'
 
+import { getMyInfo } from '../utils/apolloHelpers.js'
+
 class Profile extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      user: []
+      user: {}
         // we will set the necessary user info here
         // and pass it DOWN as props to the respective
         // child components
     }
   }
+
+  componentDidMount () {
+    getMyInfo()
+    .then(res => {
+      this.setState({user: res.data.me})
+    })
+    console.log(this.state.user)
+  }
+
+  componentDidUpdate () {
+    console.log(this.state.user)
+  }
+
   render () {
     // checking if data was passed as prop
     // if (this.props.data){
@@ -37,8 +52,8 @@ class Profile extends Component {
         <Navbar />
         <div className='container' style={{marginTop: '20px'}}>
           <div className='row'>
-            <div className='col s4' style={{border: '1px solid blue'}}>
-              <AvatarCard />
+            <div className='col s4' style={{border:'1px solid blue'}}>
+              <AvatarCard user={this.state.user}/>   
             </div>
             <div className='col s8' style={{border: '1px solid red', height: '515.5px'}}>
               <div style={{width: '100%', padding: '0'}}>
