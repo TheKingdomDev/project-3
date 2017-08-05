@@ -1,7 +1,7 @@
 const { GraphQLSchema, GraphQLObjectType } = require('graphql')
 
 const Query = require('./rootQuery.js')
-const Mutations = require('./User/mutations/userCreate.js')
+const Mutations = require('./User/mutations/userUpdate.js')
 
 const Schema = new GraphQLSchema({
   query: Query,

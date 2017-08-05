@@ -9,7 +9,7 @@ const userUpdate = {
   type: UserType,
   args:{
     id: {
-      name: 'id',
+      name: '_id',
       type: new GraphQLNonNull(GraphQLString)
     },
     data: {
