@@ -13,6 +13,10 @@ const TaskModel = new Schema({
     default: 'Not Started',
     enum: ['Not Started','Development','Testing','On Hold','Done']
   },
+  createdDate: {
+    type: Date,
+    default: new Date()
+  },
   project: {
     type: Schema.Types.ObjectId,
     ref: 'Project'
