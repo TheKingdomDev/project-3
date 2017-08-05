@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
 // import {Link} from 'react-router-dom'
-import MainNav from '../components/Recurrent/MainNav'
+import HomeNav from '../components/Recurrent/HomeNav'
 import Footer from '../components/Recurrent/Footer'
 import {
   ApolloClient,
   gql,
-  graphql,
-  ApolloProvider, createNetworkInterface
+  // graphql,
+  /* ApolloProvider, */ createNetworkInterface
 } from 'react-apollo'
 
 const client = new ApolloClient({
@@ -42,7 +42,7 @@ class ProjectDetails extends Component {
   render () {
     return (
       <div>
-        <MainNav />
+        <HomeNav />
         <p>Find the project selected in the database and disply it here.</p>
         <Footer />
       </div>

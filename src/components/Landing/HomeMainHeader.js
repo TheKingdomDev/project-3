@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const Jumbo = () => (
   <div>
     <div className='card-panel grey lighten-2' style={styles.jumbotronStyle}>
-      <div className='container center' >
+      <div className='container center'>
         <section style={styles.intro}>
           <h1 style={styles.header}>{'<StackTeam />'}</h1>
           <p style={styles.contentStyle}>
@@ -40,10 +40,9 @@ const styles = {
     color: 'white',
     fontFamily: 'Share Tech Mono'
   },
-  
+
   intro: {
     backgroundColor: 'rgba(224, 224, 224, 0.5)',
-    // padding: '5px, 0, 5px, 0', // top, right, bottom, left (tried but didn't look the same!)
     paddingTop: '5px',
     paddingBottom: '5px',
     paddingLeft: 'auto',

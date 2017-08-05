@@ -2,7 +2,7 @@ import React from 'react'
 
 const Accounts = (props) => (
   <div>
-    Accounts
+    Accounts go here
   </div>
 )
 

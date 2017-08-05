@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StickyContainer, Sticky } from 'react-sticky' // play around with this?
+// import { StickyContainer, Sticky } from 'react-sticky' // play around with this?
 // import {Link} from 'react-router-dom'
 import Navbar from '../components/Recurrent/Navbar'
 import Footer from '../components/Recurrent/Footer'

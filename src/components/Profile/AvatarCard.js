@@ -5,7 +5,7 @@ const AvatarCard = (props) => (
   <div>
     <div className='card'>
       <div className='card-image'>
-        <img style={styles.profilePic} src='http://uog.edu.pk/uog/img/dummy_profile.png'/ >
+        <img style={styles.profilePic} src='http://uog.edu.pk/uog/img/dummy_profile.png' />
         <span className='card-title' style={{color: 'black'}}>[Developer Name]</span>
       </div>
       <div className='card-content'>
