@@ -27,11 +27,6 @@ class Profile extends Component {
     }
   }
 
-  async setMyInfo() {
-    const res = await getMyInfo()
-    await this.setStateAsync({ user: res.data.me })
-  }
-
   componentDidMount () {
     getMyInfo()
     .then(res => {
