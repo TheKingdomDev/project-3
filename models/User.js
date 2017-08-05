@@ -70,8 +70,9 @@ const UserSchema = new Schema({
   },
   modifiedDate: {
     type: Date,
+    default: null
   }
-  //TODO: Github stuff
+  //TODO: Github stuffs
   //TODO: bio
   //TODO: owned projects
 })

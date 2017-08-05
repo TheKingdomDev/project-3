@@ -108,6 +108,18 @@ module.exports = new GraphQLObjectType({
             })
             .catch(err => null)
         }
+      },
+      createdDate: {
+        type: GraphQLString,
+        resolve (user) {
+          return user.createdDate
+        }
+      },
+      modifiedDate: {
+        type: GraphQLString,
+        resolve () {
+          return userSettingsType.modifiedDate
+        }
       }
     }
   }
