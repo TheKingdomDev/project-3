@@ -8,7 +8,7 @@ const dbUser = require('../../../models/User.js')
 const userUpdate = {
   type: UserType,
   args:{
-    id: {
+    _id: {
       name: '_id',
       type: new GraphQLNonNull(GraphQLString)
     },
@@ -17,8 +17,11 @@ const userUpdate = {
       type: new GraphQLNonNull(UserInputType)
     }
   },
-  resolve (root, { id, data }) {
-    return dbUser.findOneAndUpdate( id, data, {new: true})
+  resolve (root, { _id, data }) {
+    return dbUser.findOneAndUpdate( _id, data, { new: true }, { 
+      $setOnInsert: {
+        modifiedDate: new Date()
+    }})
   }
 }
 
