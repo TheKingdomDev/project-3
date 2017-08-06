@@ -12,10 +12,5 @@ router.get('/github/callback',
   (req, res) => { res.redirect('/#/home') }
 )
 
-//  TESTING ROUTE, DELETE before FDEPLOYMENT to production.
-router.get('/stuff',(req, res) => {
-  console.log(req.user)
-  res.json(req.user)
-})
 
 module.exports = router

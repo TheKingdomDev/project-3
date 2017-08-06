@@ -22,6 +22,8 @@ module.exports = function(passport) {
       githubProfileURL: profile.profileUrl
     })
     .then(user => {
+      console.log(accessToken)
+      user.accessToken = accessToken
        return done(_, user)
     })
     .catch(err => {
