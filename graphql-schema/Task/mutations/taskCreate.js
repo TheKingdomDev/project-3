@@ -1,12 +1,12 @@
 const { GraphQLNonNull, GraphQLString } = require('graphql')
 
-const TaskType = require('../taskType.js')
-const TaskInputType = require('../taskInputType.js')
+const taskType = require('../taskType.js')
+const taskInputType = require('../taskInputType.js')
 
 const dbTask = require('../../../models/Task.js')
 
 const taskCreate = {
-  type: TaskType,
+  type: taskType,
   args: {
     projectId: {
       name: 'projectId',
@@ -14,7 +14,7 @@ const taskCreate = {
     },
     data: {
       name: 'data',
-      type: new GraphQLNonNull(ProjectInputType)
+      type: new GraphQLNonNull(taskInputType)
     }
   },
   resolve (root, { data }) {
@@ -35,13 +35,13 @@ const taskCreate = {
 const taskUpdate = {
   type: taskType,
   args:{
-    id: {
-      name: 'id',
+    _id: {
+      name: '_id',
       type: new GraphQLNonNull(GraphQLString)
     },
     data: {
       name: 'data',
-      type: new GraphQLNonNull(TaskInputType)
+      type: new GraphQLNonNull(taskInputType)
     }
   },
   resolve (root, { id, data }) {
@@ -49,7 +49,21 @@ const taskUpdate = {
   }
 }
 
+const taskDelete = {
+  type: taskType,
+  args: {
+    _id: {
+      name: '_id',
+      type: new GraphQLNonNull(GraphQLString)
+    }
+  },
+  resolve (root, { _id }) {
+    return dbTask.destroy({_id: _id})
+  }
+}
+
 module.exports = {
-  projectCreate,
-  projectUpdate
+  taskCreate,
+  taskUpdate,
+  taskDelete
 }

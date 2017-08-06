@@ -26,7 +26,6 @@ module.exports = new GraphQLObjectType({
           return req.user
             ? dbUser.findOne( { _id: req.user._id } )
               .then(res => {
-                console.log(res)
                 return res
               })
               .catch(err => err)

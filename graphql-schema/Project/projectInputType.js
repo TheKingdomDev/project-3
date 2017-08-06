@@ -1,4 +1,4 @@
-const {GraphQLInputObjectType, GraphQLString} = require('graphql')
+const { GraphQLInputObjectType, GraphQLNonNull, GraphQLString, GraphQLList } = require('graphql')
 
 module.exports = new GraphQLInputObjectType({
   name: 'projectInput',
