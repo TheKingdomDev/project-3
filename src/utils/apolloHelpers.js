@@ -54,6 +54,7 @@ const getFullProfileInfo = async (objUserSettings) => {
   return await API.query({
     query: gql`{
       me {
+        
         ${useLocalBio ? 'localBio' : 'githubBio'}
         UserSettings{
           ${showCodewars ? 'codeWarsUsername' : ''}
@@ -69,5 +70,5 @@ module.exports = {
   API,
   isAuthenticated,
   getMyInfo,
-  getProfileInfo
+  getFullProfileInfo
 }
