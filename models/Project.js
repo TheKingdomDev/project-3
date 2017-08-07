@@ -39,6 +39,7 @@ const ProjectModel = new Schema({
     type: String,
     required: true
   }
+  //TODO: add Application
 })
 
 module.exports = mongoose.model('Project', ProjectModel)
