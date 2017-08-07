@@ -3,7 +3,6 @@ const dbProject = require('../../../models/Project.js')
 const dbUser = require('../../../models/User.js')
 
 const projectType = require('../projectType.js')
-const userType = require('../../User/userType.js')
 
 module.exports = {
   type: new GraphQLList(projectType),
