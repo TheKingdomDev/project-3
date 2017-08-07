@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Skills from '../components/Profile/Skills'
 import Accounts from '../components/Profile/Accounts'
-// import { Link } from 'react-router-dom'
 import { Tabs, Tab } from 'react-materialize'
 
 class SkillsAndAccountsContainer extends Component {
@@ -16,11 +15,11 @@ class SkillsAndAccountsContainer extends Component {
   render () {
     return (
       <div>
-        <Tabs className='tab-demo z-depth-1'>
-          <Tab title='Skills' key='skills' style={styles.tabsStyle} active>
+        <Tabs className='tab-demo z-depth-1' key='skills-and-accounts'>
+          <Tab title='Skills' style={styles.tabsStyle} active>
             <Skills />
           </Tab>
-          <Tab title='Accounts' key='accounts' style={styles.tabsStyle}>
+          <Tab title='Accounts' style={styles.tabsStyle}>
             <Accounts />
           </Tab>
         </Tabs>

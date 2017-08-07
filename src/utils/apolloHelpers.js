@@ -38,6 +38,7 @@ const getMyInfo  = async (objOpts) =>  {
         displayName
         email
         profilePictureURL
+        githubBio
         userSettings {
           useLocalBio
           showCodewars

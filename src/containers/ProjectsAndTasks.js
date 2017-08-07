@@ -15,11 +15,11 @@ class ProjectsAndTasksContainer extends Component {
   render () {
     return (
       <div>
-        <Tabs className='tab-demo z-depth-1'>
-          <Tab title='Projects' key='projects' active>
+        <Tabs className='tab-demo z-depth-1' key='projects-and-tasks'>
+          <Tab title='Projects' active>
             <Projects />
           </Tab>
-          <Tab title='Tasks' key='tasks'>
+          <Tab title='Tasks'>
             <Tasks />
           </Tab>
         </Tabs>

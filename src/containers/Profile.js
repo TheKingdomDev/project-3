@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-// import PropTypes from 'prop-types'
-import Navbar from '../components/Recurrent/Navbar'
+import HomeNav from '../components/Recurrent/HomeNav'
+import SlidingSideBar from '../components/UserHome/SlidingSideBar'
 import Footer from '../components/Recurrent/Footer'
 import { gql, graphql, ApolloProvider } from 'react-apollo'
 import API from '../utils/apolloHelpers'
@@ -18,15 +18,14 @@ import {
  } from '../components/Profile/index'
 
 import { getMyInfo } from '../utils/apolloHelpers.js'
+import { getFullProfileInfo } from '../utils/apolloHelpers.js'
 
 class Profile extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      user: {}
-        // we will set the necessary user info here
-        // and pass it DOWN as props to the respective
-        // child components
+      user: {},
+      userProfiles: {}
     }
   }
 
@@ -36,6 +35,10 @@ class Profile extends Component {
       this.setState({user: res.data.me})
     })
     console.log(this.state.user)
+    getFullProfileInfo()
+    .then(res => {
+      console.log(`ACCOUNTS: ${res}`)
+    })
   }
 
   componentDidUpdate () {
@@ -43,15 +46,11 @@ class Profile extends Component {
   }
 
   render () {
-    // checking if data was passed as prop
-    // if (this.props.data){
-    //   let userData = this.props.data
-    //   console.log(userData)
-    // }
     console.log(this.props)
     return (
       <div>
-        <Navbar />
+        <HomeNav />
+        <SlidingSideBar user={this.state.user}/>
         <div className='container' style={{marginTop: '20px'}}>
           <div className='row' style={{border:'2px solid lightgrey', padding: '5px'}}>
             <div className='col s4' /* style={{border:'1px solid blue'}} */>
@@ -64,8 +63,11 @@ class Profile extends Component {
             </div>
           </div>
           <div className='row' style={{border:'2px solid lightgrey', padding: '5px'}}>
-            <div className='col s12' style={{/* border: '1px solid green', */ minHeight: '125px'}}>
-              <ProjectsAndTasksContainer />
+            <div className='col s6' style={{border: '1px solid blue', minHeight: '125px'}}>
+              <Projects />
+            </div>
+            <div className='col s6' style={{border: '1px solid green', minHeight: '125px'}}>
+              <Tasks />
             </div>
           </div>
         </div> {/* end main container */}

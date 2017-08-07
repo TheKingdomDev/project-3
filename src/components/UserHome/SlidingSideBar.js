@@ -6,7 +6,7 @@ const SlidingSideBar = (props) => (
   <div>
     <SideNav trigger={<i className='material-icons'>
         dehaze</i>}
-      options={{ closeOnClick: true }} >
+      options={{ closeOnClick: true }}>
       <SideNavItem userView
         user={{
           background: '/assets/material-code_300x176.jpg',
@@ -14,15 +14,18 @@ const SlidingSideBar = (props) => (
           name: props.user.displayName
         }}
       />
+      <Link to='/home'>
+      <SideNavItem icon='home'>Home</SideNavItem>
+      </Link>
       <Link to='/project'>
       <SideNavItem icon='folder'>Projects</SideNavItem>
       </Link>
       <Link to='/project:details'>
       <SideNavItem icon='format_list_numbered'>Tasks</SideNavItem>
       </Link>
-      <SideNavItem divider />
-      <SideNavItem subheader>Subheader</SideNavItem>
-      <SideNavItem waves href='#!third'>Third Link With Waves</SideNavItem>
+      <Link to='/profile'>
+      <SideNavItem icon='person'>{props.user.displayName}</SideNavItem>
+      </Link>
     </SideNav>
   </div>
 )
