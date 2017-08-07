@@ -47,9 +47,10 @@ const app = express()
 
 //Setting our port # to the environment variable PORT or to 3000
 const PORT = process.env.PORT || 3000
+const CONNECT = process.env.MONGODB_MLAB || 'mongodb://localhost/project3'
 
 //Setting up connection to MongoDB
-mongoose.connect("mongodb://localhost/project3")
+mongoose.connect(CONNECT)
 const db = mongoose.connection
 
 //Setting up ./public as a static directory to facilitate access to public assets
