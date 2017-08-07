@@ -14,7 +14,6 @@ const API = new ApolloClient({
   })
 })
 
-
 const isAuthenticated = async function () {
   const res = await API.query({
     query: gql`{
@@ -29,7 +28,7 @@ const isAuthenticated = async function () {
     : false
 }
 
-const getMyInfo  = async (objOpts) =>  {
+const getMyInfo = async (objOpts) => {
   return await API.query({
     query: gql`{
       me {

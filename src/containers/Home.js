@@ -4,6 +4,7 @@ import HomeNav from '../components/Recurrent//HomeNav'
 import Footer from '../components/Recurrent/Footer'
 import SearchBar from '../components/UserHome/SearchBar'
 import HomeContent from '../components/UserHome/HomeContent'
+import { SideNav, SideNavItem, Button } from 'react-materialize'
 import SlidingSideBar from '../components/UserHome/SlidingSideBar'
 
 class Home extends Component {
