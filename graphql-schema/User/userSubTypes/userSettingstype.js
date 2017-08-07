@@ -23,6 +23,12 @@ module.exports = new GraphQLObjectType({
           return treehouseUsername
         }
       },
+      useLocalBio: {
+        type: GraphQLBoolean,
+        resolve({ useLocalBio }) {
+          return useLocalBio
+        }
+      },
       showCodewars: {
         type: GraphQLBoolean,
         resolve({ showCodewars }) {
