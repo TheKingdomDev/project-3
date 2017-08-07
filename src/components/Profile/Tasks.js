@@ -2,7 +2,7 @@ import React from 'react'
 
 const Tasks = (props) => (
   <div>
-    Tasks
+    Tasks listed here
   </div>
 )
 

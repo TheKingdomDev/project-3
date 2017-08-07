@@ -17,10 +17,10 @@ class SkillsAndAccountsContainer extends Component {
     return (
       <div>
         <Tabs className='tab-demo z-depth-1'>
-          <Tab title='Skills' style={styles.tabsStyle} active>
+          <Tab title='Skills' key='skills' style={styles.tabsStyle} active>
             <Skills />
           </Tab>
-          <Tab title='Accounts' style={styles.tabsStyle}>
+          <Tab title='Accounts' key='accounts' style={styles.tabsStyle}>
             <Accounts />
           </Tab>
         </Tabs>

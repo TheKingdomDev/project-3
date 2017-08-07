@@ -25,5 +25,9 @@ const styles = {
   profilePic: {
     height: 300,
     widht: 100
+  },
+  cardSize: {
+    maxHeight: 250,
+    maxHeight: 180
   }
 }
