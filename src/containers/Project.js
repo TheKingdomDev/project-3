@@ -5,6 +5,7 @@ import Footer from '../components/Recurrent/Footer'
 import ProjectList from '../components/Projects/ProjectList'
 import CreateProject from '../components/Projects/CreateProject'
 import {Collapsible, CollapsibleItem} from 'react-materialize'
+import {getProjectInfo} from '../utils/apolloHelpers'
 
 import { getMyInfo } from '../utils/apolloHelpers.js'
 
@@ -14,18 +15,20 @@ class Project extends Component {
   constructor () {
     super()
     this.state = {
+      projects: []
       user: {},
-      projects: [
-        {name: 'test1', description: 'longtestone'},
-        {name: 'test2', description: 'longtesttwo'}
-      ]
     }
     this.renderProjects = this.renderProjects.bind(this)
+  }
+  componentDidMount () {
+    getProjectInfo().then(res => {
+      this.state = res
+    })
   }
   renderProjects (data) {
     return this.state.projects.map(proj => (
       <Collapsible popout>
-        <CollapsibleItem header={proj.name} icon='folder'>{proj.description}</CollapsibleItem>
+        <CollapsibleItem key={proj._id}header={proj.name} icon='folder'>{proj.description}</CollapsibleItem>
       </Collapsible>
     )
     )
