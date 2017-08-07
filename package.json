@@ -48,7 +48,7 @@
     "dev": "webpack-dev-server --content-base public/ --port 3000",
     "build": "webpack -d -w",
     "start:dev": "webpack -d && nodemon",
-    "start": "webpack && node server"
+    "start": "node server"
   },
   "author": "David Lassiter",
   "license": "ISC"
