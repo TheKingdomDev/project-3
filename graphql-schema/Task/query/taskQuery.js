@@ -22,6 +22,7 @@ module.exports = new GraphQLObjectType({
           // TODO: limit use of .populate to only calls where
           return dbTask
             .find(args)
+            .where('status').ne('Deleted')
             .populate('assignedTo')
             .populate('project')
             .exec()

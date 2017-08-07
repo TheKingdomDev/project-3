@@ -38,8 +38,12 @@ const ProjectModel = new Schema({
   repository: {
     type: String,
     required: true
+  },
+  applications: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Application'
+  }]
   }
-  //TODO: add Application
 })
 
 module.exports = mongoose.model('Project', ProjectModel)

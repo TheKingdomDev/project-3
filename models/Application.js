@@ -1,3 +1,4 @@
+//Applications to work on a project. Holds a date, message, user, and status.
 const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
