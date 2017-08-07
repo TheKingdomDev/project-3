@@ -1,14 +1,9 @@
 const { GraphQLObjectType, GraphQLString, GraphQLList } = require('graphql')
+
 const dbTask = require('../../../models/Task.js')
+const taskType = require('../taskType.js')
 
-const tastType = require('../taskType.js')
-
-module.exports = new GraphQLObjectType({
-  name: 'Query',
-  description: 'Task root query',
-  fields: () => {
-    return {
-      tasks: {
+module.exports = {
         type: new GraphQLList(taskType),
         args: {
           _id: { type: GraphQLString },
@@ -28,6 +23,3 @@ module.exports = new GraphQLObjectType({
             .exec()
         }
       }
-    }
-  }
-})
