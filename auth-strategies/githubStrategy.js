@@ -19,9 +19,20 @@ module.exports = function(passport) {
       githubLogin: profile.username,
       githubId: profile.id,
       profilePictureURL: profile._json.avatar_url,
-      githubProfileURL: profile.profileUrl
+      githubProfileURL: profile.profileUrl,
+      githubBio: profile._json.bio,
+      githubStats: {
+        hireable: profile._json.hireable,
+        reops: profile._json.public_repos,
+        followers: profile._json.followers,
+        following: profile._json.following,
+        accountCreated: profile._json.created_at,
+        location: profile._json.location
+      }
     })
     .then(user => {
+      user.accessToken = accessToken
+      console.log(user.accessToken)
        return done(_, user)
     })
     .catch(err => {

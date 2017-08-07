@@ -13,6 +13,14 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
+  localBio: {
+    type: String,
+    default: null
+  },
+  githubBio: {
+    type: String,
+    default: null
+  },
   githubLogin: {
     type: String,
     required: true
@@ -40,15 +48,21 @@ const UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Task'
   }],
+  githubStats: {
+    hireable: Boolean,
+    reops: Number,
+    followers: Number,
+    following: Number,
+    accountCreated: Date,
+    location: String
+  },
   UserSettings: {
-    codeWarsUsername: {
-      type: String
-    },
-    codeSchoolUsername: {
-      type: String
-    },
-    treehouseUsername: {
-      type: String
+    codeWarsUsername: String,
+    codeSchoolUsername: String,
+    treehouseUsername: String,
+    useLocalBio: {
+      type: Boolean,
+      default: false
     },
     showCodewars: {
       type: Boolean,
@@ -98,7 +112,7 @@ UserSchema.methods.setPassword = function () {
 }
 
 UserSchema.statics.findOneOrCreate = function (args, user) {
-    return this.findOne(args)
+    return this.findOneAndUpdate(args, user, { new: true})
       .then(dbUser => {
         return dbUser
           ? dbUser
