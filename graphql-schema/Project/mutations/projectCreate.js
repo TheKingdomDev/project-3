@@ -13,7 +13,8 @@ const projectCreate = {
       type: new GraphQLNonNull(ProjectInputType)
     }
   },
-  resolve (root, { data }) {
+  resolve (root, { data }, req) {
+    data.owner = req.user._id
     return dbProject.create(data)
   }
 }
@@ -21,8 +22,8 @@ const projectCreate = {
 const projectUpdate = {
   type: ProjectType,
   args:{
-    id: {
-      name: 'id',
+    _id: {
+      name: '_id',
       type: new GraphQLNonNull(GraphQLString)
     },
     data: {
