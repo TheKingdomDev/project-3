@@ -4,6 +4,7 @@ import SlidingSideNav from '../components/UserHome/SlidingSideBar'
 import Footer from '../components/Recurrent/Footer'
 import ProjectList from '../components/Projects/ProjectList'
 import CreateProject from '../components/Projects/CreateProject'
+import {Collapsible, CollapsibleItem} from 'react-materialize'
 
 import { getMyInfo } from '../utils/apolloHelpers.js'
 
@@ -14,8 +15,20 @@ class Project extends Component {
     super()
     this.state = {
       user: {},
-      projects: []
+      projects: [
+        {name: 'test1', description: 'longtestone'},
+        {name: 'test2', description: 'longtesttwo'}
+      ]
     }
+    this.renderProjects = this.renderProjects.bind(this)
+  }
+  renderProjects (data) {
+    return this.state.projects.map(proj => (
+      <Collapsible popout>
+        <CollapsibleItem header={proj.name} icon='folder'>{proj.description}</CollapsibleItem>
+      </Collapsible>
+    )
+    )
   }
   componentDidMount () {
     getMyInfo()
@@ -29,6 +42,9 @@ class Project extends Component {
         <HomeNav />
         <SlidingSideNav user={this.state.user} />
         <ProjectList />
+        <div className='container'>
+          {this.renderProjects()}
+        </div>
         <CreateProject />
         <Footer />
       </div>

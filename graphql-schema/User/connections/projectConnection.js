@@ -16,13 +16,14 @@ module.exports = new GraphQLObjectType({
               type: GraphQLInt,
               resolve: (arrProjects) => arrProjects.length 
             },
-
+//          TODO: Correct Resolver to correctly filter whether query was me/users 
             ownedProjects: {
               type: GraphQLInt,
               resolve: (arrProjects, args, req) => {
+                console.log()
                 return args._id 
-                  ? arrProjects.filter(p => p.owner._id === args._id).length
-                  : arrProjects.filter(p => p.owner._id === req.user._id).length
+                  ? arrProjects.filter(p => p.owner === args._id).length
+                  : arrProjects.filter(p => p.owner === req.user._id).length
               }
             }
 

@@ -50,6 +50,24 @@ const getMyInfo  = async (objOpts) =>  {
   })
 }
 
+const getProjectInfo = async (objObts) => {
+  return await API.query({
+    query: gql`me{
+      projectsConnection {
+      connectionInfo {
+        totalProjects
+      }
+      projects {
+        _id
+        name
+        description
+        createdDate
+      }
+    }
+  }`
+  })
+}
+
 //  Function which takes in a User's Settings Object (stored in state on client-side) and returns thee correct info to Populate the User Profile. 
 const getFullProfileInfo = async (objUserSettings) => {
   return await API.query({
@@ -67,9 +85,29 @@ const getFullProfileInfo = async (objUserSettings) => {
   })
 }
 
+// Create Project function
+
+const submitProject = async (objProject) => {
+  return await API.mutate({
+    mutation: gql`{
+      projectCreate(data: $data)
+      {
+        _id
+        name
+        description
+      }
+    }`,
+    variables: {
+      data: objProject
+    }
+  })
+}
+
 module.exports = {
   API,
   isAuthenticated,
   getMyInfo,
-  getFullProfileInfo
+  getFullProfileInfo,
+  submitProject,
+  getProjectInfo
 }
