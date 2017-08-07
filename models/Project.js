@@ -36,7 +36,12 @@ const ProjectModel = new Schema({
     type: String
   }],
   repository: {
-    type: String,
+    type: String
+  },
+  applications: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Application'
+  }]
   }
 })
 

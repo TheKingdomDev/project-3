@@ -20,9 +20,9 @@ const taskCreate = {
   resolve (root, { data }) {
     return dbTask.create(data)
       .then((task) => {
-        dbProject.findByIdAndUpdate(
-          projectId,
-          {
+        dbProject.update({
+            _id: projectId
+          }, {
             $push: {
               tasks: task._id
             }
@@ -58,7 +58,7 @@ const taskDelete = {
     }
   },
   resolve (root, { _id }) {
-    return dbTask.destroy({_id: _id})
+    return dbTask.update({_id: _id}, {status: 'Deleted'})
   }
 }
 
