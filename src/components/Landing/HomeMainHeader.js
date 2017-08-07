@@ -13,8 +13,10 @@ const Jumbo = () => (
           become collaborators themselves.
           </p>
         </section>
-        <Link to='/login'><a className='waves-effect waves-light btn-large' style={styles.buttonStyle}>
-          <i className='material-icons right' />Register</a></Link>
+        <Link to='/login' className='waves-effect waves-light btn-large'
+          style={styles.buttonStyle}>
+          <i className='material-icons right' />Register
+        </Link>
       </div>
     </div>
   </div>
