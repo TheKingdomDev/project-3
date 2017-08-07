@@ -40,7 +40,7 @@
     "standard": "^10.0.2",
     "standard-loader": "^6.0.1",
     "style-loader": "^0.18.2",
-    "webpack": "^3.3.0",
+    "webpack": "^3.4.1",
     "webpack-dev-server": "^2.5.1"
   },
   "scripts": {
@@ -48,7 +48,7 @@
     "dev": "webpack-dev-server --content-base public/ --port 3000",
     "build": "webpack -d -w",
     "start:dev": "webpack -d && nodemon",
-    "start": "webpack && node server"
+    "start": "node server"
   },
   "author": "David Lassiter",
   "license": "ISC"
