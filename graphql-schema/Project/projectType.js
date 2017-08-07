@@ -7,6 +7,12 @@ module.exports = new GraphQLObjectType({
   description: 'Development Project',
   fields: function () {
     return {
+      _id: {
+        type: new GraphQLNonNull(GraphQLString),
+        resolve(project) {
+          return project._id
+        }
+      },
       name: {
         type: new GraphQLNonNull(GraphQLString),
         resolve(project) {
