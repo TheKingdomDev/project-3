@@ -2,7 +2,7 @@ import React from 'react'
 
 const Bio = (props) => (
   <div>
-    Bio
+    {props.bio}
   </div>
 )
 
