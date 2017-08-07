@@ -110,20 +110,21 @@ const GetAllUsers = async (objUser) => {
   })
 }
 
-// Create Project function
 
-const submitProject = async (objProject) => {
+const projectCreate = async ({name, description}) => {
   return await API.mutate({
-    mutation: gql`{
-      projectCreate(data: $data)
-      {
+    mutation: gql`mutation projectCreate($data: projectInput!) {
+      projectCreate (data: $data) {
         _id
         name
         description
       }
     }`,
     variables: {
-      data: objProject
+      data: {
+        name,
+        description
+      }
     }
   })
 }
@@ -133,7 +134,7 @@ module.exports = {
   isAuthenticated,
   getMyInfo,
   getFullProfileInfo,
-  submitProject,
+  projectCreate
   getProjectInfo,
   GetAllProjects,
   GetAllUsers
