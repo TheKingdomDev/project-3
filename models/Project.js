@@ -37,7 +37,6 @@ const ProjectModel = new Schema({
   }],
   repository: {
     type: String,
-    required: true
   }
 })
 
