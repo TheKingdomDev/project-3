@@ -8,7 +8,6 @@ const ProjectList = () => (
     <div className='row'>
       <div className='col s12' style={styles.contentStyle}>
         <h4>Add a new project: </h4>
-        <button className='btn waves-effect waves-light' style={styles.button}>New Project</button>
       </div>
     </div>
   </div>
