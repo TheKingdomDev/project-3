@@ -66,9 +66,28 @@ const getFullProfileInfo = async (objUserSettings) => {
   })
 }
 
+// Create Project function
+
+const submitProject = async (objProject) => {
+  return await API.mutate({
+    mutation: gql`{
+      projectCreate(data: $data)
+      {
+        _id
+        name
+        description
+      }
+    }`,
+    variables: {
+      data: objProject
+    }
+  })
+}
+
 module.exports = {
   API,
   isAuthenticated,
   getMyInfo,
-  getFullProfileInfo
+  getFullProfileInfo,
+  submitProject
 }
