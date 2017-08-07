@@ -69,5 +69,5 @@ module.exports = {
   API,
   isAuthenticated,
   getMyInfo,
-  getProfileInfo
+  getFullProfileInfo
 }
