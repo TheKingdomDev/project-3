@@ -4,14 +4,17 @@ const rp = require('request-promise')
 //  Importing necessary Types from graphql library
 const {GraphQLObjectType, GraphQLNonNull ,GraphQLString, GraphQLList} = require('graphql')
 
-//  Importing Project Files
-const projectType = require('../Project/projectType.js')
+//  Importing dbModels for use in Resolvers
 const dbProject = require('../../models/Project')
 
+//  Importing subTypes including userSettings and 3P API connections
 const userSettingsType = require('./userSubTypes/userSettingsType')
 const codeWarsType = require('./userSubTypes/codeWarsType')
 const codeSchoolType = require('./userSubTypes/codeSchoolType')
 const treehouseType = require('./userSubTypes/treehouseType')
+
+//  Importing Connection Types information to Other objects (i.e. Projects)
+const projectConnectionType = require('./connections/projectConnection')
 
 module.exports = new GraphQLObjectType({
   name: 'User',
@@ -78,8 +81,8 @@ module.exports = new GraphQLObjectType({
           return user.skills
         }
       },
-      projects: {
-        type: new GraphQLList(projectType),
+      projectsConnection: {
+        type: projectConnectionType,
         resolve (user) {
           return dbProject.find({_id: {$in: user.projects } })
         }
