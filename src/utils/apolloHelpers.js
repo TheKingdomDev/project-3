@@ -30,7 +30,7 @@ const isAuthenticated = async function () {
 }
 
 //  Function which fetches basic user information, as well as the UserSettings Object for rendering pages/fetching data
-const getMyInfo  = async (objOpts) =>  {
+const getMyInfo = async (objOpts) => {
   return await API.query({
     query: gql`{
       me {
@@ -84,6 +84,32 @@ const getFullProfileInfo = async (objUserSettings) => {
   })
 }
 
+// Get all projects function
+
+const GetAllProjects = async (objProject) => {
+  return await API.query({
+    query: gql`projects {
+        _id
+        name
+        description
+        createdDate
+      }`
+  })
+}
+
+// Get all users function
+
+const GetAllUsers = async (objUser) => {
+  return await API.query({
+    query: gql`users{
+        _id
+        displayName
+        email
+        profilePictureURL
+      }`
+  })
+}
+
 // Create Project function
 
 const submitProject = async (objProject) => {
@@ -108,5 +134,7 @@ module.exports = {
   getMyInfo,
   getFullProfileInfo,
   submitProject,
-  getProjectInfo
+  getProjectInfo,
+  GetAllProjects,
+  GetAllUsers
 }

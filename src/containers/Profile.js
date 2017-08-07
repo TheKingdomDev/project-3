@@ -52,8 +52,8 @@ class Profile extends Component {
         <Navbar />
         <div className='container' style={{marginTop: '20px'}}>
           <div className='row'>
-            <div className='col s4' style={{border:'1px solid blue'}}>
-              <AvatarCard user={this.state.user}/>   
+            <div className='col s4' style={{border: '1px solid blue'}}>
+              <AvatarCard user={this.state.user} />
             </div>
             <div className='col s8' style={{border: '1px solid red', height: '515.5px'}}>
               <div style={{width: '100%', padding: '0'}}>
