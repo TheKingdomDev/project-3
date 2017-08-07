@@ -14,7 +14,7 @@ const API = new ApolloClient({
   })
 })
 
-
+//  Function to check user Authentication, returns Promise which will resolve to a Boolean depending on login.
 const isAuthenticated = async function () {
   const res = await API.query({
     query: gql`{
@@ -29,14 +29,37 @@ const isAuthenticated = async function () {
     : false
 }
 
+//  Function which fetches basic user information, as well as the UserSettings Object for rendering pages/fetching data
 const getMyInfo  = async (objOpts) =>  {
   return await API.query({
     query: gql`{
       me {
         _id
         displayName
-        githubProfileURL
+        email
         profilePictureURL
+        userSettings {
+          useLocalBio
+          showCodewars
+          showcCodeSchool
+          showTreehouse
+        }
+      }
+    }`
+  })
+}
+
+//  Function which takes in a User's Settings Object (stored in state on client-side) and returns thee correct info to Populate the User Profile. 
+const getFullProfileInfo = async (objUserSettings) => {
+  return await API.query({
+    query: gql`{
+      me {
+        ${useLocalBio ? 'localBio' : 'githubBio'}
+        UserSettings{
+          ${showCodewars ? 'codeWarsUsername' : ''}
+          ${showcCodeSchool ? 'codeSchoolUsername' : ''}   
+          ${showTreehouse ? 'treehouseUsername' : ''}   
+        } 
       }
     }`
   })
@@ -45,5 +68,6 @@ const getMyInfo  = async (objOpts) =>  {
 module.exports = {
   API,
   isAuthenticated,
-  getMyInfo
+  getMyInfo,
+  getProfileInfo
 }

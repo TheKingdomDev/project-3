@@ -4,14 +4,17 @@ const rp = require('request-promise')
 //  Importing necessary Types from graphql library
 const {GraphQLObjectType, GraphQLNonNull ,GraphQLString, GraphQLList} = require('graphql')
 
-//  Importing Project Files
-const projectType = require('../Project/projectType.js')
+//  Importing dbModels for use in Resolvers
 const dbProject = require('../../models/Project')
 
+//  Importing subTypes including userSettings and 3P API connections
 const userSettingsType = require('./userSubTypes/userSettingsType')
 const codeWarsType = require('./userSubTypes/codeWarsType')
 const codeSchoolType = require('./userSubTypes/codeSchoolType')
 const treehouseType = require('./userSubTypes/treehouseType')
+
+//  Importing Connection Types information to Other objects (i.e. Projects)
+const projectConnectionType = require('./connections/projectConnection')
 
 module.exports = new GraphQLObjectType({
   name: 'User',
@@ -34,6 +37,18 @@ module.exports = new GraphQLObjectType({
         type: GraphQLString,
         resolve (user) {
           return user.displayName
+        }
+      },
+      localBio: {
+        type: GraphQLString,
+        resolve () {
+          return user.localBio
+        }
+      },
+      githubBio: {
+        type: GraphQLString,
+        resolve(user) {
+          return user.githubBio
         }
       },
       githubLogin:{
@@ -66,8 +81,8 @@ module.exports = new GraphQLObjectType({
           return user.skills
         }
       },
-      projects: {
-        type: new GraphQLList(projectType),
+      projectsConnection: {
+        type: projectConnectionType,
         resolve (user) {
           return dbProject.find({_id: {$in: user.projects } })
         }
@@ -107,6 +122,18 @@ module.exports = new GraphQLObjectType({
               return JSON.parse(data)
             })
             .catch(err => null)
+        }
+      },
+      createdDate: {
+        type: GraphQLString,
+        resolve (user) {
+          return user.createdDate
+        }
+      },
+      modifiedDate: {
+        type: GraphQLString,
+        resolve () {
+          return userSettingsType.modifiedDate
         }
       }
     }
