@@ -15,9 +15,7 @@ const projectCreate = {
     }
   },
   resolve (root, { data }, req) {
-
     data.owner = req.user._id
-
     return dbProject.create(data)
       .then(project => {
         return dbUser.findOneAndUpdate({ _id: project.owner }, { $push: { projects: project._id } }, {new: true})

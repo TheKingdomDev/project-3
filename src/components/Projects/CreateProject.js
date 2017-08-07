@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import {Modal, Button, Input, Row, Form} from 'react-materialize'
+import { Modal, Button, Input, Row } from 'react-materialize'
 
-import { }
+import { projectCreate } from '../../utils/apolloHelpers.js'
 
 class CreateProject extends Component {
   constructor (props) {
@@ -10,7 +10,6 @@ class CreateProject extends Component {
       form: {
         name: '',
         description: '',
-        numCollab: 0,
       }
     }
 
@@ -30,7 +29,10 @@ class CreateProject extends Component {
 
   handleSubmit (event) {
     event.preventDefault()
-    console.log(this.state.form)
+    projectCreate(this.state.form)
+    .then(res => {
+      //  Do some stuff
+    })
   }
 
   componentDidUpdate () {
