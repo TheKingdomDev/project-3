@@ -36,6 +36,18 @@ module.exports = new GraphQLObjectType({
           return user.displayName
         }
       },
+      localBio: {
+        type: GraphQLString,
+        resolve () {
+          return user.localBio
+        }
+      },
+      githubBio: {
+        type: GraphQLString,
+        resolve(user) {
+          return user.githubBio
+        }
+      },
       githubLogin:{
         type: GraphQLString,
         resolve (user) {
