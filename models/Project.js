@@ -36,9 +36,12 @@ const ProjectModel = new Schema({
     type: String
   }],
   repository: {
-    type: String,
-    required: true
-  }
+    type: String
+  },
+  applications: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Application'
+  }]
 })
 
 module.exports = mongoose.model('Project', ProjectModel)

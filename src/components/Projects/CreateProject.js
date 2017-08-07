@@ -1,39 +1,85 @@
-import React from 'react'
+import React, { Component } from 'react'
+<<<<<<< HEAD
+import { Modal, Button, Input, Row } from 'react-materialize'
+
+import { projectCreate } from '../../utils/apolloHelpers.js'
+=======
 import {Modal, Button, Input, Row} from 'react-materialize'
+>>>>>>> df69cb2f8e9420a79f685136dfe23872db7181b7
 
-const CreateProject = () => (
-  <Modal
-    header='Create New Project'
-    trigger={<Button style={styles.center}>Create Project</Button>}>
-    <Row>
-      <Input s={12} label='Project Name' />
-      <Input s={12} label='Short Description' />
-    </Row>
-    <Row>
-      <Input s={12} type='select' label='Number of Collaborators Wanted' defaultValue='2'>
-        <option value='1'>1</option>
-        <option value='2'>2</option>
-        <option value='3'>3</option>
-        <option value='4'>4</option>
-        <option value='5'>5</option>
-      </Input>
-    </Row>
-    <h2 Main Language />
-    <Row>
-      <Input name='group1' type='checkbox' value='JavaScript' label='JavaScript' />
-      <Input name='group1' type='checkbox' value='Ruby' label='Ruby' />
-      <Input name='group1' type='checkbox' value='Python' label='Python' />
-      <Input name='group1' type='checkbox' value='C/C#/C++' label='C/C#/C++' />
-      <Input name='group1' type='checkbox' value='Java' label='Java' />
-      <Input name='group1' type='checkbox' value='PHP' label='PHP' />
-    </Row>
-    <Row>
-      <Button waves='light' style={styles.button}>Submit</Button>
-    </Row>
-  </Modal>
-)
+class CreateProject extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      form: {
+        name: '',
+        description: '',
+<<<<<<< HEAD
+=======
+        numCollab: 0
+>>>>>>> df69cb2f8e9420a79f685136dfe23872db7181b7
+      }
+    }
 
-export default CreateProject
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+
+  }
+  handleChange (e) {
+    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
+    const name = e.target.name
+
+    this.setState((prevState) => {
+      return { form: Object.assign(prevState.form, { [name]: value})}
+    })
+  }
+
+  handleSubmit (event) {
+    event.preventDefault()
+    projectCreate(this.state.form)
+    .then(res => {
+      //  Do some stuff
+    })
+  }
+
+  componentDidUpdate () {
+    console.log(this.state)
+  }
+
+  render () {
+    return (
+      <Modal
+        header='Create New Project'
+        trigger={<Button style={styles.center}>Create Project</Button>}>
+        <Row>
+          <Input s={12} name='name' label='Project Name' onChange={this.handleChange} />
+          <Input s={12} name='description' label='Short Description' onChange={this.handleChange} />
+        </Row>
+        <Row>
+          <Input s={12} name='numCollab' type='select' label='Number of Collaborators Wanted' defaultValue='2' onChange={this.handleChange} >
+            <option value='1'>1</option>
+            <option value='2'>2</option>
+            <option value='3'>3</option>
+            <option value='4'>4</option>
+            <option value='5'>5</option>
+          </Input>
+        </Row>
+        <h2 Main Language />
+        <Row>
+          <Input name='JavaScript' type='checkbox' value='JavaScript' label='JavaScript' onChange={this.handleChange} />
+          <Input name='Ruby' type='checkbox' value='Ruby' label='Ruby' onChange={this.handleChange} />
+          <Input name='Python' type='checkbox' value='Python' label='Python' onChange={this.handleChange} />
+          <Input name='C' type='checkbox' value='C/C#/C++' label='C/C#/C++' onChange={this.handleChange} />
+          <Input name='Java' type='checkbox' value='Java' label='Java' onChange={this.handleChange} />
+          <Input name='Java' type='checkbox' value='PHP' label='PHP' onChange={this.handleChange} />
+        </Row>
+        <Row>
+          <Button waves='light' style={styles.button} onClick={this.handleSubmit} >Submit</Button>
+        </Row>
+      </Modal>
+    )
+  }
+}
 
 const styles = {
   button: {
@@ -42,3 +88,5 @@ const styles = {
     fontFamily: 'Share Tech Mono'
   }
 }
+
+export default CreateProject

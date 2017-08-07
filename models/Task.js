@@ -11,7 +11,7 @@ const TaskModel = new Schema({
     type: String,
     required: true,
     default: 'Not Started',
-    enum: ['Not Started','Development','Testing','On Hold','Done']
+    enum: ['Not Started','Development','Testing','On Hold','Done', 'Deleted']
   },
   createdDate: {
     type: Date,
