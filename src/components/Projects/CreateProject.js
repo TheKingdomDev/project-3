@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Modal, Button, Input, Row} from 'react-materialize'
+import { Modal, Button, Input, Row } from 'react-materialize'
 import { projectCreate } from '../../utils/apolloHelpers'
 
 class CreateProject extends Component {
@@ -41,7 +41,10 @@ class CreateProject extends Component {
     return (
       <Modal
         header='Create New Project'
-        trigger={<Button style={styles.center}>Create Project</Button>}>
+        trigger={<Button floating large className='light-green accent-4'
+          waves='light' icon='add'>
+          +
+          </Button>}>
         <Row>
           <Input s={12} name='name' label='Project Name' onChange={this.handleChange} />
           <Input s={12} name='description' label='Short Description' onChange={this.handleChange} />
