@@ -15,7 +15,7 @@ class Project extends Component {
   constructor () {
     super()
     this.state = {
-      projects: []
+      projects: [],
       user: {},
     }
     this.renderProjects = this.renderProjects.bind(this)
