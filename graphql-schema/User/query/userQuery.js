@@ -1,4 +1,4 @@
-const { GraphQLObjectType, GraphQLString, GraphQLList } = require('graphql')
+const { GraphQLObjectType, GraphQLList, GraphQLString, GraphQLInt } = require('graphql')
 
 const userType = require('../userType')
 const dbUser = require('../../../models/User')
@@ -7,10 +7,14 @@ const userQuery = {
   type: new GraphQLList(userType),
   args: {
     _id: { type: GraphQLString },
-    email: { type: GraphQLString }
+    email: { type: GraphQLString },
+    email: { type: GraphQLString },
+    limit: { type: GraphQLInt },
+    offset: { type: GraphQLInt }
   },
-  resolve(root, args, _, ast) {
-    return dbUser.find(args)
+  resolve(root, {_id, email, limit, offset,}, _, ast) {
+    return dbUser.find()
+      .limit(args.limit).skip(args.offset).exec()
   }
 }
 
