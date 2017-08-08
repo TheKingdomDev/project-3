@@ -71,38 +71,39 @@ export default ProjectDetails
 
 const styles = {
   container: {
-    border: '1px black solid',
+    border: '.5px lightgrey solid',
     minHeight: 700,
-    marginBottom: 30
+    marginBottom: 30,
+    boxShadow: '2px 2px 3px 3px #888888'
   },
   header: {
-    border: '2px solid red',
+    // border: '2px solid black',
     margin: 0,
     minHeight: '200px',
     upperRow: {
       margin: 0,
-      border: '3px solid orange',
+      border: '1px solid black',
       minHeight: 70
     },
     lowerRow: {
       margin: 0,
-      border: '3px solid blue',
+      border: '1px solid black',
       minHeight: 130
     }
   },
   body: {
-    border: '2px solid green',
+    border: '1px solid black',
     height: 500,
     paddingTop: 35,
     tasks: {
       margin: 0,
-      border: '3px solid red',
+      border: '1px solid black',
       minHeight: 200,
       marginBottom: 20
     },
     comments: {
       margin: 0,
-      border: '3px solid blue',
+      border: '1px solid black',
       minHeight: 200
     }
   }
