@@ -1,4 +1,4 @@
-const { GraphQLObjectType, GraphQLString, GraphQLList } = require('graphql')
+const { GraphQLObjectType, GraphQLString, GraphQLList, GraphQLInt } = require('graphql')
 const dbProject = require('../../../models/Project.js')
 const dbUser = require('../../../models/User.js')
 
@@ -12,10 +12,14 @@ module.exports = {
     owner: { type: GraphQLString },
     collaborators: { type: GraphQLString },
     primaryTechs: { type: new GraphQLList(GraphQLString) },
+    limit: { type: GraphQLInt },
+    offset: { type: GraphQLInt}
   },
   resolve(root, args, req, ast) {
     return dbProject
       .find(args)
+      .limit(args.limit)
+      .skip(args.offset)
       .populate('owner')
       .populate('collaborators')
       .populate('comments')
