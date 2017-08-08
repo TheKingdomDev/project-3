@@ -1,4 +1,4 @@
-const { GraphQLObjectType, GraphQLString, GraphQLList } = require('graphql')
+const { GraphQLObjectType, GraphQLString, GraphQLList, GraphQLInt } = require('graphql')
 
 const userType = require('../userType')
 const dbUser = require('../../../models/User')
@@ -7,10 +7,21 @@ const userQuery = {
   type: new GraphQLList(userType),
   args: {
     _id: { type: GraphQLString },
-    email: { type: GraphQLString }
+    email: { type: GraphQLString },
+    limit: { type: GraphQLInt },
+    offset: { type: GraphQLInt },
+    displayName: { type: GraphQLString }
   },
-  resolve(root, args, _, ast) {
-    return dbUser.find(args)
+  resolve(root, { _id, email, displayName, limit, offset}, _, ast) {
+    let query = {}
+    if(_id) {query._id = _id }
+    if (email) { query.email = email }
+    if (searchTerm) { query.displayName = { $regex: displayName, $options: 'i' }}
+
+    return dbUser.find(query)
+      .limit(limit)
+      .skip(offset)
+      .exec()
   }
 }
 
@@ -32,3 +43,5 @@ module.exports = {
   userQuery,
   authUserQuery
 }
+
+// { "authors": { "$regex": "Alex", "$options": "i" } }
