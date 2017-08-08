@@ -29,7 +29,38 @@ class ProjectDetails extends Component {
       <div>
         <HomeNav />
         <SlidingSideNav user={this.state.user} />
-        <p>Find the project selected in the database and disply it here.</p>
+        <div className='container' style={styles.container}>
+          {/* HEADER */}
+          <section key='header'>
+            <div className='row'style={styles.header}>
+              {/* UPPER */}
+              <div className='row' style={styles.header.upperRow}>
+                {/* PROJECT NAME */}
+                <div className='col s5' style={{border: '1px solid black'}}>
+                  <h4>PROJECT NAME</h4>
+                </div>
+                {/* TECHNOLOGIES USED */}
+                <div className='col s7' style={{border: '1px solid black'}}>
+                  <h4>TECHNOLOGIES USED</h4>
+                </div>
+              </div>
+              {/* LOWER */}
+              <div className='row' style={styles.header.lowerRow}>
+                <h4>PROJECT DESCRIPTION</h4>
+              </div>
+            </div>
+          </section>
+          <section key='body' style={styles.body}>
+            {/* TASKS */}
+            <div className='row' style={styles.body.tasks}>
+              <h4>PROJECT TASKS</h4>
+            </div>
+            {/* COMMENTS */}
+            <div className='row' style={styles.body.comments}>
+              <h4>PROJECT COMMENTS</h4>
+            </div>
+          </section>
+        </div> {/* end container */}
         <Footer />
       </div>
     )
@@ -37,3 +68,43 @@ class ProjectDetails extends Component {
 }
 
 export default ProjectDetails
+
+const styles = {
+  container: {
+    border: '.5px lightgrey solid',
+    minHeight: 700,
+    marginBottom: 30,
+    boxShadow: '2px 2px 3px 3px #888888'
+  },
+  header: {
+    // border: '2px solid black',
+    margin: 0,
+    minHeight: '200px',
+    upperRow: {
+      margin: 0,
+      border: '1px solid black',
+      minHeight: 70
+    },
+    lowerRow: {
+      margin: 0,
+      border: '1px solid black',
+      minHeight: 130
+    }
+  },
+  body: {
+    border: '1px solid black',
+    height: 500,
+    paddingTop: 35,
+    tasks: {
+      margin: 0,
+      border: '1px solid black',
+      minHeight: 200,
+      marginBottom: 20
+    },
+    comments: {
+      margin: 0,
+      border: '1px solid black',
+      minHeight: 200
+    }
+  }
+}

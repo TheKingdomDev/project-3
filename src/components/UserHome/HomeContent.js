@@ -32,5 +32,11 @@ const styles = {
     minHeight: '500px',
     minWidht: '630px',
     boxShadow: '1px 1px 2px 2px #888888'
+  },
+  headline: {
+    fontSize: 24,
+    paddingTop: 16,
+    marginBottom: 12,
+    fontWeight: 400
   }
 }
