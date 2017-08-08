@@ -1,7 +1,10 @@
 import React, {Component} from 'react'
-// import {Link} from 'react-router-dom'
 import HomeNav from '../components/Recurrent/HomeNav'
+import SlidingSideNav from '../components/UserHome/SlidingSideBar'
 import Footer from '../components/Recurrent/Footer'
+
+import { getMyInfo } from '../utils/apolloHelpers.js'
+
 import {
   ApolloClient,
   gql,
@@ -24,25 +27,22 @@ class ProjectDetails extends Component {
   constructor () {
     super()
     this.state = {
+      user: {},
       projects: []
     }
   }
-  componentWillMount () {
-    client.query({
-      query: gql`{ users {
-          id
-          displayName
-        }
-      }`
+  componentDidMount () {
+    getMyInfo()
+    .then(res => {
+      this.setState({user: res.data.me})
     })
-    .then(data => { console.log(data) })
-    .catch(err => { console.log(err) })
   }
 
   render () {
     return (
       <div>
         <HomeNav />
+        <SlidingSideNav user={this.state.user} />
         <p>Find the project selected in the database and disply it here.</p>
         <Footer />
       </div>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Bio from './Bio'
 
 const AvatarCard = (props) => (
   <div>
@@ -9,12 +10,11 @@ const AvatarCard = (props) => (
         <span className='card-title' style={{color: 'black'}}>{props.user.displayName}</span>
       </div>
       <div className='card-content'>
-        <p>I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively.</p>
+        <Bio bio={props.user.githubBio}/>
       </div>
-      <div className='card-action'>
+      {/* <div className='card-action'>
         <Link to='/'>This is a link</Link>
-      </div>
+      </div> */}
     </div>
   </div>
 )
@@ -25,5 +25,9 @@ const styles = {
   profilePic: {
     height: 300,
     widht: 100
+  },
+  cardSize: {
+    maxHeight: 250,
+    maxHeight: 180
   }
 }

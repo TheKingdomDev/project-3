@@ -27,7 +27,10 @@ class CreateProject extends Component {
 
   handleSubmit (event) {
     event.preventDefault()
-    console.log(this.state.form)
+    projectCreate(this.state.form)
+    .then(res => {
+      //  Do some stuff
+    })
   }
 
   componentDidUpdate () {

@@ -2,7 +2,7 @@ import React from 'react'
 
 const Projects = (props) => (
   <div>
-    Projects
+    Projects listed here
   </div>
 )
 

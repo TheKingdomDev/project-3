@@ -6,6 +6,7 @@ import Profile from '../containers/Profile'
 // import API from '../utils/apolloHelpers'
 import Project from '../containers/Project'
 import ProjectDetails from '../containers/ProjectDetails'
+import ViewUserProfile from '../containers/ViewUserProfile'
 import App from '../App'
 // import Registration from '../containers/Registration'
 import Access from '../containers/Access'
@@ -21,6 +22,7 @@ const routes = (
       <Route path='/login' component={Access} />
       <PrivateRoute path='/profile' component={Profile} />
       <Route path='/project' component={Project} />
+      <Route path='/profile:view' component={ViewUserProfile} />
       <PrivateRoute path='/project:details' component={ProjectDetails} />
     </Switch>
   </Router>

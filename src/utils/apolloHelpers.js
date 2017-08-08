@@ -1,8 +1,7 @@
 import {
   ApolloClient,
   gql,
-  // graphql,
-  /* ApolloProvider, */ createNetworkInterface
+  createNetworkInterface
 } from 'react-apollo'
 
 const API = new ApolloClient({
@@ -30,7 +29,7 @@ const isAuthenticated = async function () {
 }
 
 //  Function which fetches basic user information, as well as the UserSettings Object for rendering pages/fetching data
-const getMyInfo  = async (objOpts) =>  {
+const getMyInfo = async (objOpts) => {
   return await API.query({
     query: gql`{
       me {
@@ -38,6 +37,7 @@ const getMyInfo  = async (objOpts) =>  {
         displayName
         email
         profilePictureURL
+        githubBio
         userSettings {
           useLocalBio
           showCodewars
@@ -84,20 +84,47 @@ const getFullProfileInfo = async (objUserSettings) => {
   })
 }
 
-// Create Project function
+// Get all projects function
 
-const submitProject = async (objProject) => {
+const GetAllProjects = async (objProject) => {
+  return await API.query({
+    query: gql`projects {
+        _id
+        name
+        description
+        createdDate
+      }`
+  })
+}
+
+// Get all users function
+
+const GetAllUsers = async (objUser) => {
+  return await API.query({
+    query: gql`users{
+        _id
+        displayName
+        email
+        profilePictureURL
+      }`
+  })
+}
+
+
+const projectCreate = async ({name, description}) => {
   return await API.mutate({
-    mutation: gql`{
-      projectCreate(data: $data)
-      {
+    mutation: gql`mutation projectCreate($data: projectInput!) {
+      projectCreate (data: $data) {
         _id
         name
         description
       }
     }`,
     variables: {
-      data: objProject
+      data: {
+        name,
+        description
+      }
     }
   })
 }
@@ -107,6 +134,8 @@ module.exports = {
   isAuthenticated,
   getMyInfo,
   getFullProfileInfo,
-  submitProject,
-  getProjectInfo
+  projectCreate,
+  getProjectInfo,
+  GetAllProjects,
+  GetAllUsers
 }

@@ -9,25 +9,25 @@ module.exports = new GraphQLObjectType({
   fields: () => ({
     message: {
       type: GraphQLString,
-      resolve(application) => (
+      resolve: (application) => (
         application.message
       )
     },
     date: {
       type: GraphQLString,
-      resolve(application) => (
+      resolve: (application) => (
         application.createdDate
       )
     },
     owner: {
       type: UserType,
-      resolve(application) => (
+      resolve: (application) => (
         application.owner
       )
     },
     status: {
       type: GraphQLString,
-      resolve(application) => (
+      resolve: (application) => (
         application.status
       )
     }
