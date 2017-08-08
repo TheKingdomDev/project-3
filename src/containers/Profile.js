@@ -3,22 +3,17 @@ import HomeNav from '../components/Recurrent/HomeNav'
 import SlidingSideBar from '../components/UserHome/SlidingSideBar'
 import Footer from '../components/Recurrent/Footer'
 import { gql, graphql, ApolloProvider } from 'react-apollo'
-import API from '../utils/apolloHelpers'
 
-// Importing Skills and Accounts, Projects and Tasks 
-//components through respective containers
+// Importing Skills and Accounts, Projects and Tasks
+// components through respective containers
 import SkillsAndAccountsContainer from './SkillsAndAccounts'
-import ProjectsAndTasksContainer from './ProjectsAndTasks'
+import { API, getMyInfo, getFullProfileInfo } from '../utils/apolloHelpers'
 
 import {
   AvatarCard,
-  Bio,
   Projects,
   Tasks
  } from '../components/Profile/index'
-
-import { getMyInfo } from '../utils/apolloHelpers.js'
-import { getFullProfileInfo } from '../utils/apolloHelpers.js'
 
 class Profile extends Component {
   constructor (props) {
@@ -50,11 +45,11 @@ class Profile extends Component {
     return (
       <div>
         <HomeNav />
-        <SlidingSideBar user={this.state.user}/>
+        <SlidingSideBar user={this.state.user} />
         <div className='container' style={{marginTop: '20px'}}>
-          <div className='row' style={{border:'2px solid lightgrey', padding: '5px'}}>
+          <div className='row' style={{border: '2px solid lightgrey', padding: '5px'}}>
             <div className='col s4' /* style={{border:'1px solid blue'}} */>
-              <AvatarCard user={this.state.user}/>   
+              <AvatarCard user={this.state.user} />
             </div>
             <div className='col s8' /* style={{border: '1px solid red', height: '515.5px'}} */>
               <div style={{width: '100%', padding: '0'}}>
@@ -62,7 +57,7 @@ class Profile extends Component {
               </div>
             </div>
           </div>
-          <div className='row' style={{border:'2px solid lightgrey', padding: '5px'}}>
+          <div className='row' style={{border: '2px solid lightgrey', padding: '5px'}}>
             <div className='col s6' style={{border: '1px solid blue', minHeight: '125px'}}>
               <Projects />
             </div>
@@ -94,12 +89,5 @@ const CurrentUserData = gql`
   }
 `
 export const UserProfileWithData = graphql(CurrentUserData)(Profile)
-
-// Profile.propTypes = {
-//   data: PropTypes.shape({
-//     loading: PropTypes.bool.isRequired,
-//     currentUser: PropTypes.object,
-//   }).isRequired,
-// }
 
 export default Profile

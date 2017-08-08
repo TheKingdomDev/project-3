@@ -67,7 +67,9 @@ const getProjectInfo = async (objObts) => {
   })
 }
 
-//  Function which takes in a User's Settings Object (stored in state on client-side) and returns thee correct info to Populate the User Profile. 
+//  Function which takes in a User's Settings Object
+// (stored in state on client-side) and returns thee correct info
+// to Populate the User Profile.
 const getFullProfileInfo = async (objUserSettings) => {
   return await API.query({
     query: gql`{
@@ -109,7 +111,6 @@ const GetAllUsers = async (objUser) => {
       }`
   })
 }
-
 
 const projectCreate = async ({name, description}) => {
   return await API.mutate({

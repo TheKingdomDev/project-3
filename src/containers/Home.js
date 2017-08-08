@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-// import {Link} from 'react-router-dom'
 import HomeNav from '../components/Recurrent//HomeNav'
 import Footer from '../components/Recurrent/Footer'
 import SearchBar from '../components/UserHome/SearchBar'
 import HomeContent from '../components/UserHome/HomeContent'
 import SlidingSideBar from '../components/UserHome/SlidingSideBar'
-import { getMyInfo } from '../utils/apolloHelpers.js'
+import { getMyInfo } from '../utils/apolloHelpers'
 
 class Home extends Component {
   constructor (props) {
@@ -26,8 +25,8 @@ class Home extends Component {
   render () {
     return (
       <div>
-        <HomeNav user={this.state.user}/>
-        <SlidingSideBar user={this.state.user}/>
+        <HomeNav user={this.state.user} />
+        <SlidingSideBar user={this.state.user} />
         <div className='container' >
           <SearchBar />
           <HomeContent />

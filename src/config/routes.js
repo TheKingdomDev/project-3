@@ -1,15 +1,13 @@
 import React from 'react'
 import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 // import primary containers
-import Home from '../containers/Home'
-import Profile from '../containers/Profile'
-// import API from '../utils/apolloHelpers'
-import Project from '../containers/Project'
-import ProjectDetails from '../containers/ProjectDetails'
-import ViewUserProfile from '../containers/ViewUserProfile'
 import App from '../App'
-// import Registration from '../containers/Registration'
+import Home from '../containers/Home'
 import Access from '../containers/Access'
+import Profile from '../containers/Profile'
+import Project from '../containers/Project'
+import ViewUserProfile from '../containers/ViewUserProfile'
+import ProjectDetails from '../containers/ProjectDetails'
 
 import PrivateRoute from './PrivateRoute'
 

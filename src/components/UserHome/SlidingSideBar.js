@@ -1,5 +1,5 @@
 import React from 'react'
-import { SideNav, SideNavItem, Button } from 'react-materialize'
+import { SideNav, SideNavItem } from 'react-materialize'
 import { Link } from 'react-router-dom'
 
 const SlidingSideBar = (props) => (
@@ -15,16 +15,16 @@ const SlidingSideBar = (props) => (
         }}
       />
       <Link to='/home'>
-      <SideNavItem icon='home'>Home</SideNavItem>
+        <SideNavItem icon='home'>Home</SideNavItem>
       </Link>
       <Link to='/project'>
-      <SideNavItem icon='folder'>Projects</SideNavItem>
+        <SideNavItem icon='folder'>Projects</SideNavItem>
       </Link>
       <Link to='/project:details'>
-      <SideNavItem icon='format_list_numbered'>Tasks</SideNavItem>
+        <SideNavItem icon='format_list_numbered'>Tasks</SideNavItem>
       </Link>
       <Link to='/profile'>
-      <SideNavItem icon='person'>{props.user.displayName}</SideNavItem>
+        <SideNavItem icon='person'>{props.user.displayName}</SideNavItem>
       </Link>
     </SideNav>
   </div>
