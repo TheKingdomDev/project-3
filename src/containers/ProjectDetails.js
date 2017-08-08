@@ -2,21 +2,7 @@ import React, {Component} from 'react'
 import HomeNav from '../components/Recurrent/HomeNav'
 import SlidingSideNav from '../components/UserHome/SlidingSideBar'
 import Footer from '../components/Recurrent/Footer'
-
 import { getMyInfo } from '../utils/apolloHelpers.js'
-
-import {
-  ApolloClient,
-  gql,
-  // graphql,
-  /* ApolloProvider, */ createNetworkInterface
-} from 'react-apollo'
-
-const client = new ApolloClient({
-  networkInterface: createNetworkInterface({
-    uri: '/graphql'
-  })
-})
 
 // Project details page to display the full description of a project as well as show tasks and comments
 // Data needed will be the specific project that was clicked.

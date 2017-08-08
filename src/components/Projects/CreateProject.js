@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {Modal, Button, Input, Row} from 'react-materialize'
+import { projectCreate } from '../../utils/apolloHelpers'
 
 class CreateProject extends Component {
   constructor (props) {
@@ -14,14 +15,13 @@ class CreateProject extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
-
   }
   handleChange (e) {
     const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
     const name = e.target.name
 
     this.setState((prevState) => {
-      return { form: Object.assign(prevState.form, { [name]: value})}
+      return {form: Object.assign(prevState.form, {[name]: value})}
     })
   }
 

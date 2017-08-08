@@ -1,18 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { SideNav, SideNavItem, Button } from 'react-materialize'
-import SlidingSideBar from '../UserHome/SlidingSideBar'
 
 const MainNav = (props) => (
   <nav className='navbar-fixed  z-depth-0'style={navStyle}>
     <div className='nav-wrapper'>
       <section key='logo_and_sideNav'>
-         <Link to='/home' className='brand-logo center' style={{paddingLeft: 20}}>
-        {'<ST />'}
-        </Link> 
+        <Link to='/home' className='brand-logo center' style={{paddingLeft: 20}}>
+          {'<ST />'}
+        </Link>
       </section>
-      <ul id='nav-mobile' className='right hide-on-med-and-down'>
-      </ul>
+      <ul id='nav-mobile' className='right hide-on-med-and-down' />
     </div>
   </nav>
 )
@@ -23,4 +20,3 @@ const navStyle = {
 }
 
 export default MainNav
-
