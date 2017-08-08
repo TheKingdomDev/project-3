@@ -31,6 +31,8 @@ const mongoose = require('mongoose')
 const passport = require('passport')
 const session = require('express-session')
 const bodyParser = require('body-parser')
+const MongoClient = require('mongodb').MongoClient
+
 
 //We do this to be able to use Promises with mongoose
 mongoose.Promise = Promise
@@ -47,10 +49,21 @@ const app = express()
 
 //Setting our port # to the environment variable PORT or to 3000
 const PORT = process.env.PORT || 3000
+const CONNOPT = {
+  server: {socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } },
+  replset: {socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } }
+}
 const CONNECT = process.env.MONGODB_MLAB || 'mongodb://localhost/project3'
-
+console.log(CONNECT)
 //Setting up connection to MongoDB
-mongoose.connect(CONNECT)
+mongoose.connect(CONNECT, (err) => {
+  if(err) {
+    console.log(err)
+  }
+  else {
+    console.log('Database connection successful')
+  }
+})
 const db = mongoose.connection
 
 //Setting up ./public as a static directory to facilitate access to public assets

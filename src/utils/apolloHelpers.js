@@ -1,8 +1,7 @@
 import {
   ApolloClient,
   gql,
-  // graphql,
-  /* ApolloProvider, */ createNetworkInterface
+  createNetworkInterface
 } from 'react-apollo'
 
 const API = new ApolloClient({
