@@ -1,8 +1,7 @@
 import {
   ApolloClient,
   gql,
-  // graphql,
-  /* ApolloProvider, */ createNetworkInterface
+  createNetworkInterface
 } from 'react-apollo'
 
 const API = new ApolloClient({
@@ -135,7 +134,7 @@ module.exports = {
   isAuthenticated,
   getMyInfo,
   getFullProfileInfo,
-  projectCreate
+  projectCreate,
   getProjectInfo,
   GetAllProjects,
   GetAllUsers
