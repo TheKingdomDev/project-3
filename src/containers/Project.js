@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import { Link } from 'react-router-dom'
 import HomeNav from '../components/Recurrent/HomeNav'
 import SlidingSideNav from '../components/UserHome/SlidingSideBar'
 import Footer from '../components/Recurrent/Footer'
@@ -21,14 +22,19 @@ class Project extends Component {
   renderProjects (data) {
     return this.state.projects.map(proj => (
       <Collapsible popout>
-        <CollapsibleItem key={proj._id}header={proj.name} icon='folder'>{proj.description}</CollapsibleItem>
+        <CollapsibleItem key={proj._id} header={proj.name}
+          icon='folder'>
+          {proj.description}
+          <Link to={{ pathname: '/project:details/', state: {projectId: proj._id} }}>
+            <i className='material-icons'>assignment</i>
+          </Link>
+        </CollapsibleItem>
       </Collapsible>
       )
     )
   }
   componentDidMount () {
-
-//  get general User info (me) to populate sidebar and maintain state.
+    // get general User info (me) to populate sidebar and maintain state.
     getMyInfo()
     .then(res => {
       this.setState({user: res.data.me})
@@ -37,7 +43,7 @@ class Project extends Component {
 //  Get user Projects (me) and set the resulting array of projects in state.
     getProjectInfo()
       .then(res => {
-        this.setState({ projects: res.data.me.projectsConnection.projects})
+        this.setState({projects: res.data.me.projectsConnection.projects})
       })
       .catch(err => console.log(err))
   }
