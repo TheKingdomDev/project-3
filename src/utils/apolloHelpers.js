@@ -13,9 +13,10 @@ const API = new ApolloClient({
   })
 })
 
-//  Function to check user Authentication, returns Promise which will resolve to a Boolean depending on login.
-const isAuthenticated = function () {
-  const res = API.query({
+//  Function to check user Authentication, returns Promise which will resolve to a Boolean depending on login. 
+//   NEEDS TO BE `async await`
+const isAuthenticated = async function () {
+  const res = await API.query({
     query: gql`{
       me {
         _id
@@ -49,8 +50,8 @@ const getMyInfo = (objOpts) => {
   })
 }
 
-const getProjectInfo = async (objObts) => {
-  return await API.query({
+const getProjectInfo = (objObts) => {
+  return API.query({
     query: gql`{
       me {
         _id
