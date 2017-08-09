@@ -3,6 +3,12 @@ import HomeNav from '../components/Recurrent/HomeNav'
 import SlidingSideNav from '../components/UserHome/SlidingSideBar'
 import Footer from '../components/Recurrent/Footer'
 import { getMyInfo } from '../utils/apolloHelpers.js'
+import {
+  Collection,
+  CollectionItem,
+  Collapsible,
+  CollapsibleItem
+ } from 'react-materialize'
 
 // Project details page to display the full description of a project as well as show tasks and comments
 // Data needed will be the specific project that was clicked.
@@ -52,13 +58,48 @@ class ProjectDetails extends Component {
           </section>
           <section key='body' style={styles.body}>
             {/* TASKS */}
-            <div className='row' style={styles.body.tasks}>
-              <h4>PROJECT TASKS</h4>
-            </div>
+            <section key='tasks'
+              style={{overflowY: 'scroll', marginBottom: 150}}>
+              <div className='row' style={styles.body.tasks}>
+                <Collapsible>
+                  <CollapsibleItem header='Task 1'>
+                    Task 1
+                  </CollapsibleItem>
+                  <CollapsibleItem header='Task 2'>
+                    Task 2
+                  </CollapsibleItem>
+                  <CollapsibleItem header='Task 3'>
+                    Task 3
+                  </CollapsibleItem>
+                  <CollapsibleItem header='Task 4'>
+                    Task 4
+                  </CollapsibleItem>
+                  <CollapsibleItem header='Task 5'>
+                    Task 5
+                  </CollapsibleItem>
+                  <CollapsibleItem header='Task 6'>
+                    Task 6
+                  </CollapsibleItem>
+                  <CollapsibleItem header='Task 7'>
+                    Task 7
+                  </CollapsibleItem>
+                </Collapsible>
+              </div>
+            </section>
             {/* COMMENTS */}
-            <div className='row' style={styles.body.comments}>
-              <h4>PROJECT COMMENTS</h4>
-            </div>
+            <section key='comments' style={{overflowY: 'scroll'}}>
+              <div className='row' style={styles.body.comments}>
+                <Collection>
+                  <CollectionItem>Comment 1</CollectionItem>
+                  <CollectionItem>Comment 2</CollectionItem>
+                  <CollectionItem>Comment 3</CollectionItem>
+                  <CollectionItem>Comment 4</CollectionItem>
+                  <CollectionItem>Comment 5</CollectionItem>
+                  <CollectionItem>Comment 6</CollectionItem>
+                  <CollectionItem>Comment 7</CollectionItem>
+                </Collection>
+              </div>
+            </section>
           </section>
         </div> {/* end container */}
         <Footer />
@@ -74,7 +115,7 @@ const styles = {
     border: '.5px lightgrey solid',
     minHeight: 700,
     marginBottom: 30,
-    boxShadow: '2px 2px 3px 3px #888888'
+    boxShadow: '1px 1px 2px 2px #888888'
   },
   header: {
     // border: '2px solid black',
@@ -93,18 +134,19 @@ const styles = {
   },
   body: {
     border: '1px solid black',
-    height: 500,
-    paddingTop: 35,
+    height: 800,
+    paddingTop: 120,
     tasks: {
       margin: 0,
-      border: '1px solid black',
-      minHeight: 200,
-      marginBottom: 20
+      border: '3px solid red',
+      minHeight: 230,
+      maxHeight: 230
     },
     comments: {
       margin: 0,
-      border: '1px solid black',
-      minHeight: 200
+      border: '3px solid blue',
+      minHeight: 230,
+      maxHeight: 230
     }
   }
 }
