@@ -2,11 +2,16 @@ import React, {Component} from 'react'
 import HomeNav from '../components/Recurrent/HomeNav'
 import SlidingSideNav from '../components/UserHome/SlidingSideBar'
 import Footer from '../components/Recurrent/Footer'
-import { getMyInfo } from '../utils/apolloHelpers.js'
 import {
-  Collection,
+  getMyInfo,
+  getProjectInfo,
+  searchProjectById
+} from '../utils/apolloHelpers.js'
+
+import {
+  Collection, // Collection and CollectionItems for comments
   CollectionItem,
-  Collapsible,
+  Collapsible, // Collapsible and Collapsible items for Tasks
   CollapsibleItem
  } from 'react-materialize'
 
@@ -16,11 +21,13 @@ import {
 // Other data includes task and comments
 
 class ProjectDetails extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.state = {
       user: {},
-      projects: []
+      project: {},
+      tasks: []
+      // projectId: ''
     }
   }
   componentDidMount () {
@@ -28,9 +35,18 @@ class ProjectDetails extends Component {
     .then(res => {
       this.setState({user: res.data.me})
     })
+    // Retrieve project details by ID
+    searchProjectById(this.props.location.state.projectId)
+    .then(res => {
+      this.setState({project: res.data.projects[0]})
+    })
   }
 
   render () {
+    // const projectDetails = {
+    //   name: this.state.project.data.projects[0]
+    // }
+    console.log(this.state.project)
     return (
       <div>
         <HomeNav />
@@ -43,7 +59,7 @@ class ProjectDetails extends Component {
               <div className='row' style={styles.header.upperRow}>
                 {/* PROJECT NAME */}
                 <div className='col s5' style={{border: '1px solid black'}}>
-                  <h4>PROJECT NAME</h4>
+                  <h4>Project name: {this.state.project.name}</h4>
                 </div>
                 {/* TECHNOLOGIES USED */}
                 <div className='col s7' style={{border: '1px solid black'}}>
@@ -52,7 +68,7 @@ class ProjectDetails extends Component {
               </div>
               {/* LOWER */}
               <div className='row' style={styles.header.lowerRow}>
-                <h4>PROJECT DESCRIPTION</h4>
+                <h4>Description: {this.state.project.description}</h4>
               </div>
             </div>
           </section>

@@ -71,6 +71,24 @@ const getProjectInfo = (objObts) => {
   })
 }
 
+const getProjsAndTasks = (obj) => {
+  return API.query({
+    query: gql`{
+      me {
+      displayName
+      projectsConnection {
+        projects {
+          _id
+          name
+          description
+          createdDate
+        }
+      }
+     } 
+    }`
+  })
+}
+
 //  Function which takes in a User's Settings Object
 // (stored in state on client-side) and returns thee correct info
 // to Populate the User Profile.
@@ -134,6 +152,21 @@ const projectCreate = ({name, description}) => {
   })
 }
 
+const searchProjectById = (id) => {
+  return API.query({
+    query: gql`query searchProjectById($id: String!) {
+      projects(_id: $id) {
+        name
+        description
+        createdDate
+      }
+    }`,
+    variables: {
+      id: id
+    }
+  })
+}
+
 const searchbyName = (term) => {
   return API.query({
     query: gql`query searchbyName($term: String!) {
@@ -152,7 +185,7 @@ const searchbyName = (term) => {
       term: term
     }
   })
-} 
+}
 
 module.exports = {
   API,
@@ -163,5 +196,6 @@ module.exports = {
   getProjectInfo,
   GetAllProjects,
   GetAllUsers,
-  searchbyName
+  searchbyName,
+  searchProjectById
 }
