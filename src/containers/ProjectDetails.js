@@ -73,6 +73,9 @@ class ProjectDetails extends Component {
             </div>
           </section>
           <section key='body' style={styles.body}>
+            <h3 className='center'>
+              <i className='material-icons' style={{fontSize:30}}>assignment</i> Tasks
+            </h3>
             {/* TASKS */}
             <section key='tasks'
               style={{overflowY: 'scroll', marginBottom: 150}}>
@@ -103,16 +106,15 @@ class ProjectDetails extends Component {
               </div>
             </section>
             {/* COMMENTS */}
+            <h3 className='center'>
+              <i className='material-icons'style={{fontSize: 30}}>comment</i> Comments
+            </h3>
             <section key='comments' style={{overflowY: 'scroll'}}>
               <div className='row' style={styles.body.comments}>
                 <Collection>
                   <CollectionItem>Comment 1</CollectionItem>
                   <CollectionItem>Comment 2</CollectionItem>
                   <CollectionItem>Comment 3</CollectionItem>
-                  <CollectionItem>Comment 4</CollectionItem>
-                  <CollectionItem>Comment 5</CollectionItem>
-                  <CollectionItem>Comment 6</CollectionItem>
-                  <CollectionItem>Comment 7</CollectionItem>
                 </Collection>
               </div>
             </section>
@@ -129,7 +131,7 @@ export default ProjectDetails
 const styles = {
   container: {
     border: '.5px lightgrey solid',
-    minHeight: 700,
+    minHeight: 1000,
     marginBottom: 30,
     boxShadow: '1px 1px 2px 2px #888888'
   },
@@ -154,13 +156,13 @@ const styles = {
     paddingTop: 120,
     tasks: {
       margin: 0,
-      border: '3px solid red',
+      // border: '3px solid red',
       minHeight: 230,
       maxHeight: 230
     },
     comments: {
       margin: 0,
-      border: '3px solid blue',
+      // border: '3px solid blue',
       minHeight: 230,
       maxHeight: 230
     }

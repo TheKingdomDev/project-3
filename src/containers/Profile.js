@@ -7,7 +7,13 @@ import { gql, graphql, ApolloProvider } from 'react-apollo'
 // Importing Skills and Accounts, Projects and Tasks
 // components through respective containers
 import SkillsAndAccountsContainer from './SkillsAndAccounts'
-import { API, getMyInfo, getFullProfileInfo } from '../utils/apolloHelpers'
+import {
+  API,
+  getMyInfo,
+  getFullProfileInfo,
+  getProjectInfo,
+  getMyProjects
+} from '../utils/apolloHelpers'
 
 import {
   AvatarCard,
@@ -20,7 +26,8 @@ class Profile extends Component {
     super(props)
     this.state = {
       user: {},
-      userProfiles: {}
+      userProfiles: {},
+      projects: []
     }
   }
 
@@ -30,18 +37,17 @@ class Profile extends Component {
       this.setState({user: res.data.me})
     })
     console.log(this.state.user)
-    getFullProfileInfo()
+    // getFullProfileInfo()
+    // .then(res => {
+    //   console.log(`ACCOUNTS: ${res}`)
+    // })
+    getProjectInfo()
     .then(res => {
-      console.log(`ACCOUNTS: ${res}`)
+      this.setState({projects: res.data.me.projectsConnection.projects})
     })
   }
-
-  componentDidUpdate () {
-    console.log(this.state.user)
-  }
-
   render () {
-    console.log(this.props)
+    console.log(this.state)
     return (
       <div>
         <HomeNav />
@@ -58,10 +64,13 @@ class Profile extends Component {
             </div>
           </div>
           <div className='row' style={{border: '2px solid lightgrey', padding: '5px'}}>
-            <div className='col s6' style={{border: '1px solid blue', minHeight: '125px'}}>
-              <Projects />
-            </div>
-            <div className='col s6' style={{border: '1px solid green', minHeight: '125px'}}>
+            {/* <section style={{overflowY: 'scroll'}}> */}
+              <div className='col s6'
+                style={{/* border: '1px solid blue', */ minHeight: '200px', maxHeight: '200px', overflowY: 'scroll'}}>
+                <Projects items={this.state.projects} />
+              </div>
+            {/* </section> */}
+            <div className='col s6' style={{/* border: '1px solid green', */ minHeight: '125px'}}>
               <Tasks />
             </div>
           </div>
