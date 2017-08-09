@@ -1,8 +1,9 @@
 const { GraphQLObjectType, GraphQLString, GraphQLList, GraphQLInt } = require('graphql')
-const dbProject = require('../../../models/Project.js')
-const dbUser = require('../../../models/User.js')
+const dbProject = require('../../../models/Project')
+const dbComment = require('../../../models/Comment')
+const dbUser = require('../../../models/User')
 
-const projectType = require('../projectType.js')
+const projectType = require('../projectType')
 
 module.exports = {
   type: new GraphQLList(projectType),

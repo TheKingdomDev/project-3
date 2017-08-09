@@ -16,7 +16,7 @@ const userQuery = {
     let query = {}
     if(_id) {query._id = _id }
     if (email) { query.email = email }
-    if (searchTerm) { query.displayName = { $regex: displayName, $options: 'i' }}
+    if (displayName) { query.displayName = { $regex: displayName, $options: 'i' }}
 
     return dbUser.find(query)
       .limit(limit)
