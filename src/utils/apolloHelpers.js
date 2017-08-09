@@ -14,8 +14,8 @@ const API = new ApolloClient({
 })
 
 //  Function to check user Authentication, returns Promise which will resolve to a Boolean depending on login.
-const isAuthenticated = async function () {
-  const res = await API.query({
+const isAuthenticated = function () {
+  const res = API.query({
     query: gql`{
       me {
         _id
@@ -29,8 +29,8 @@ const isAuthenticated = async function () {
 }
 
 //  Function which fetches basic user information, as well as the UserSettings Object for rendering pages/fetching data
-const getMyInfo = async (objOpts) => {
-  return await API.query({
+const getMyInfo = (objOpts) => {
+  return API.query({
     query: gql`{
       me {
         _id
@@ -51,16 +51,19 @@ const getMyInfo = async (objOpts) => {
 
 const getProjectInfo = async (objObts) => {
   return await API.query({
-    query: gql`me{
-      projectsConnection {
-      connectionInfo {
-        totalProjects
-      }
-      projects {
+    query: gql`{
+      me {
         _id
-        name
-        description
-        createdDate
+        projectsConnection {
+        connectionInfo {
+          totalProjects
+        }
+        projects {
+          _id
+          name
+          description
+          createdDate
+        }
       }
     }
   }`
@@ -70,8 +73,8 @@ const getProjectInfo = async (objObts) => {
 //  Function which takes in a User's Settings Object
 // (stored in state on client-side) and returns thee correct info
 // to Populate the User Profile.
-const getFullProfileInfo = async (objUserSettings) => {
-  return await API.query({
+const getFullProfileInfo = (objUserSettings) => {
+  return API.query({
     query: gql`{
       me {
         
@@ -88,8 +91,8 @@ const getFullProfileInfo = async (objUserSettings) => {
 
 // Get all projects function
 
-const GetAllProjects = async (objProject) => {
-  return await API.query({
+const GetAllProjects = (objProject) => {
+  return API.query({
     query: gql`projects {
         _id
         name
@@ -101,8 +104,8 @@ const GetAllProjects = async (objProject) => {
 
 // Get all users function
 
-const GetAllUsers = async (objUser) => {
-  return await API.query({
+const GetAllUsers = (objUser) => {
+  return API.query({
     query: gql`users{
         _id
         displayName
@@ -112,8 +115,8 @@ const GetAllUsers = async (objUser) => {
   })
 }
 
-const projectCreate = async ({name, description}) => {
-  return await API.mutate({
+const projectCreate = ({name, description}) => {
+  return API.mutate({
     mutation: gql`mutation projectCreate($data: projectInput!) {
       projectCreate (data: $data) {
         _id
