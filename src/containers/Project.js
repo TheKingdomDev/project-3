@@ -27,19 +27,21 @@ class Project extends Component {
     )
   }
   componentDidMount () {
+
+//  get general User info (me) to populate sidebar and maintain state.
     getMyInfo()
     .then(res => {
       this.setState({user: res.data.me})
     })
 
+//  Get user Projects (me) and set the resulting array of projects in state.
     getProjectInfo()
-    .then(res => {
-      this.renderProjects(res)
-    })
-    .then(mappedProjects => {
-      this.setState({projects: mappedProjects})
-    })
+      .then(res => {
+        this.setState({ projects: res.data.me.projectsConnection.projects})
+      })
+      .catch(err => console.log(err))
   }
+
   render () {
     return (
       <div>

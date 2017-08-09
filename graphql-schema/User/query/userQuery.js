@@ -17,7 +17,6 @@ const userQuery = {
 const authUserQuery = {
   type: userType,
   resolve(root, args, req, ast) {
-
     return req.user
       ? dbUser.findOne({ _id: req.user._id })
         .then(res => {
