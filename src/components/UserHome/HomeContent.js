@@ -1,7 +1,7 @@
 import React from 'react'
-import { Tabs, Tab } from 'react-materialize'
+import { Tabs, Tab, Col, Card, CardTitle } from 'react-materialize'
 
-const HomeContent = () => (
+const HomeContent = (props) => (
   <div className='container'>
     <div className='projectTab' />
     <div className='personTab' />
@@ -9,10 +9,22 @@ const HomeContent = () => (
     <div className='contentContainer' style={styles.resultsContainer}>
       <Tabs className='tab-demo z-depth-1'>
         <Tab active title='projects' style={styles.resultsContainer}>
-          [Projects] search results here
+          
+          {props.projects.map((ele, i) => (
+            <Col m={6} s={12} key={i}>
+              <Card key={ele._id} className='blue darken-1' textClassName='white-text' title={ele.name} actions={[<a href='#'>View Details</a>]}>
+                {ele.description}
+		          </Card>
+            </Col>
+          ))}
+          
         </Tab>
         <Tab title='users' style={styles.resultsContainer}>
-          [Users] search results here
+          {props.users.map((user, i) => (
+            <Col m={4} s={6} l={3} key={i}>
+              <Card key={user._id} className='blue darken-1' textClassName='white-text' header={<CardTitle image={user.profilePictureURL}>{user.displayName}</CardTitle>} actions={[<a href='#'>View Profile</a>]} />
+            </Col>
+          ))}
         </Tab>
       </Tabs>
     </div>

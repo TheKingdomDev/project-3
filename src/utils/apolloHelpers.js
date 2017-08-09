@@ -133,6 +133,26 @@ const projectCreate = ({name, description}) => {
   })
 }
 
+const searchbyName = (term) => {
+  return API.query({
+    query: gql`query searchbyName($term: String!) {
+      users(displayName: $term) {
+        _id
+        displayName
+        profilePictureURL
+      }
+      projects(name: $term) {
+        _id
+        name
+        description
+      }
+    }`,
+    variables: {
+      term: term
+    }
+  })
+} 
+
 module.exports = {
   API,
   isAuthenticated,
@@ -141,5 +161,6 @@ module.exports = {
   projectCreate,
   getProjectInfo,
   GetAllProjects,
-  GetAllUsers
+  GetAllUsers,
+  searchbyName
 }
