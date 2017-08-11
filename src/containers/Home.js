@@ -29,7 +29,7 @@ class Home extends Component {
   componentDidUpdate () {
     console.log(this.state)
   }
-  
+
   getSearchResults (e) {
     searchbyName(e.target.value)
     .then(res => {
@@ -39,8 +39,7 @@ class Home extends Component {
       })
     })
   }
- 
-  
+
   render () {
     return (
       <div>
