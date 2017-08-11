@@ -1,5 +1,4 @@
 const mongoose = require("mongoose")
-const bcrypt = require('bcryptjs')
 
 const Schema = mongoose.Schema
 
@@ -94,22 +93,6 @@ const UserSchema = new Schema({
 
 //   ***NOTE: Currently Unused - will be reimplemented if/when Local Authentication/JWTs is developed ***
 //  Designed for user on a New User, salts/hashes a User's Password and returns a Promise.
-UserSchema.methods.setPassword = function () {
-  
-  return new Promise((resolve, reject) => {
-  bcrypt.genSalt(10, (err, salt) => {
-      bcrypt.hash(this.password, salt, (err, hash) => {
-        this.password = hash
-        if (err) {
-          reject(err)
-        }
-        else {
-          resolve(this)
-        }
-      })
-    })
-})
-}
 
 UserSchema.statics.findOneOrCreate = function (args, user) {
     return this.findOneAndUpdate(args, user, { new: true})
