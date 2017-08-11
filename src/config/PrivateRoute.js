@@ -25,7 +25,7 @@ class PrivateRoute extends Component {
   }
 
   render () {
-    console.log(this.state.loggedIn)
+    // console.log(this.state.loggedIn)
     return (
        this.state.loggedIn
        ? <Route path={this.props.path} component={this.props.component} loggedIn={this.state.loggedIn} />

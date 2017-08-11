@@ -5,7 +5,7 @@ const Login = () => (
   <div className='container'>
     <div style={styles.wrapper}>
       <div className='row' style={styles.center}>
-        <form method='GET' action='/auth/github/login'className='col s12'>
+        <form method='GET' action='/auth/github/login' className='col s12'>
           <p style={styles.contentStyle} >This application requires users to login through GitHub.
           If you have an account simply click the button below. If you don't
           have an account follow <Link to='http://github.com' target='_blank'>this link</Link></p>
@@ -14,7 +14,7 @@ const Login = () => (
         </form>
       </div>
     </div>
-    <div className='container'>
+    <div className='container' style={{marginTop: 0}}>
       <div className='row' style={styles.center}>
         <div className='col s6' style={styles.contentStyle}>
           <h4>What is GitHub?</h4>
@@ -48,7 +48,7 @@ const styles = {
   wrapper: {
     margin: '0 auto',
     display: 'flex',
-    height: '300px'
+    height: '200px'
   }
 }
 // Note to self:

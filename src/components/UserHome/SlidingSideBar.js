@@ -20,9 +20,9 @@ const SlidingSideBar = (props) => (
       <Link to='/project'>
         <SideNavItem icon='folder'>Projects</SideNavItem>
       </Link>
-      <Link to='/project:details'>
+      {/* <Link to='/project:details'>
         <SideNavItem icon='format_list_numbered'>Tasks</SideNavItem>
-      </Link>
+      </Link> */}
       <Link to='/profile'>
         <SideNavItem icon='person'>{props.user.displayName}</SideNavItem>
       </Link>
