@@ -14,7 +14,7 @@ const Login = () => (
         </form>
       </div>
     </div>
-    <div className='container'>
+    <div className='container' style={{marginTop: 0}}>
       <div className='row' style={styles.center}>
         <div className='col s6' style={styles.contentStyle}>
           <h4>What is GitHub?</h4>
@@ -48,7 +48,7 @@ const styles = {
   wrapper: {
     margin: '0 auto',
     display: 'flex',
-    height: '300px'
+    height: '200px'
   }
 }
 // Note to self:
