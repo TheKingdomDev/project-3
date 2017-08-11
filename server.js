@@ -76,12 +76,10 @@ app.use(session({
 }))
 
 passport.serializeUser(function (user, done) {
-  console.log('serializeUser')
   done(null, user);
 });
 
 passport.deserializeUser(function (obj, done) {
-  console.log('deserializeUser')
   done(null, obj);
 });
 
