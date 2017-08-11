@@ -11,6 +11,10 @@ import ProjectDetails from '../containers/ProjectDetails'
 
 import PrivateRoute from './PrivateRoute'
 
+
+import injectTapEventPlugin from "react-tap-event-plugin"
+injectTapEventPlugin()
+
 // routing
 const routes = (
   <Router>
