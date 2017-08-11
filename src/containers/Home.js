@@ -32,9 +32,17 @@ export default class Home extends Component {
 
   handleToggle = () => this.setState({ open: !this.state.open })
 
+<<<<<<< HEAD
   //  TODO = Refoactor function (and state) to pass all results into the 'data' object.  Use' loading' to render loader when making changes 
   //  TODO = enable Pagination for search or 'load more functionality.
   getSearchResults = (e) => {
+=======
+  componentDidUpdate () {
+    console.log(this.state)
+  }
+
+  getSearchResults (e) {
+>>>>>>> 476b99b02fd54b7568466310504690a8dad140fc
     searchbyName(e.target.value)
       .then(res => {
         this.setState({
@@ -54,7 +62,11 @@ export default class Home extends Component {
     })
   }
 
+<<<<<<< HEAD
   render() {
+=======
+  render () {
+>>>>>>> 476b99b02fd54b7568466310504690a8dad140fc
     return (
       <MuiThemeProvider>
         <div>

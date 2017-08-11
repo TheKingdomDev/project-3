@@ -1,14 +1,10 @@
-import React, {Component} from 'react'
-import Landing from './components/Landing/Landing'
+import React, { Component } from 'react'
+import Routes from './config/routes'
 
 class App extends Component {
   render () {
-    return (
-      <Landing />
-    )
+    return (<Routes />)
   }
 }
 
 export default App
-
-// try playing around with sticky footer in this file
