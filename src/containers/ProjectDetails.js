@@ -43,9 +43,6 @@ class ProjectDetails extends Component {
   }
 
   render () {
-    // const projectDetails = {
-    //   name: this.state.project.data.projects[0]
-    // }
     console.log(this.state.project)
     return (
       <div>
