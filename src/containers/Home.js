@@ -1,16 +1,8 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import AppBar from 'material-ui/AppBar'
-import Drawer from 'material-ui/Drawer'
-import MenuItem from 'material-ui/MenuItem'
-import IconButton from 'material-ui/IconButton'
-import FontIcon from 'material-ui/FontIcon'
-import NavigationClose from 'material-ui/svg-icons/navigation/close'
-import { Card, CardMedia, CardTitle } from 'material-ui/Card';
-import { grey100 } from 'material-ui/styles/colors';
+import Navigation from '../components/Recurrent/Navigation'
 
 // WILL BE REMOVED ONCE REFACTOR IS COMPLETE
-import  MuiThemeProvider from 'material-ui/styles/MuiThemeProvider' 
+// import  MuiThemeProvider from 'material-ui/styles/MuiThemeProvider' 
 
 import { getMyInfo, searchbyName } from '../utils/apolloHelpers'
 
@@ -32,17 +24,9 @@ export default class Home extends Component {
 
   handleToggle = () => this.setState({ open: !this.state.open })
 
-<<<<<<< HEAD
   //  TODO = Refoactor function (and state) to pass all results into the 'data' object.  Use' loading' to render loader when making changes 
   //  TODO = enable Pagination for search or 'load more functionality.
   getSearchResults = (e) => {
-=======
-  componentDidUpdate () {
-    console.log(this.state)
-  }
-
-  getSearchResults (e) {
->>>>>>> 476b99b02fd54b7568466310504690a8dad140fc
     searchbyName(e.target.value)
       .then(res => {
         this.setState({
@@ -53,55 +37,18 @@ export default class Home extends Component {
   }
 
   async componentDidMount() {
-
-     this.setState({ user: this.props.location.state
-//    Checks to see if User was passed from Pervious Page
+//  Checks to see if User was passed from Previous Page, otherwise if fetches the user from the API.
+    this.setState({ user: this.props.location.state
       ? this.props.location.state.user
-//    otherwise if fetches the user from the API.
       : await getMyInfo().then(res => res.data.me)
     })
   }
 
-<<<<<<< HEAD
   render() {
-=======
-  render () {
->>>>>>> 476b99b02fd54b7568466310504690a8dad140fc
     return (
-      <MuiThemeProvider>
-        <div>
-        <AppBar
-          title='Home'
-          iconClassNameRight={this.state.user._id
-            ? 'muidocs-icon-navigation-expand-more'
-            : ''}
-          onLeftIconButtonTouchTap={this.handleToggle}
-        />
-        <Drawer open={this.state.open}>
-            <AppBar
-              showMenuIconButton={false}
-              iconElementRight={<IconButton><NavigationClose /></IconButton>}
-              onRightIconButtonTouchTap={this.handleToggle}
-            />
-            <Card>
-              <Link to='/profile'>
-                <CardMedia
-                  overlay={<CardTitle title={this.state.user.displayName} 
-                    subtitle={
-                      <span> <FontIcon className='devicons devicons-github_badge' color={grey100}/> 
-                     {` ${this.state.user.githubLogin}`}</span>} 
-                  />}
-                >
-                  <img src={this.state.user.profilePictureURL} alt="" />
-                </CardMedia>
-              </Link>
-            </Card>
-          <MenuItem>Profile</MenuItem>
-          <MenuItem>Projects</MenuItem>
-          <MenuItem>Tasks</MenuItem>
-        </Drawer>
-        </div>
-      </MuiThemeProvider>
+      // <MuiThemeProvider>
+        <Navigation user={this.state.user} handleToggle={this.handleToggle} open={this.state.open} />
+      // </MuiThemeProvider>
     )
     
   }
