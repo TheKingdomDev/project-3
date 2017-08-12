@@ -12,6 +12,9 @@ import Project from '../containers/Project'
 import ViewUserProfile from '../containers/ViewUserProfile'
 import ProjectDetails from '../containers/ProjectDetails'
 
+import injectTapEventPlugin from "react-tap-event-plugin"
+injectTapEventPlugin()
+
 // routing
 const routes = (props) => (
   <Router>

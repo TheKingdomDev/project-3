@@ -24,7 +24,10 @@ module: {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
-        query: { presets: ['react', 'es2015'] }
+        query: { 
+          presets: ['react', 'es2015'], 
+          plugins: ['transform-class-properties', 'transform-es2015-spread'] 
+        }
       },
       {
         test: /\.css$/,
