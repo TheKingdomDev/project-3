@@ -8,44 +8,23 @@
     <title>Stack Team</title>
     <!-- <link rel="stylesheet" href="bundle.css"> -->
 
-    <!-- jQuery because materialize needs it! -->
-    <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-     <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
-
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
-
     <!--Devicons-->
     <link href='//cdn.jsdelivr.net/devicons/1.8.0/css/devicons.min.css' rel='stylesheet'>
     <!--GoogleFonts-->
     <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono|Cantarell" rel="stylesheet">
-
-
-
     <style>
-        /*These styles are not being applied for some reason */
-
-        .Site {
-            display: flex;
-            min-height: 100vh;
-            flex-direction: column;
-        }
-
-        .Site-content {
-            flex: 1;
+        body, html {
+            margin: 0;
+            min-height: 100%;
+            background-color: rgb(48,48,48)
         }
     </style>
+    <style rel="stylesheet" href="bundle.css"></style>
 </head>
 
-<body class="Site">
-    <div class="Site-content">
-        <div id="root"></div>
-    </div>
-
+<body>        
+    <div id="root"></div>
     <script type="text/javascript" src=bundle.js></script>
 </body>
 
