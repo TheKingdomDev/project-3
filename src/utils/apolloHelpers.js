@@ -37,6 +37,8 @@ const getMyInfo = (objOpts) => {
         _id
         displayName
         email
+        githubLogin
+        githubProfileURL
         profilePictureURL
         githubBio
         userSettings {
@@ -186,6 +188,36 @@ const searchbyName = (term) => {
   })
 }
 
+
+const getHomeInfo = () => {
+  API.query({
+    query: gql`{
+      me {
+        _id
+        displayName
+        email
+        profilePictureURL
+        githubBio
+        userSettings {
+          useLocalBio
+          showCodewars
+          showcCodeSchool
+          showTreehouse
+        }
+      }
+      users {
+        _id
+        displayName
+        profilePictureURL
+      }
+      projects {
+        _id
+        name
+        description
+      }
+    }`})
+}
+
 module.exports = {
   API,
   isAuthenticated,
@@ -196,5 +228,6 @@ module.exports = {
   GetAllProjects,
   GetAllUsers,
   searchbyName,
-  searchProjectById
+  searchProjectById,
+  getHomeInfo
 }
