@@ -1,6 +1,6 @@
-const { resolve } = require('path');
+const { resolve } = require('path')
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const srcDir = resolve(__dirname, 'src')
 const publicDir = resolve(__dirname, 'public')
@@ -38,4 +38,7 @@ module: {
       }
   ]
   },
+plugins: [
+  new ExtractTextPlugin("bundle.css"),
+]
 }
