@@ -13,16 +13,13 @@ import ViewUserProfile from '../containers/ViewUserProfile'
 import ProjectDetails from '../containers/ProjectDetails'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 
-// Needed for onTouchTap
-// Optimizes touch interaction for mobile devices
-// http://stackoverflow.com/a/34015469/988941
-injectTapEventPlugin()
-// routing
+
 const routes = (props) => (
   <Router>
     <Switch>
       <Route exact path='/' component={Landing} />
       <Route path='/login' component={Access} />
+      <Route path='/users/:githubLogin' component={ViewUserProfile} />      
       <PrivateRoute path='/home' component={Home} />
       <PrivateRoute path='/profile' component={Profile} />
       <PrivateRoute path='/project' component={Project} />

@@ -8,8 +8,12 @@ class ViewUserProfile extends Component {
     }
   }
   render () {
+    console.log(this.props.match)
     return (
-      <div>Hello World View Profile</div>
+      <div>
+        <p>Hello World View Profile</p>
+        <p>{this.props.match.params.githubLogin}</p>
+      </div>
     )
   }
 }
