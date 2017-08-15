@@ -3,10 +3,15 @@ import Paper from 'material-ui/Paper'
 import LoginBtn from '../../../components/material-ui/Landing/LoginBtn'
 
 const Jumbotron = () => (
-  <Paper style={styles} key='Jumbotron'>
+  <Paper style={styles}
+    key='Jumbotron'
+    className='w3-mobile'
+    >
     <section
       id='intro-container'
-      style={intro}>
+      style={intro}
+      className='w3-cell-middle'
+    >
     </section>
     <div id='login-btn'>
       <LoginBtn />

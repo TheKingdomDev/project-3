@@ -4,7 +4,7 @@ import FontIcon from 'material-ui/FontIcon'
 import FlatButton from 'material-ui/FlatButton'
 
 const btn = {
-  marginTop: 15
+  marginTop: 20
 }
 
 const submitForm = () => {
@@ -23,11 +23,11 @@ const LoginBtn = () => (
         onClick={submitForm}
       />
     </form>
-    <br />
     <FlatButton
       href='http://localhost:3000/#/login'
       label='Why GitHub?'
       primary={true}
+      style={{marginTop: 0, color: '#64DD17'}}
     />
   </div>
 )
