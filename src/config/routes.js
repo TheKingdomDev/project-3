@@ -3,7 +3,8 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 import PrivateRoute from './PrivateRoute'
 
 // import primary containers
-import Landing from '../components/Landing/Landing'
+// import Landing from '../components/Landing/Landing'
+import Landing from '../containers/material-ui/Landing'
 import Home from '../containers/Home'
 import Access from '../containers/Access'
 // import Profile from '../containers/Profile'
@@ -17,7 +18,7 @@ const routes = (props) => (
     <Switch>
       <Route exact path='/' component={Landing} />
       <Route path='/login' component={Access} />
-      <Route path='/users/:githubLogin' component={ViewUserProfile} />      
+      <Route path='/users/:githubLogin' component={ViewUserProfile} />
       <PrivateRoute path='/home' component={Home} />
       <PrivateRoute path='/profile' component={Profile} />
       <PrivateRoute path='/project' component={Project} />
