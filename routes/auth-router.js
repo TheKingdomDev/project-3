@@ -12,5 +12,9 @@ router.get('/github/callback',
   (req, res) => { res.redirect('/#/home') }
 )
 
+router.get("/logout", (req, res) => {
+  req.logout()
+  res.redirect("/")
+})
 
 module.exports = router

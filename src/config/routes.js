@@ -12,12 +12,12 @@ import Project from '../containers/Project'
 import ViewUserProfile from '../containers/ViewUserProfile'
 import ProjectDetails from '../containers/ProjectDetails'
 
-// routing
 const routes = (props) => (
   <Router>
     <Switch>
       <Route exact path='/' component={Landing} />
       <Route path='/login' component={Access} />
+      <Route path='/users/:githubLogin' component={ViewUserProfile} />      
       <PrivateRoute path='/home' component={Home} />
       <PrivateRoute path='/profile' component={Profile} />
       <PrivateRoute path='/project' component={Project} />

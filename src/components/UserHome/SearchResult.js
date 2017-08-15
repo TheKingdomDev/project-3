@@ -1,11 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import ListItem from 'material-ui/List/ListItem'
 import Divider from 'material-ui/Divider'
 import Avatar from 'material-ui/Avatar'
 import FontIcon from 'material-ui/FontIcon'
 
- const SearchResult = (props) => (
-  <div>
+const SearchResult = (props) => (
+  <Link to={{ pathname: `/users/${props.user.githubLogin}`, state: { me: props.user} }}>
   <ListItem
     disabled={true}
     leftAvatar={<Avatar src={props.user.profilePictureURL} />}
@@ -17,7 +18,7 @@ import FontIcon from 'material-ui/FontIcon'
     <FontIcon style={{ right: 20, position: 'absolute', fontSize: 30  }} className='devicons devicons-sass' />
   </ListItem>
    <Divider />
-  </div>
+  </Link>
 
 )
 
