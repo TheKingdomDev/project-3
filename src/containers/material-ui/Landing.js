@@ -55,7 +55,8 @@ export default class Landing extends Component {
 const styles = {
   description: {
     color: '#E0E0E0',
-    fontSize: 18,
+    fontSize: 18, // change to 20 once font is applied
+    // fontFamily: 'Cantarell',
     paddingRight: 100,
     paddingLeft: 100
   },

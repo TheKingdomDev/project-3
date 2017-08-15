@@ -10,12 +10,21 @@ const Jumbotron = () => (
     <section
       id='intro-container'
       style={intro}
-      className='w3-cell-middle'
+      className='w3-cell-middle w3-mobile'
     >
+      <div id='brand-name-and-description'>
+        <h1 style={brandName}>{'<StackTeam />'}</h1>
+        <p style={productDescription}>
+          An open source community for developers to <br />
+          find collaborators for active projects, or to <br />
+          become collaborators themselves.
+        </p>
+      </div>
+
+      <div id='login-btn'>
+        <LoginBtn />
+      </div>
     </section>
-    <div id='login-btn'>
-      <LoginBtn />
-    </div>
   </Paper>
 )
 
@@ -34,8 +43,21 @@ const styles = {
 const intro = {
   backgroundColor: 'rgba(224, 224, 224, 0.5)',
   borderRadius: '7px',
-  height: 220,
+  height: 320,
   width: 600,
   margin: '0 auto',
   marginTop: 48
+}
+
+const brandName = {
+  fontFamily: 'Share Tech Mono',
+  textShadow: '2.25px 2.25px black',
+  paddingTop: 15,
+  fontSize: 70
+}
+
+const productDescription = {
+  color: 'black',
+  fontSize: 22,
+  fontFamily: 'Cantarell'
 }

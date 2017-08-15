@@ -4,7 +4,7 @@ import FontIcon from 'material-ui/FontIcon'
 import FlatButton from 'material-ui/FlatButton'
 
 const btn = {
-  marginTop: 20
+  marginTop: 10
 }
 
 const submitForm = () => {
@@ -12,7 +12,7 @@ const submitForm = () => {
 }
 
 const LoginBtn = () => (
-  <div>
+  <div style={{paddingTop: 0}}> {/* we may or may not need this padding. TBA */}
     <form id='login-with-github'
       method='GET' action='/auth/github/login'>
       <RaisedButton
@@ -27,7 +27,7 @@ const LoginBtn = () => (
       href='http://localhost:3000/#/login'
       label='Why GitHub?'
       primary={true}
-      style={{marginTop: 0, color: '#64DD17'}}
+      style={{marginTop: 0, color: '#0D47A1'}}
     />
   </div>
 )
