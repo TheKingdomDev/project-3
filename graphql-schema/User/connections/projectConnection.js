@@ -9,7 +9,7 @@ module.exports = new GraphQLObjectType({
  //   Information about the User-Projects Connection (i.e. Total Projects, owned Projects)
       connectionInfo: {
         type: new GraphQLObjectType({
-          name: 'connectionInfo',
+          name: 'projectsConnectionInfo',
           fields: () => ({
 
             totalProjects: {
