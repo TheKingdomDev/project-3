@@ -6,14 +6,14 @@ import Jumbotron from '../../components/material-ui/Landing/Jumbotron'
 export default class Landing extends Component {
   render () {
     return (
-      <div id='main'>
-        <div id='navbar'>
+      <div id='landing-main'>
+        <div id='landing-navbar'>
           <LandingNavigation />
         </div>
         <section id='jumbo-header'>
           <Jumbotron />
         </section>
-        <section id='content-body'>
+        <section id='landing-content-body'>
           <div id='product-description'
             className='w3-container w3-cell w3-mobile'
             style={styles.description}
@@ -30,8 +30,8 @@ export default class Landing extends Component {
               <div className='w3-col m4' style={styles.column}>
                 <p>
                   Found a project you identify with? <br />
-                  Have an idea you're passionate about and
-                  want help? <br />
+                  Have an idea you're passionate about but
+                  need help? <br />
                   Interested in starting in open-source? <br />
                   We're here to <span style={styles.focus}>facilitate</span> that.
                 </p>

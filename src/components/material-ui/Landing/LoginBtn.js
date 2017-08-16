@@ -24,7 +24,7 @@ const LoginBtn = () => (
       />
     </form>
     <FlatButton
-      href='http://localhost:3000/#/login'
+      href='http://localhost:3000/#/whygithub'
       label='Why GitHub?'
       primary={true}
       style={{marginTop: 0, color: '#0D47A1'}}
