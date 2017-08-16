@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom'
 import AppBar from 'material-ui/AppBar'
 
 const navTitleStyle = {
-  textAlign: 'center'
+  textAlign: 'center',
+  fontFamily: 'Share Tech Mono',
+  fontSize: 35
 }
 
 const LandingNavigation = (props) => (
@@ -12,7 +14,7 @@ const LandingNavigation = (props) => (
     titleStyle={navTitleStyle}
     title={
       <Link to='/'>
-       stackTeam
+        {'<ST />'}
       </Link>}
   />
 )
