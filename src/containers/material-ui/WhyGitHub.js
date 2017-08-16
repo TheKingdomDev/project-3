@@ -55,6 +55,47 @@ export default class WhyHitHub extends Component {
                   users to have an account and become familiar with it to help them collaborate
                   effectively!
                 </p>
+                <Divider />
+              </div>
+            </div>
+            <div className='w3-row' id='what-is-stackteam&why-use-it'>
+              <div className='w3-col s12 w3-center'>
+                <h2 style={styles.headers}>
+                  If GitHub already exists... Why should I use StackTeam?
+                </h2>
+                <p style={styles.about}>
+                  StackTeam is an online community, or platform
+                  aimed at developers ranging from level of absolute beginner
+                  to Junior. Though StackTeam is not limited to only people who
+                  fall within these groups, all members of the community can:
+                  <ul>
+                    <li>
+                     - Publish projects for which they seek contributors, with
+                      the end-goal of building a <span style={styles.linkColor}>
+                      team.</span>
+                    </li>
+                    <li>
+                     - Browse through existing projects to which they can lend
+                      their skills, to which they can <span style={styles.linkColor}>
+                      contribute </span>
+                    </li>
+                  </ul>
+
+                  When we say contribute, we refer to taking a certain aspect
+                  or feature of a project as a responsibility upon onself, as a <span style={styles.linkColor}>
+                  task </span> that needs to be completed. This can be considered as experience <span style={styles.linkColor}>
+                  contributing to open source</span><br /><br />
+
+                  For beginners, diving straight into contributing to open source
+                  projects can be both a confusing and daunting endeavor, considering
+                  that a lot of (though not all) open source projects tend to be of larger
+                  scales, usually requiring far more advanced technical skills.<br /><br />
+
+                  StackTeam is a good, accessible alternative for developers who are
+                  "just starting their careers" - may they be self-taught, or CodingBootcamp
+                  Graduates - and who are interested in becoming involved in the world of
+                  open source.
+                </p>
               </div>
             </div>
           </div>
