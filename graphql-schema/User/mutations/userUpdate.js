@@ -5,7 +5,7 @@ const UserInputType = require('../userInputType.js')
 
 const dbUser = require('../../../models/User.js')
 
-const userUpdate = {
+const meUpdate = {
   type: UserType,
   args:{
     _id: {
@@ -18,13 +18,10 @@ const userUpdate = {
     }
   },
   resolve (root, { _id, data }) {
-    return dbUser.findOneAndUpdate( _id, data, { new: true }, { 
-      $setOnInsert: {
-        modifiedDate: new Date()
-    }})
+    return dbUser.findOneAndUpdate( _id, data, { new: true })
   }
 }
 
 module.exports = {
-  userUpdate
+  meUpdate
 }

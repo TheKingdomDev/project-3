@@ -35,9 +35,7 @@ const UserSchema = new Schema({
   profilePictureURL: {
     type: String
   },
-  skills: [{
-    type: String,
-  }],
+  skills: [String],
   //TODO: highlighted skills
   projects: [{
     type: Schema.Types.ObjectId,
@@ -85,14 +83,7 @@ const UserSchema = new Schema({
     type: Date,
     default: null
   }
-  //TODO: Github stuffs
-  //TODO: bio
-  //TODO: owned projects
 })
-
-
-//   ***NOTE: Currently Unused - will be reimplemented if/when Local Authentication/JWTs is developed ***
-//  Designed for user on a New User, salts/hashes a User's Password and returns a Promise.
 
 UserSchema.statics.findOneOrCreate = function (args, user) {
     return this.findOneAndUpdate(args, user, { new: true})
@@ -105,3 +96,13 @@ UserSchema.statics.findOneOrCreate = function (args, user) {
   }
 
 module.exports = mongoose.model('User', UserSchema)
+
+
+// {
+//   name: {
+//     type: String,
+//       enum: [],
+//     },
+//   iconClassName: String,
+//     topThree: Boolean
+// }

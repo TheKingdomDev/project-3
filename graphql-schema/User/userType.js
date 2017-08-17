@@ -15,6 +15,7 @@ const treehouseType = require('./userSubTypes/treehouseType')
 
 //  Importing Connection Types information to Other objects (i.e. Projects)
 const projectConnectionType = require('./connections/projectConnection')
+const githubRepoConnection = require('./connections/githubRepoConnection')
 
 module.exports = new GraphQLObjectType({
   name: 'User',
@@ -79,6 +80,19 @@ module.exports = new GraphQLObjectType({
         type: new GraphQLList(GraphQLString),
         resolve (user) {
           return user.skills
+        }
+      },
+      githubRepoConnection: {
+        type: githubRepoConnection,
+        resolve (user) {
+          return rp({
+            uri: `https://api.github.com/users/${user.githubLogin}/repos`,
+            headers: { 'User-Agent': 'StackTeam' }
+          })
+            .then(response => {
+              return JSON.parse(response)
+            })
+            .catch(err => null)
         }
       },
       projectsConnection: {
