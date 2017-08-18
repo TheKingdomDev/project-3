@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import LandingNavigation from '../../components/Recurrent/LandingNavigation'
+import Footer from '../../components/material-ui/Recurrent/Footer'
 import Jumbotron from '../../components/material-ui/Landing/Jumbotron'
 
 // This container represents the landing page
@@ -47,6 +48,9 @@ export default class Landing extends Component {
             </div>
           </div>
         </section>
+        <div id='landing-footer'>
+          <Footer />
+        </div>
       </div>
     )
   }
