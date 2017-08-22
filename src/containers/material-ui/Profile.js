@@ -5,28 +5,42 @@ import AvatarCard from '../../components/material-ui/Proflie/AvatarCard'
 import {Tabs, Tab} from 'material-ui/Tabs'
 
 // We will need this to fetch data needed to populate User Profile
-import { getMyInfo } from '../../utils/apolloHelpers'
+import { getMyInfo, getProjectInfo } from '../../utils/apolloHelpers'
 
 class Profile extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      // Used to open and close side-navigation
+      open: false,
       // Used to store data needed to populate both Profile
       // and navigation components which rely on user data
-      user: {},
+      authenticatedUser: {},
+      // these are all the projects that belong to the authenticated user
+      myProjects: [],
+      // these all projects available in the database... we'll use them
+      // to determine which projects were CREATED by the authenticated user,
+      // and which projects he/she are associated with/collaborate to.
+      allProjects: []
 
-      // Used to open and close side-navigation
-      open: false
     }
   }
   // Changes state of side-nav = opens and closes side-nav
   handleToggle = () => this.setState({ open: !this.state.open })
 
   componentDidMount () {
-      // Once component has mounted, fetch my info
+      let me, myProjects, allProjects
+      // Once component has mounted...
+      // fetch my info..
       getMyInfo()
       .then(myData => {
-        this.setState({user: myData.data.me})
+        me = myData.data.me
+        // this.setState({authenticatedUser: me})
+        return getProjectInfo()
+      })
+      .then(returnedProjects => {
+        myProjects = returnedProjects.data.me.projectsConnection.projects
+        this.setState({authenticatedUser: me, myProjects: myProjects})
       })
     }
 
@@ -36,7 +50,7 @@ class Profile extends Component {
       <div>
         {/* Navigation component */}
         <div id='profile-navigation'>
-          <Navigation user={this.state.user}
+          <Navigation user={this.state.authenticatedUser}
             handleToggle={this.handleToggle}
             open={this.state.open}
           />
@@ -47,8 +61,8 @@ class Profile extends Component {
           <div className='w3-row'>
             <div className='w3-col m4 l4 s12'>
               <AvatarCard
-                profilePicture={this.state.user.profilePictureURL}
-                userBio={this.state.user.githubBio}
+                profilePicture={this.state.authenticatedUser.profilePictureURL}
+                userBio={this.state.authenticatedUser.githubBio}
               />
             </div>
              <div className='w3-col m8 l8 s12'>
