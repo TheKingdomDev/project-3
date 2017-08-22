@@ -36,16 +36,16 @@ export default class WhyHitHub extends Component {
                     <div id='what-is-github' className='w3-col s12 w3-center'>
                       {/* Breaker */}
                       <h2 style={styles.headers}>
-                        <Link to='https://github.com/'>
+                        <a href='https://www.github.com/' target='_blank'>
                           <IconButton
                             iconClassName='muidocs-icon-custom-github'
                           />
-                        </Link>
+                        </a>
                         What is GitHub?
                       </h2>
                       <p style={styles.about} className='w3-left-align'>
-                        An online development hub that uses <Link style={styles.linkColor}
-                          to='https://git-scm.com/'> Git version control</Link> to house
+                        An online development hub that uses <a style={styles.linkColor} target='_blank'
+                          href='https://git-scm.com/'> Git version control</a> to house
                         repositories of code for developers to collaborate on. It is the
                         ideal tool for teams to work on a project together and manage
                         projects of any size.
