@@ -4,7 +4,7 @@ const Query = require('./rootQuery.js')
 
 const { meUpdate } = require('./User/mutations/userUpdate.js')
 const { taskCreate, taskUpdate, taskDelete } = require('./Task/mutations/taskCreate.js')
-const { projectCreate, projectUpdate } = require('./Project/mutations/projectCreate.js')
+const { projectCreate, projectUpdate, addCollaborator, removeCollaborator } = require('./Project/mutations/projectCreate.js')
 
 const Schema = new GraphQLSchema({
   query: Query,
@@ -18,7 +18,9 @@ const Schema = new GraphQLSchema({
         taskUpdate,
         taskDelete,
         projectCreate,
-        projectUpdate
+        projectUpdate,
+        addCollaborator,
+        removeCollaborator
       }
     } 
   }),

@@ -11,7 +11,7 @@ module.exports = function(passport) {
     callbackURL: process.env.CALLBACK_URL
   },
   function(accessToken, _, profile, done) {
-    dbUser.findOneOrCreate(
+    dbUser.findOneAndUpdate(
       { githubId: profile.id },
     {
       email: profile._json.email,
@@ -29,6 +29,9 @@ module.exports = function(passport) {
         accountCreated: profile._json.created_at,
         location: profile._json.location
       }
+    }, {
+      new: true,
+      upsert: true
     })
     .then(user => {
       user.accessToken = accessToken

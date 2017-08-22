@@ -6,6 +6,7 @@ const ProjectInputType = require('../projectInputType')
 const dbProject = require('../../../models/Project')
 const dbUser = require('../../../models/User')
 
+//Create a New Project
 const projectCreate = {
   type: ProjectType,
   args: {
@@ -28,6 +29,49 @@ const projectCreate = {
   }
 }
 
+//Add a single Collaborator to a Project
+const addCollaborator = {
+  type: ProjectType,
+  args: {
+    _id: {
+      name: '_id',
+      type: new GraphQLNonNull(GraphQLString)
+    },
+    collaboratorId: {
+      name: 'collaboratorId',
+      type: new GraphQLNonNull(GraphQLString)
+    }
+  },
+  resolve: (root, { collaboratorId }) => (
+    dbProject.update({_id}, { $push: { collaborators: collaboratorId }}, { new: true })
+    .then(newProject => (
+      dbUser.update({ _id: collaboratorId }, { $push: { projects: newProject._id }})
+    ))
+  )
+}
+
+//Remove a Single Collaborator from a Project
+const removeCollaborator = {
+  type: ProjectType,
+  args: {
+    _id: {
+      name: '_id',
+      type: new GraphQLNonNull(GraphQLString)
+    },
+    collaboratorId: {
+      name: 'collaboratorId',
+      type: new GraphQLNonNull(GraphQLString)
+    }
+  },
+  resolve: (root, { collaboratorId }) => (
+    dbProject.update({ _id }, { $pull: { collaborators: collaboratorId } }, { new: true })
+    .then(newProject => (
+      dbUser.update({ _id: collaboratorId }, { $pull: { projects: newProject._id } })
+    ))
+  )
+}
+
+// Update the inforation inside a Project
 const projectUpdate = {
   type: ProjectType,
   args:{
@@ -47,5 +91,7 @@ const projectUpdate = {
 
 module.exports = {
   projectCreate,
-  projectUpdate
+  projectUpdate,
+  addCollaborator,
+  removeCollaborator
 }
