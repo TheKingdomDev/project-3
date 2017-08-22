@@ -1,8 +1,19 @@
 import React, { Component } from 'react'
+import { grey300 } from 'material-ui/styles/colors'
 import Navigation from '../../components/Recurrent/Navigation'
 import Footer from '../../components/material-ui/Recurrent/Footer'
 import AvatarCard from '../../components/material-ui/Proflie/AvatarCard'
-import {Tabs, Tab} from 'material-ui/Tabs'
+// For skills and accounts
+import { Tabs, Tab } from 'material-ui/Tabs'
+// For Projects
+import { List, ListItem } from 'material-ui/List'
+import Subheader from 'material-ui/Subheader'
+import Avatar from 'material-ui/Avatar'
+import FileFolder from 'material-ui/svg-icons/file/folder'
+import ActionInfo from 'material-ui/svg-icons/action/info' // this will link to the
+                                                          // project's project details page
+
+
 
 // We will need this to fetch data needed to populate User Profile
 import { getMyInfo, getProjectInfo } from '../../utils/apolloHelpers'
@@ -86,7 +97,15 @@ class Profile extends Component {
                 id='user-projects'
                 style={styles.lowerBody}
               >
-                User projects dumped here
+                <List>
+                  <Subheader inset={true}>Projects Created</Subheader>
+                    <ListItem
+                      leftAvatar={<Avatar icon={<FileFolder />} />}
+                      rightIcon={<ActionInfo />}
+                      primaryText='Project 1'
+                      secondaryText='Aug 22, 2017'
+                    />
+                </List>
               </div>
               <div className='w3-col s12 m6 l6'
                 id='user-tasks'
@@ -125,6 +144,7 @@ const styles = {
     border: '2px solid black',
     minHeight: 300,
     maxHeight: 300,
-    marginTop: 30
+    marginTop: 30,
+    backgroundColor: 'rgb(48, 48, 48)'
   }
 }
