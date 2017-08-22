@@ -9,10 +9,19 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close'
 import { Card, CardMedia, CardTitle } from 'material-ui/Card'
 import { grey100 } from 'material-ui/styles/colors'
 
+const styles = {
+  navigation: {
+    textAlign: 'center',
+    fontFamily: 'Share Tech Mono',
+    fontSize: 35
+  }
+}
+
 const Navigation = (props) => (
   <div>
     <AppBar
-      title='stackTeam'
+      title={'<ST />'}
+      style={styles.navigation}
       iconClassNameRight={props.user._id
         ? 'muidocs-icon-navigation-expand-more'
         : ''}
