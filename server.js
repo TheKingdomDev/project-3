@@ -56,14 +56,13 @@ const CONNOPT = {
 const CONNECT = process.env.MONGODB_MLAB || 'mongodb://localhost/project3'
 console.log(CONNECT)
 //Setting up connection to MongoDB
-mongoose.connect(CONNECT, (err) => {
-  if(err) {
-    console.log(err)
-  }
-  else {
-    console.log('Database connection successful')
-  }
-})
+mongoose.connect(CONNECT, { useMongoClient: true })
+  .then(() => {
+    console.log('Connected to MongoDB at ', CONNECT)
+  })
+  .catch(err => {
+    console.error(err)
+  })
 const db = mongoose.connection
 
 //Setting up ./public as a static directory to facilitate access to public assets
