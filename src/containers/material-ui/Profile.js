@@ -70,13 +70,13 @@ class Profile extends Component {
             >
               <div className='w3-col s12 m6 l6'
                 id='user-projects'
-                style={{border: '2px red solid'}}
+                style={styles.lowerBody}
               >
                 User projects dumped here
               </div>
               <div className='w3-col s12 m6 l6'
                 id='user-tasks'
-                style={{border: '2px blue solid'}}
+                style={styles.lowerBody}
               >
                 Tasks pertaining to X project listed here
               </div>
@@ -106,5 +106,11 @@ const styles = {
   projectsAndTasks: {
     marginTop: 15,
     minHeight: 300
+  },
+  lowerBody: {
+    border: '2px solid black',
+    minHeight: 300,
+    maxHeight: 300,
+    marginTop: 30
   }
 }

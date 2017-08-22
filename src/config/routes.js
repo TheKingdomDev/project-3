@@ -5,9 +5,7 @@ import PrivateRoute from './PrivateRoute'
 // import primary containers
 import Landing from '../containers/material-ui/Landing'
 import Home from '../containers/Home'
-// import Access from '../containers/Access' // Why Git Hub container becomes the replacement for Acess/Login
 import WhyGitHub from '../containers/material-ui/WhyGitHub'
-// import Profile from '../containers/Profile' // Will remove this once M-UI profile is finished
 import Profile from '../containers/material-ui/Profile'
 import Project from '../containers/Project'
 import ViewUserProfile from '../containers/ViewUserProfile'
