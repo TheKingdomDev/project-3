@@ -174,12 +174,16 @@ const searchbyName = (term) => {
       users(displayName: $term) {
         _id
         displayName
+        githubLogin
         profilePictureURL
       }
       projects(name: $term) {
         _id
         name
         description
+        owner {
+          displayName
+        }
       }
     }`,
     variables: {
