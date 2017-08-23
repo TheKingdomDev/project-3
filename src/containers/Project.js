@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import HomeNav from '../components/Recurrent/HomeNav'
+import Navigation from '../components/Recurrent/Navigation'
 import NewCreateProject from '../components/Projects/NewCreateProject'
 import Footer from '../components/Recurrent/Footer'
 import { getMyInfo, getProjectInfo } from '../utils/apolloHelpers.js'
@@ -18,10 +18,13 @@ class Project extends Component {
       projects: [
         {id: 1, name: 'project one', description: 'this is a project', tech: ['JavaScript', 'Python', 'Ruby']},
         {id: 2, name: 'project two', description: 'this is another project', tech: ['JavaScript', 'C#', 'Java']}
-      ]
+      ],
+      open: false
     }
     this.renderProjects = this.renderProjects.bind(this)
   }
+
+  handleToggle = () => this.setState({ open: !this.state.open })
   renderProjects (data) {
     return this.state.projects.map(e => (
       <div>
@@ -51,7 +54,7 @@ class Project extends Component {
   render () {
     return (
       <div>
-        <HomeNav />
+        <Navigation user={this.state.user} handleToggle={this.handleToggle} open={this.state.open} />
         {this.renderProjects()}
         <br />
         {<NewCreateProject />}
