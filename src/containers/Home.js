@@ -75,7 +75,7 @@ export default class Home extends Component {
         <div style={{ maxWidth: 800, margin:'0 auto'}}> 
           <TextField
             floatingLabelText={<span><FontIcon className="material-icons">search</FontIcon>{` Search`}</span>}
-            floatingLabelStyle={{ fontSize: 20, paddingBottom: 5, color: grey300, }}
+            floatingLabelStyle={{ fontSize: 20, paddingBottom: 25, color: grey300, }}
             fullWidth={true}
             onChange={this.getSearchResults}
           />

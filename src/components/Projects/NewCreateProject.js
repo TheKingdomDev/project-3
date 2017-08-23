@@ -87,7 +87,7 @@ class NewCreateProject extends Component {
     return (
       <div>
         {/* Need to center button with w3c */ }
-        <RaisedButton label='Create Project' style={styles.dialogbody} onClick={this.handleOpen} />
+        <RaisedButton label='Create Project' primary={true} onClick={this.handleOpen} />
         <Dialog style={styles.dialogbody}
           title='Create A New Project'
           actions={actions}
