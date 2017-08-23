@@ -9,7 +9,7 @@ import WhyGitHub from '../containers/material-ui/WhyGitHub'
 import Profile from '../containers/material-ui/Profile'
 import Project from '../containers/Project'
 import ViewUserProfile from '../containers/ViewUserProfile'
-import ProjectDetails from '../containers/ProjectDetails'
+import NewProjectDetails from '../containers/ProjectDetails'
 
 const routes = (props) => (
   <Router>
@@ -21,7 +21,7 @@ const routes = (props) => (
       <Route path='/profile' component={Profile} />
       <PrivateRoute path='/project' component={Project} />
       <PrivateRoute path='/profile:view' component={ViewUserProfile} />
-      <PrivateRoute path='/project:details' component={ProjectDetails} />
+      <PrivateRoute path='/project:details' component={NewProjectDetails} />
     </Switch>
   </Router>
 )
