@@ -16,8 +16,8 @@ class Project extends Component {
     this.state = {
       user: {},
       projects: [
-        {name: 'project one', description: 'this is a project', tech: ['JavaScript', 'Python', 'Ruby']},
-        {name: 'project two', description: 'this is another project', tech: ['JavaScript', 'C#', 'Java']}
+        {id: 1, name: 'project one', description: 'this is a project', tech: ['JavaScript', 'Python', 'Ruby']},
+        {id: 2, name: 'project two', description: 'this is another project', tech: ['JavaScript', 'C#', 'Java']}
       ]
     }
     this.renderProjects = this.renderProjects.bind(this)
@@ -53,6 +53,7 @@ class Project extends Component {
       <div>
         <HomeNav />
         {this.renderProjects()}
+        <br />
         {<NewCreateProject />}
         <Footer />
       </div>

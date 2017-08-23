@@ -9,7 +9,7 @@ import WhyGitHub from '../containers/material-ui/WhyGitHub'
 import Profile from '../containers/material-ui/Profile'
 import Project from '../containers/Project'
 import ViewUserProfile from '../containers/ViewUserProfile'
-import NewProjectDetails from '../containers/ProjectDetails'
+import NewProjectDetails from '../containers/NewProjectDetails'
 
 const routes = (props) => (
   <Router>

@@ -15,10 +15,12 @@ class NewProjectDetails extends Component {
     super(props)
     this.state = {
       user: {},
-      project: {},
+      project: {name: 'Test', description: 'Test Description', owner: 'Me', collaborators: ['Tim', 'David', 'JC'], githubRepo: 'Click'},
       tasks: [],
       open: false
     }
+    this.handleOpen = this.handleOpen.bind(this)
+    this.handleClose = this.handleClose.bind(this)
   }
   handleOpen () {
     this.setState({open: true})
@@ -32,57 +34,59 @@ class NewProjectDetails extends Component {
       this.setState({user: res.data.me})
     })
     // Retrieve project details by ID
-    searchProjectById(this.props.location.state.projectId)
-    .then(res => {
-      this.setState({project: res.data.projects[0]})
-    })
+    // searchProjectById(this.props.location.state.projectId)
+    // .then(res => {
+    //   this.setState({project: res.data.projects[0]})
+    // })
   }
   render () {
     const actions = [
-      <RaisedButton
-        label='Cancel'
-        onClick={this.handleClose} />
-      <RaisedButton
-        label='Submit'
-        onClick={this.handleClose} />
+      <div>
+        <RaisedButton
+          label='Cancel'
+          onClick={this.handleClose} />
+        <RaisedButton
+          label='Submit'
+          onClick={this.handleClose} />
+      </div>
     ]
-  return (
-    <div>
-    <HomeNav />
-    <Card>
-      <CardHeader
-        // title={this.props.project}
-        title='Project Title'
-        subtitle='Here are the details on this project'
-        actAsExpander={true}
-        showExpandableButton={true}
-        />
-      <Dialog
-        title='Tasks'
-        actions={actions}
-        modal={true}
-        open={this.state.open}
-      >
-        Tasks
-      </Dialog>
-      <CardActions>
-        <RaisedButton label='Tasks' onClick={this.handleOpen} />
-        <RaisedButton label='Comments' />
-        <RaisedButton label='Apply' />
-        <RaisedButton label='Delete' />
-      </CardActions>
-      <CardText expandable={true}>
-        {/* this.state.project.description */}
-        {/* this.state.project.owner */}
-        {/* this.state.project.collaborators */}
-        {/* this.state.project.githubRepo */}
-        Here is where we display the description, tech, collaborators, github repo
-      </CardText>
-    </Card>
-    <Footer />
-  </div>
-  )
-      
+    return (
+      <div>
+        <HomeNav />
+        <Card>
+          <CardHeader
+            title={this.state.project.name}
+            subtitle='Here are the details on this project'
+            actAsExpander={true}
+            showExpandableButton={true}
+            />
+          <Dialog
+            title='Tasks'
+            actions={actions}
+            modal={true}
+            open={this.state.open}
+          >
+            Tasks
+          </Dialog>
+          <CardActions>
+            <RaisedButton label='Tasks' onClick={this.handleOpen} />
+            <RaisedButton label='Comments' />
+            <RaisedButton label='Apply' />
+            <RaisedButton label='Delete' />
+          </CardActions>
+          <CardText expandable={true}>
+            {this.state.project.description}
+            <br />
+            {this.state.project.owner}
+            <br />
+            {this.state.project.collaborators}
+            <br />
+            {this.state.project.githubRepo}
+          </CardText>
+        </Card>
+        <Footer />
+      </div>
+    )
   }
 }
 
