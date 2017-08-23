@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Navigation from '../components/Recurrent/Navigation'
 import NewCreateProject from '../components/Projects/NewCreateProject'
-import Footer from '../components/Recurrent/Footer'
 import { getMyInfo, getProjectInfo } from '../utils/apolloHelpers.js'
 import { List, ListItem } from 'material-ui/List'
 import SubHeader from 'material-ui/Subheader'
@@ -55,10 +54,14 @@ class Project extends Component {
     return (
       <div>
         <Navigation user={this.state.user} handleToggle={this.handleToggle} open={this.state.open} />
+        <div style={{ maxWidth: 800, margin:'0 auto'}}>
         {this.renderProjects()}
+        </div>
         <br />
+        <div style={{'margin': '0 auto', 'maxHeight': '150px', 'maxWidth': '300px'}}>
         {<NewCreateProject />}
-        <Footer />
+        </div>
+        
       </div>
     )
   }
