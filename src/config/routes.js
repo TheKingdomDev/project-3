@@ -17,11 +17,11 @@ const routes = (props) => (
       <Route exact path='/' component={Landing} />
       <Route path='/whygithub' component={WhyGitHub} />
       <Route path='/users/:githubLogin' component={ViewUserProfile} />
+      <Route exact path='/project/:details' component={NewProjectDetails} />
       <PrivateRoute path='/home' component={Home} />
       <Route path='/profile' component={Profile} />
       <PrivateRoute path='/project' component={Project} />
       <PrivateRoute path='/profile:view' component={ViewUserProfile} />
-      <PrivateRoute path='/project:details' component={NewProjectDetails} />
     </Switch>
   </Router>
 )

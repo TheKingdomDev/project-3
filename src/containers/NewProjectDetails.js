@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
-import HomeNav from '../components/Recurrent/HomeNav'
+import Navigation from '../components/Recurrent/Navigation'
 import Footer from '../components/Recurrent/Footer'
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card'
-import Dialog from 'material-ui/Dialog';
+import Dialog from 'material-ui/Dialog'
 import RaisedButton from 'material-ui/RaisedButton'
 import {
   getMyInfo,
@@ -17,6 +17,7 @@ class NewProjectDetails extends Component {
       user: {},
       project: {name: 'Test', description: 'Test Description', owner: 'Me', collaborators: ['Tim', 'David', 'JC'], githubRepo: 'Click'},
       tasks: [],
+      open: false,
       openTasks: false,
       openComments: false,
       openApplication: false
@@ -26,6 +27,7 @@ class NewProjectDetails extends Component {
     this.handleOpenApplication = this.handleOpenApplication.bind(this)
     this.handleClose = this.handleClose.bind(this)
   }
+  handleToggle = () => this.setState({ open: !this.state.open })
   handleOpenTasks () {
     this.setState({openTasks: true})
   }
@@ -62,7 +64,7 @@ class NewProjectDetails extends Component {
     ]
     return (
       <div>
-        <HomeNav />
+        <Navigation user={this.state.user} handleToggle={this.handleToggle} open={this.state.open} />
         <Card>
           <CardHeader
             title={this.state.project.name}
