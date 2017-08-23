@@ -22,9 +22,10 @@ export default class Home extends Component {
       //    authenticated User
       user: {},
       //    list of Users from Search
-      users: [],
-      //    list of Projects from Search    
-      projects: [],
+      results: {
+        users: [],
+        projects: []
+      },
       //    controls menu open/closed state
       open: false,
 
@@ -42,8 +43,10 @@ export default class Home extends Component {
     searchbyName(e.target.value)
       .then(res => {
         this.setState({
-          users: res.data.users,
-          projects: res.data.projects
+          results: {
+            users: res.data.users,
+            projects: res.data.projects
+          }
         })
       })
   }
@@ -54,25 +57,33 @@ export default class Home extends Component {
       ? this.props.location.state.user
       : await getMyInfo().then(res => res.data.me)
     })
+    searchbyName('')
+      .then(res => {
+        this.setState({
+          results: {
+            users: res.data.users,
+            projects: res.data.projects
+          }
+        })
+      })
   }
-
+  
   render() {
     return (
       <div >
         <Navigation user={this.state.user} handleToggle={this.handleToggle} open={this.state.open} />
-        <div style={{ width: '80%', margin:'0 auto'}}> 
+        <div style={{ maxWidth: 800, margin:'0 auto'}}> 
           <TextField
-            hintText="e.g. Javascript"
             floatingLabelText={<span><FontIcon className="material-icons">search</FontIcon>{` Search`}</span>}
-            floatingLabelStyle={{ fontSize: 20, marginBottom: 5, color: grey300, }}
-            floatingLabelFixed={true}
+            floatingLabelStyle={{ fontSize: 20, paddingBottom: 5, color: grey300, }}
             fullWidth={true}
+            onChange={this.getSearchResults}
           />
-          <DropDownMenu value={this.state.searchBy} onChange={this.handleChange}>
+          {/* <DropDownMenu value={this.state.searchBy} onChange={this.handleChange}>
             <MenuItem value={1} primaryText="Name" />
             <MenuItem value={2} primaryText="Technology" />
-          </DropDownMenu>
-          <SearchTabs user={this.state.user}/>
+          </DropDownMenu> */}
+          <SearchTabs results={this.state.results} user={this.state.user}/>
         </div>
       </div>
     )
