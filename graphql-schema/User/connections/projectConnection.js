@@ -21,6 +21,9 @@ module.exports = new GraphQLObjectType({
               type: GraphQLInt,
               resolve: (arrProjects, args, req) => {
                 console.log()
+
+//              If there is an _id argument present, return that users projects, 
+//              otherwise it return the logged in user's projects.
                 return args._id 
                   ? arrProjects.filter(p => p.owner === args._id).length
                   : arrProjects.filter(p => p.owner === req.user._id).length
