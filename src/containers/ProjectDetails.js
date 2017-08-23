@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import HomeNav from '../components/Recurrent/HomeNav'
-import SlidingSideNav from '../components/UserHome/SlidingSideBar'
 import Footer from '../components/Recurrent/Footer'
 import {
   getMyInfo,
