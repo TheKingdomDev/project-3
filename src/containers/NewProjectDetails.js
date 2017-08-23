@@ -17,16 +17,26 @@ class NewProjectDetails extends Component {
       user: {},
       project: {name: 'Test', description: 'Test Description', owner: 'Me', collaborators: ['Tim', 'David', 'JC'], githubRepo: 'Click'},
       tasks: [],
-      open: false
+      openTasks: false,
+      openComments: false,
+      openApplication: false
     }
-    this.handleOpen = this.handleOpen.bind(this)
+    this.handleOpenTasks = this.handleOpenTasks.bind(this)
+    this.handleOpenComments = this.handleOpenComments.bind(this)
+    this.handleOpenApplication = this.handleOpenApplication.bind(this)
     this.handleClose = this.handleClose.bind(this)
   }
-  handleOpen () {
-    this.setState({open: true})
+  handleOpenTasks () {
+    this.setState({openTasks: true})
+  }
+  handleOpenComments () {
+    this.setState({openComments: true})
+  }
+  handleOpenApplication () {
+    this.setState({openApplication: true})
   }
   handleClose () {
-    this.setState({open: false})
+    this.setState({openTasks: false, openComments: false, openApplication: false})
   }
   componentDidMount () {
     getMyInfo()
@@ -60,19 +70,35 @@ class NewProjectDetails extends Component {
             actAsExpander={true}
             showExpandableButton={true}
             />
-          <Dialog
-            title='Tasks'
-            actions={actions}
-            modal={true}
-            open={this.state.open}
-          >
+          <CardActions>
+            <RaisedButton label='Tasks' secondary={true} onClick={this.handleOpenTasks} />
+            <Dialog
+              title='Tasks'
+              actions={actions}
+              modal={true}
+              open={this.state.openTasks}
+              >
             Tasks
           </Dialog>
-          <CardActions>
-            <RaisedButton label='Tasks' onClick={this.handleOpen} />
-            <RaisedButton label='Comments' />
-            <RaisedButton label='Apply' />
-            <RaisedButton label='Delete' />
+            <RaisedButton label='Comments' secondary={true} onClick={this.handleOpenComments} />
+            <Dialog
+              title='Comments'
+              actions={actions}
+              modal={true}
+              open={this.state.openComments}
+              >
+            Comments
+          </Dialog>
+            <RaisedButton label='Apply' secondary={true} onClick={this.handleOpenApplication} />
+            <Dialog
+              title='Application'
+              actions={actions}
+              modal={true}
+              open={this.state.openApplication}
+              >
+            Application Form
+          </Dialog>
+            <RaisedButton label='Delete' disabled={true} />
           </CardActions>
           <CardText expandable={true}>
             {this.state.project.description}
