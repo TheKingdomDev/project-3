@@ -1,6 +1,7 @@
 const {GraphQLObjectType, GraphQLNonNull ,GraphQLString, GraphQLList} = require('graphql')
 
 const UserType = require('../../graphql-schema/User/userType.js')
+const projectTechType = require('./projectSubTypes/projectTechType')
 
 module.exports = new GraphQLObjectType({
   name: 'Project',
@@ -42,6 +43,34 @@ module.exports = new GraphQLObjectType({
         resolve (project) {
           return project.collaborators
         }
+      },
+      allTechs: {
+        type: projectTechType,
+        resolve: (project) => (project.technologies)
+      },
+      primaryLangs: {
+        type: projectTechType,
+        resolve: (project) => (
+          project.technologies.filter(t => (
+            t.stack === 'primary'
+        ))
+        )
+      },
+      backEnd: {
+        type: projectTechType,
+        resolve: (project) => (
+          project.technologies.filter(t => (
+            t.stack === 'backEnd'
+          ))
+        )
+      },
+      frontEnd: {
+        type: projectTechType,
+        resolve: (project) => (
+          project.technologies.filter(t => (
+            t.stack === 'frontEnd'
+          ))
+        )
       }
     }
   }

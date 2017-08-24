@@ -32,8 +32,10 @@ const ProjectModel = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Task'
   }],
-  primaryTechs: [{
-    type: String
+  technologies: [{
+    name: String,
+    iconClassName: String,
+    stack: String
   }],
   repository: {
     type: String

@@ -15,7 +15,7 @@ class NewCreateProject extends Component {
       open: false,
       name: '',
       description: '',
-      mainLanguage: '',
+      primaryLang: '',
       frontEnd: '',
       backEnd: '',
       githubRepo: ''
@@ -25,9 +25,7 @@ class NewCreateProject extends Component {
 
   handleFormToggle = () => ( this.setState({open: !this.state.open}) )
 
-  handleInputChange = (e) => {
-    this.setState({ [e.target.id]: e.target.value })
-  }
+  handleInputChange = (e) => ( this.setState({ [e.target.id]: e.target.value }) )
 
   handleSubmit = (e) => {
     e.preventDefault()
@@ -70,18 +68,16 @@ class NewCreateProject extends Component {
               floatingLabelText='Project Name'
               type='text'
               fullWidth={true}
-              value={this.state.value}
               onChange={this.handleInputChange} />
-            <br />
+            {/* <br /> */}
             <TextField
               id='description'
               floatingLabelText='Project Description'
               type='text'
               fullWidth={true}
-              value={this.state.value}
               onChange={this.handleInputChange} />
-              <br />
-              <SelectField id='mainTech' style={styles.selectField} value={this.state.value} floatingLabelText='Main Tech Language' floatingLabelFixed={true} fullWidth={true} onChange={this.handleInputChange}>
+              {/* <br /> */}
+              <SelectField id='mainTech' style={styles.selectField} value={this.state.value} floatingLabelText='Primary Languages' floatingLabelFixed={true} fullWidth={true} onChange={this.handleInputChange}>
               <MenuItem key={1} value={'JavaScript'} primaryText='JavaScript' />
               <MenuItem key={2} value={'Ruby'} primaryText='Ruby' />
               <MenuItem key={3} value={'Python'} primaryText='Python' />
@@ -89,7 +85,7 @@ class NewCreateProject extends Component {
               <MenuItem key={5} value={'HTML/CSS'}primaryText='HTML/CSS' />
             </SelectField>
             <br />
-            <SelectField id='frontEnd' style={styles.selectField} value={this.state.value} floatingLabelText='Front-End Tech' floatingLabelFixed={true} fullWidth={true} onChange={this.handleInputChange}>
+            <SelectField id='frontEnd' style={styles.selectField} value={this.state.value} floatingLabelText='Front End Technologies' floatingLabelFixed={true} fullWidth={true} onChange={this.handleInputChange}>
               <MenuItem key={1} value={'React'} primaryText='React' />
               <MenuItem key={2} value={'jQuery'} primaryText='jQuery' />
               <MenuItem key={3} value={'Angular'} primaryText='Angular' />
@@ -97,7 +93,7 @@ class NewCreateProject extends Component {
               <MenuItem key={5} value={'SASS/LESS'} primaryText='SASS/LESS' />
             </SelectField>
             <br />
-            <SelectField id='backEnd' style={styles.selectField} value={this.state.value} floatingLabelText='Back-End Tech' floatingLabelFixed={true} fullWidth={true} onChange={this.handleInputChange}>
+            <SelectField id='backEnd' style={styles.selectField} value={this.state.value} floatingLabelText='Back End Technologies' floatingLabelFixed={true} fullWidth={true} onChange={this.handleInputChange}>
               <MenuItem key={1} value={'Node'} primaryText='Node' />
               <MenuItem key={2} value={'Java'} primaryText='Java' />
               <MenuItem key={3} value={'SQL'} primaryText='SQL' />

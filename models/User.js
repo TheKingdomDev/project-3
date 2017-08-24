@@ -35,7 +35,11 @@ const UserSchema = new Schema({
   profilePictureURL: {
     type: String
   },
-  skills: [String],
+  skills: [{
+    name: String,
+    iconClassName: String,
+    stack: String
+  },],
   //TODO: highlighted skills
   projects: [{
     type: Schema.Types.ObjectId,
