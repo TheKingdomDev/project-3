@@ -72,23 +72,19 @@ const getProjectInfo = (objObts) => {
   })
 }
 
-// const getProjsAndTasks = (obj) => {
-//   return API.query({
-//     query: gql`{
-//       me {
-//       displayName
-//       projectsConnection {
-//         projects {
-//           _id
-//           name
-//           description
-//           createdDate
-//         }
-//       }
-//      } 
-//     }`
-//   })
-// }
+const getTasks = (objObts) => {
+  return API.query({
+    query: gql`{
+      tasks {
+        description
+        status
+        assignedTo
+        dueDate
+        link
+      }
+    }`
+  })
+}
 
 //  Function which takes in a User's Settings Object
 // (stored in state on client-side) and returns thee correct info
@@ -243,5 +239,6 @@ module.exports = {
   GetAllUsers,
   searchbyName,
   searchProjectById,
-  getHomeInfo
+  getHomeInfo,
+  getTasks
 }
