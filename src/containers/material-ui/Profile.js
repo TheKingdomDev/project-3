@@ -6,12 +6,14 @@ import AvatarCard from '../../components/material-ui/Proflie/AvatarCard'
 // For skills and accounts
 import { Tabs, Tab } from 'material-ui/Tabs'
 import Projects from '../../components/material-ui/Proflie/Projects'
+import Tasks from '../../components/material-ui/Proflie/Tasks'
 
 // We will need this to fetch data needed to populate User Profile
 import {
   getMyInfo,
   getProjectInfo,
-  GetAllProjects
+  GetAllProjects,
+  getTasks
 } from '../../utils/apolloHelpers'
 
 class Profile extends Component {
@@ -31,7 +33,8 @@ class Profile extends Component {
       allProjects: [],
       // these are all projects an user is associated with, but is NOT
       // a creator of.
-      associatedProjects: []
+      associatedProjects: [],
+      tasks: []
 
     }
     this.extractAssociatedProjects = this.extractAssociatedProjects.bind(this)
@@ -43,29 +46,26 @@ class Profile extends Component {
       let me, myProjects, allProjects
       // Once component has mounted...
       // fetch my info..
+      getTasks().then(returnedTasks => this.setState({tasks: returnedTasks.data.tasks}))
       getMyInfo()
       .then(myData => {
         me = myData.data.me
-        // this.setState({authenticatedUser: me})
         return getProjectInfo()
       })
       .then(returnedUserProjects => {
         myProjects = returnedUserProjects.data.me.projectsConnection.projects
-        // this.setState({authenticatedUser: me, myProjects: myProjects})
         return GetAllProjects()
-      }).then(allProjectsReturned => {
+      })
+      .then(allProjectsReturned => {
         allProjects = allProjectsReturned.data.projects
         this.setState({
           authenticatedUser: me,
           myProjects: myProjects,
           allProjects: allProjects
          })
-        // this object holds information about all available projects
+        // this object holds ids of all available projects
+        // and their contributors/collaborators
         let temp = {
-          // an array with the ids of the owner for every project...
-          // each index represents a project, and each value an owner
-          // ownersIdList: allProjects.map(project => project.owner._id),
-          // ========================
            // an array with the ids of all projects
            // each index represents a project, and each value its id
           idList: allProjects.map(project => project._id),
@@ -74,7 +74,6 @@ class Profile extends Component {
           // each index represents a project... in each index is an array...
           // each array holds the ids of ALL collaborators for that project
           collaboratorsIdList: allProjects.map((project, i) => (
-            // project.collaborators.concat(project.owner).concat({projectId: project._id})
             project.collaborators.concat(project.owner)
           ))
         }
@@ -94,15 +93,13 @@ class Profile extends Component {
       let collaborators = allProjects.collaboratorsIdList
       console.log(collaborators)
       collaborators.forEach((projectCollabsArray, i) => {
-        // console.log(projectCollabsArray)
         projectCollabsArray.forEach((collabsList, j) => {
-          // console.log(collabsList, i)
           if (authenticatedUser === collabsList._id) {
-            // console.log(projectsById[i])
             let association = {
               projectId: projectsById[i],
               status: `match found. user IS a collaborator of project with _id ${this.projectId}`
             }
+            // add the id of the associated project to the respective array in state
             this.setState({associatedProjects: this.state.associatedProjects.concat(association)})
           }
           else {
@@ -164,7 +161,7 @@ class Profile extends Component {
                 id='user-tasks'
                 style={styles.lowerBody}
               >
-                Tasks pertaining to X project listed here
+                <Tasks />
               </div>
             </div>
           </div>
