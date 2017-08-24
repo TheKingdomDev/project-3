@@ -5,7 +5,8 @@ import AppBar from 'material-ui/AppBar'
 const navTitleStyle = {
   textAlign: 'center',
   fontFamily: 'Share Tech Mono',
-  fontSize: 35
+  fontSize: 35,
+  textDecoration: 'none'
 }
 
 const LandingNavigation = (props) => (
