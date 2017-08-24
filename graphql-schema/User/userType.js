@@ -20,8 +20,8 @@ const githubRepoConnection = require('./connections/githubRepoConnection')
 module.exports = new GraphQLObjectType({
   name: 'User',
   description: 'This is a User',
-  fields: function() {
-    return {
+  fields: () => (
+     {
       _id: {
         type: new GraphQLNonNull(GraphQLString),
         resolve (user) {
@@ -77,7 +77,24 @@ module.exports = new GraphQLObjectType({
         }
       },
       skills: {
-        type: new GraphQLList(GraphQLString),
+        type: new GraphQLList(new GraphQLObjectType({
+          name: 'UserSkills',
+          description: 'Coding Skills a User has added to their profile.',
+          fields: () => ({
+            name: {
+              type: GraphQLString,
+              resolve: (skill) => (skill.name)
+            },
+            iconClassName: {
+              type: GraphQLString,
+              resolve: (skill) => (skill.iconClassName)
+            },
+            stack: {
+              type: GraphQLString,
+              resolve: (skill) => (skill.stack)
+            }
+          })
+        })),
         resolve (user) {
           return user.skills
         }
@@ -151,6 +168,6 @@ module.exports = new GraphQLObjectType({
         }
       }
     }
-  }
+  )
 })
 
