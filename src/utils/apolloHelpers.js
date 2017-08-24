@@ -51,6 +51,26 @@ const getMyInfo = (objOpts) => {
   })
 }
 
+const getMyProjects = () => {
+  return API.query({
+    query: gql`{
+      me{
+        _id
+        projectsConnection{
+          connectionInfo{
+            totalProjects
+          }
+          projects{
+            _id
+            name
+            description
+          }
+        }
+      }
+    }`
+  })
+}
+
 const getProjectInfo = (objObts) => {
   return API.query({
     query: gql`{
@@ -226,6 +246,7 @@ module.exports = {
   API,
   isAuthenticated,
   getMyInfo,
+  getMyProjects,
   getFullProfileInfo,
   projectCreate,
   getProjectInfo,

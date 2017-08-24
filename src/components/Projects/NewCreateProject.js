@@ -6,6 +6,8 @@ import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 import TextField from 'material-ui/TextField'
 
+import { projectCreate } from '../../utils/apolloHelpers'
+
 class NewCreateProject extends Component {
   constructor (props) {
     super(props)
@@ -19,63 +21,30 @@ class NewCreateProject extends Component {
       githubRepo: ''
 
     }
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleTextChange = this.handleTextChange.bind(this)
-    this.handleSelectChange = this.handleSelectChange.bind(this)
-    this.handleOpen = this.handleOpen.bind(this)
-    this.handleClose = this.handleClose.bind(this)
-  }
-  handleOpen () {
-    this.setState({open: true})
   }
 
-  handleClose () {
-    this.setState({open: false})
+  handleFormToggle = () => ( this.setState({open: !this.state.open}) )
+
+  handleInputChange = (e) => {
+    this.setState({ [e.target.id]: e.target.value })
   }
 
-  handleTextChange (e) {
-    // const name = e.target.name
-    // const description = e.target.value
-    // const mainTech = event.target.mainLanguage
-    // const frontEnd = event.target.frontEnd
-    // const backEnd = event.target.backEnd
-    // const githubRepo = event.target.githubRepo
-    // const value = e.target.value
-
-    // this.setState((prevState) => {
-    //   return {form: Object.assign(prevState.form, {[name]: value})}
-    // })
-    this.setState({name: e.target.value, description: e.target.value})
-  }
-  // handleChange = (event, index, value) => this.setState({name: value})
-  handleSelectChange (event, index, value) {
-    // this.setState({
-    //   mainLanguage: event.target.value,
-    //   frontEnd: event.target.value,
-    //   backEnd: event.target.value,
-    //   githubRepo: event.target.value
-    // })
-    this.setState({frontEnd: value,
-      backEnd: value,
-      mainLanguage: value,
-      githubRepo: value})
-  }
-  handleSubmit (e) {
+  handleSubmit = (e) => {
     e.preventDefault()
-    console.log(this.state.name)
-    console.log(this.state.description)
-    this.handleClose()
+    projectCreate({name: this.state.name, description: this.state.description })
+    .then(res => {
+      console.log(res)
+      this.props.addNewProject(res.data.projectCreate)
+    })
+    this.handleFormToggle()
   }
 
-  componentDidUpdate () {
-    console.log(this.state)
-  }
   render () {
     const actions = [
       <FlatButton
         label='Cancel'
         primary={true}
-        onClick={this.handleClose}
+        onClick={this.handleFormToggle}
       />,
       <FlatButton
         label='Submit'
@@ -87,7 +56,7 @@ class NewCreateProject extends Component {
     return (
       <div>
         {/* Need to center button with w3c */ }
-        <RaisedButton label='Create Project' primary={true} onClick={this.handleOpen} />
+        <RaisedButton label='Create Project' primary={true} onClick={this.handleFormToggle} />
         <Dialog style={styles.dialogbody}
           title='Create A New Project'
           actions={actions}
@@ -102,7 +71,7 @@ class NewCreateProject extends Component {
               type='text'
               fullWidth={true}
               value={this.state.value}
-              onChange={this.handleTextChange} />
+              onChange={this.handleInputChange} />
             <br />
             <TextField
               id='description'
@@ -110,9 +79,9 @@ class NewCreateProject extends Component {
               type='text'
               fullWidth={true}
               value={this.state.value}
-              onChange={this.handleTextChange} />
+              onChange={this.handleInputChange} />
               <br />
-            <SelectField id='mainTech' style={styles.selectField} value={this.state.value} floatingLabelText='Main Tech Language' floatingLabelFixed={true} fullWidth={true} onChange={this.handleSelectChange}>
+              <SelectField id='mainTech' style={styles.selectField} value={this.state.value} floatingLabelText='Main Tech Language' floatingLabelFixed={true} fullWidth={true} onChange={this.handleInputChange}>
               <MenuItem key={1} value={'JavaScript'} primaryText='JavaScript' />
               <MenuItem key={2} value={'Ruby'} primaryText='Ruby' />
               <MenuItem key={3} value={'Python'} primaryText='Python' />
@@ -120,7 +89,7 @@ class NewCreateProject extends Component {
               <MenuItem key={5} value={'HTML/CSS'}primaryText='HTML/CSS' />
             </SelectField>
             <br />
-            <SelectField id='frontEnd' style={styles.selectField} value={this.state.value} floatingLabelText='Front-End Tech' floatingLabelFixed={true} fullWidth={true} onChange={this.handleSelectChange}>
+            <SelectField id='frontEnd' style={styles.selectField} value={this.state.value} floatingLabelText='Front-End Tech' floatingLabelFixed={true} fullWidth={true} onChange={this.handleInputChange}>
               <MenuItem key={1} value={'React'} primaryText='React' />
               <MenuItem key={2} value={'jQuery'} primaryText='jQuery' />
               <MenuItem key={3} value={'Angular'} primaryText='Angular' />
@@ -128,14 +97,14 @@ class NewCreateProject extends Component {
               <MenuItem key={5} value={'SASS/LESS'} primaryText='SASS/LESS' />
             </SelectField>
             <br />
-            <SelectField id='backEnd' style={styles.selectField} value={this.state.value} floatingLabelText='Back-End Tech' floatingLabelFixed={true}  fullWidth={true} onChange={this.handleSelectChange}>
+            <SelectField id='backEnd' style={styles.selectField} value={this.state.value} floatingLabelText='Back-End Tech' floatingLabelFixed={true} fullWidth={true} onChange={this.handleInputChange}>
               <MenuItem key={1} value={'Node'} primaryText='Node' />
               <MenuItem key={2} value={'Java'} primaryText='Java' />
               <MenuItem key={3} value={'SQL'} primaryText='SQL' />
               <MenuItem key={4} value={'MongoDB'}primaryText='MongoDB' />
               <MenuItem key={5} value={'PHP'} primaryText='PHP' />
             </SelectField>
-            <SelectField id='gitHub' style={styles.selectField} value={this.state.value}floatingLabelText='GitHub Repository' floatingLabelFixed={true} fullWidth={true} onChange={this.handleSelectChange}>
+            <SelectField id='gitHub' style={styles.selectField} value={this.state.value} floatingLabelText='GitHub Repository' floatingLabelFixed={true} fullWidth={true} onChange={this.handleInputChange}>
               <MenuItem key={1} value={'My Repo'} primaryText='My Repo' />
               {/* Populate these menu items with user repos */ }
             </SelectField>
