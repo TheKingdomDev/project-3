@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import AppBar from 'material-ui/AppBar'
 import Drawer from 'material-ui/Drawer'
 import MenuItem from 'material-ui/MenuItem'
+import FlatButton from 'material-ui/FlatButton'
 import IconButton from 'material-ui/IconButton'
 import FontIcon from 'material-ui/FontIcon'
 import NavigationClose from 'material-ui/svg-icons/navigation/close'
@@ -22,9 +23,8 @@ const Navigation = (props) => (
     <AppBar
       title={'<ST />'}
       style={styles.navigation}
-      iconClassNameRight={props.user._id
-        ? 'muidocs-icon-navigation-expand-more'
-        : ''}
+      iconElementRight={<FlatButton href="/auth/logout" labelPosition='before' label="Logout" />}
+  
       onLeftIconButtonTouchTap={props.handleToggle}
     />
     <Drawer open={props.open}>
