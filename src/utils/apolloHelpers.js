@@ -113,12 +113,20 @@ const getFullProfileInfo = (objUserSettings) => {
 
 const GetAllProjects = (objProject) => {
   return API.query({
-    query: gql`projects {
+    query: gql`{
+      projects {
         _id
         name
         description
         createdDate
-      }`
+        owner {
+          _id
+        }
+        collaborators {
+          _id
+        }
+      }
+    }`
   })
 }
 
@@ -126,12 +134,14 @@ const GetAllProjects = (objProject) => {
 
 const GetAllUsers = (objUser) => {
   return API.query({
-    query: gql`users{
+    query: gql`{
+      users {
         _id
         displayName
         email
         profilePictureURL
-      }`
+      }
+    }`
   })
 }
 

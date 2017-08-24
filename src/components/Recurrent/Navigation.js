@@ -14,14 +14,15 @@ const styles = {
   navigation: {
     textAlign: 'center',
     fontFamily: 'Share Tech Mono',
-    fontSize: 35
+    fontSize: 35,
+    textDecoration: 'none'
   }
 }
 
 const Navigation = (props) => (
   <div>
     <AppBar
-      title={'<ST />'}
+      title={<Link to='/home'>{'<ST />'}</Link>}
       style={styles.navigation}
       iconElementRight={<FlatButton href="/auth/logout" labelPosition='before' label="Logout" />}
   

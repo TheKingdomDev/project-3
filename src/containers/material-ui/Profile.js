@@ -5,18 +5,14 @@ import Footer from '../../components/material-ui/Recurrent/Footer'
 import AvatarCard from '../../components/material-ui/Proflie/AvatarCard'
 // For skills and accounts
 import { Tabs, Tab } from 'material-ui/Tabs'
-// For Projects
-import { List, ListItem } from 'material-ui/List'
-import Subheader from 'material-ui/Subheader'
-import Avatar from 'material-ui/Avatar'
-import FileFolder from 'material-ui/svg-icons/file/folder'
-import ActionInfo from 'material-ui/svg-icons/action/info' // this will link to the
-                                                          // project's project details page
-
-
+import Projects from '../../components/material-ui/Proflie/Projects'
 
 // We will need this to fetch data needed to populate User Profile
-import { getMyInfo, getProjectInfo } from '../../utils/apolloHelpers'
+import {
+  getMyInfo,
+  getProjectInfo,
+  GetAllProjects
+} from '../../utils/apolloHelpers'
 
 class Profile extends Component {
   constructor(props) {
@@ -32,9 +28,13 @@ class Profile extends Component {
       // these all projects available in the database... we'll use them
       // to determine which projects were CREATED by the authenticated user,
       // and which projects he/she are associated with/collaborate to.
-      allProjects: []
+      allProjects: [],
+      // these are all projects an user is associated with, but is NOT
+      // a creator of.
+      associatedProjects: []
 
     }
+    this.extractAssociatedProjects = this.extractAssociatedProjects.bind(this)
   }
   // Changes state of side-nav = opens and closes side-nav
   handleToggle = () => this.setState({ open: !this.state.open })
@@ -49,9 +49,68 @@ class Profile extends Component {
         // this.setState({authenticatedUser: me})
         return getProjectInfo()
       })
-      .then(returnedProjects => {
-        myProjects = returnedProjects.data.me.projectsConnection.projects
-        this.setState({authenticatedUser: me, myProjects: myProjects})
+      .then(returnedUserProjects => {
+        myProjects = returnedUserProjects.data.me.projectsConnection.projects
+        // this.setState({authenticatedUser: me, myProjects: myProjects})
+        return GetAllProjects()
+      }).then(allProjectsReturned => {
+        allProjects = allProjectsReturned.data.projects
+        this.setState({
+          authenticatedUser: me,
+          myProjects: myProjects,
+          allProjects: allProjects
+         })
+        // this object holds information about all available projects
+        let temp = {
+          // an array with the ids of the owner for every project...
+          // each index represents a project, and each value an owner
+          // ownersIdList: allProjects.map(project => project.owner._id),
+          // ========================
+           // an array with the ids of all projects
+           // each index represents a project, and each value its id
+          idList: allProjects.map(project => project._id),
+          // an array with the ids of all collaborators for each project
+          // this one can get tricky very quickly. it's an array of arrays.
+          // each index represents a project... in each index is an array...
+          // each array holds the ids of ALL collaborators for that project
+          collaboratorsIdList: allProjects.map((project, i) => (
+            // project.collaborators.concat(project.owner).concat({projectId: project._id})
+            project.collaborators.concat(project.owner)
+          ))
+        }
+        console.log(temp.collaboratorsIdList)
+        // here we pass the id of the authenticated user, along
+        // with a list/array of collaborator ids for EACH project.
+        this.extractAssociatedProjects(me._id, temp)
+      })
+    }
+    extractAssociatedProjects = (authenticatedUser, allProjects) => {
+      // an array holding the ids of each project. we will need these
+      // to associate a project collaborator to a project
+      let projectsById = allProjects.idList
+      console.log(projectsById)
+      // Here we have the array that holds array of objects
+      // which themselves hold the list of ids for collaborators of a project
+      let collaborators = allProjects.collaboratorsIdList
+      console.log(collaborators)
+      collaborators.forEach((projectCollabsArray, i) => {
+        // console.log(projectCollabsArray)
+        projectCollabsArray.forEach((collabsList, j) => {
+          // console.log(collabsList, i)
+          if (authenticatedUser === collabsList._id) {
+            // console.log(projectsById[i])
+            let association = {
+              projectId: projectsById[i],
+              status: `match found. user IS a collaborator of project with _id ${this.projectId}`
+            }
+            this.setState({associatedProjects: this.state.associatedProjects.concat(association)})
+          }
+          else {
+            console.log('no match found. user IS NOT a collaborator')
+          }
+
+        })
+     
       })
     }
 
@@ -74,6 +133,7 @@ class Profile extends Component {
               <AvatarCard
                 profilePicture={this.state.authenticatedUser.profilePictureURL}
                 userBio={this.state.authenticatedUser.githubBio}
+                className='w3-mobile'
               />
             </div>
              <div className='w3-col m8 l8 s12'>
@@ -97,15 +157,8 @@ class Profile extends Component {
                 id='user-projects'
                 style={styles.lowerBody}
               >
-                <List>
-                  <Subheader inset={true}>Projects Created</Subheader>
-                    <ListItem
-                      leftAvatar={<Avatar icon={<FileFolder />} />}
-                      rightIcon={<ActionInfo />}
-                      primaryText='Project 1'
-                      secondaryText='Aug 22, 2017'
-                    />
-                </List>
+                <Projects myProjects={this.state.myProjects}
+                  allProjects={this.state.allProjects} />
               </div>
               <div className='w3-col s12 m6 l6'
                 id='user-tasks'
@@ -145,6 +198,7 @@ const styles = {
     minHeight: 300,
     maxHeight: 300,
     marginTop: 30,
-    backgroundColor: 'rgb(48, 48, 48)'
+    backgroundColor: 'rgb(48, 48, 48)',
+    overflowY: 'scroll'
   }
 }
