@@ -46,6 +46,7 @@ const Navigation = (props) => (
           </CardMedia>
         </Link>
       </Card>
+      <Link to='/home'><MenuItem>Home</MenuItem></Link>
       <Link to='/profile'><MenuItem>Profile</MenuItem></Link>
       <Link to='/project'><MenuItem>Projects</MenuItem></Link>
       <Link to='/tasks'><MenuItem>Tasks</MenuItem></Link>
