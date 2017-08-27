@@ -1,5 +1,4 @@
-const { GraphQLObjectType, GraphQLNonNull, GraphQLString, GraphQLList, GraphQLInt } = require('graphql')
-
+const { GraphQLObjectType, GraphQLString, GraphQLList, GraphQLInt } = require('graphql')
 
 module.exports = new GraphQLObjectType({
   name: 'projectConnection',
@@ -14,14 +13,12 @@ module.exports = new GraphQLObjectType({
 
             totalProjects: {
               type: GraphQLInt,
-              resolve: (arrProjects) => arrProjects.length 
+              resolve: arrProjects => arrProjects.length 
             },
 //          TODO: Correct Resolver to correctly filter whether query was me/users 
             ownedProjects: {
               type: GraphQLInt,
               resolve: (arrProjects, args, req) => {
-                console.log()
-
 //              If there is an _id argument present, return that users projects, 
 //              otherwise it return the logged in user's projects.
                 return args._id 
@@ -29,16 +26,14 @@ module.exports = new GraphQLObjectType({
                   : arrProjects.filter(p => p.owner === req.user._id).length
               }
             }
-
           })
         }),
-        resolve: (arrProjects) => arrProjects
+        resolve: arrProjects => arrProjects
       },
-
-//    The array of Project Objects
+//    The array of Project Objects, uses an Inline Require to import the ProjectType.
       projects: {
         type: new GraphQLList(require('../../Project/projectType.js')),
-        resolve: (arrProjects) => arrProjects
+        resolve: arrProjects => arrProjects
       }
     })
 })

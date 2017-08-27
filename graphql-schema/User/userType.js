@@ -10,7 +10,6 @@ const dbProject = require('../../models/Project')
 //  Importing subTypes including userSettings and 3P API connections
 const userSettingsType = require('./userSubTypes/userSettingsType')
 const codeWarsType = require('./userSubTypes/codeWarsType')
-const codeSchoolType = require('./userSubTypes/codeSchoolType')
 const treehouseType = require('./userSubTypes/treehouseType')
 
 //  Importing Connection Types information to Other objects (i.e. Projects)
@@ -19,63 +18,42 @@ const githubRepoConnection = require('./connections/githubRepoConnection')
 
 module.exports = new GraphQLObjectType({
   name: 'User',
-  description: 'This is a User',
+  description: 'Represents a single stackTeam user, connects to both other models (Projects, Tasks), and 3P Info (codewars, github, etc.)',
   fields: () => (
      {
       _id: {
         type: new GraphQLNonNull(GraphQLString),
-        resolve (user) {
-          return user._id
-        }
+        resolve: user => user._id
       },
       email: {
         type: GraphQLString,
-        resolve(user) {
-          return user.email
-        }
+        resolve: user => user.email
       },
       displayName: {
         type: GraphQLString,
-        resolve (user) {
-          return user.displayName
-        }
-      },
-      localBio: {
-        type: GraphQLString,
-        resolve () {
-          return user.localBio
-        }
+        resolve: user => user.displayName
       },
       githubBio: {
         type: GraphQLString,
-        resolve(user) {
-          return user.githubBio
-        }
+        resolve: user => user.githubBio
       },
       githubLogin:{
         type: GraphQLString,
-        resolve (user) {
-          return user.githubLogin
-        }
+        resolve: user => user.githubLogin
       },
       githubId: {
         type: GraphQLString,
-        resolve(user) {
-          return user.githubId
-        }
+        resolve: user => user.githubId
       },
       githubProfileURL: {
         type: GraphQLString,
-        resolve(user) {
-          return user.githubProfileURL
-        }
+        resolve: user => user.githubProfileURL
       },
       profilePictureURL: {
         type: GraphQLString,
-        resolve(user) {
-          return user.profilePictureURL
-        }
+        resolve: user => user.profilePictureURL
       },
+//    POSSIBLE TODO - Combine with Project Technology into common subtype.
       skills: {
         type: new GraphQLList(new GraphQLObjectType({
           name: 'UserSkills',
@@ -83,89 +61,62 @@ module.exports = new GraphQLObjectType({
           fields: () => ({
             name: {
               type: GraphQLString,
-              resolve: (skill) => (skill.name)
+              resolve: skill => skill.name
             },
             iconClassName: {
               type: GraphQLString,
-              resolve: (skill) => (skill.iconClassName)
+              resolve: skill => skill.iconClassName
             },
             stack: {
               type: GraphQLString,
-              resolve: (skill) => (skill.stack)
+              resolve: skill => skill.stack
             }
           })
         })),
-        resolve (user) {
-          return user.skills
-        }
+        resolve: user => user.skills
       },
-      githubRepoConnection: {
-        type: githubRepoConnection,
-        resolve (user) {
-          return rp({
-            uri: `https://api.github.com/users/${user.githubLogin}/repos`,
-            headers: { 'User-Agent': 'StackTeam' }
-          })
-            .then(response => {
-              return JSON.parse(response)
-            })
-            .catch(err => null)
+      userSettings: {
+        type: userSettingsType,
+        resolve(user) {
+          return user.UserSettings
         }
       },
       projectsConnection: {
         type: projectConnectionType,
-        resolve (user) {
-          return dbProject.find({_id: {$in: user.projects } })
-        }
+        resolve: user => dbProject.find({ _id: { $in: user.projects } })
       },
-      userSettings: {
-        type: userSettingsType,
-        resolve (user) {
-          return user.UserSettings
-        }
+//    TODO - ADD TaskConnection to pull User Tasks
+
+//    Acesses the github REST API to pull informaiton about a User's Repos.  See './connections/githubRepoConnection' for details.
+      githubRepoConnection: {
+        type: githubRepoConnection,
+        resolve: user => (
+           rp({
+            uri: `https://api.github.com/users/${user.githubLogin}/repos`,
+            headers: { 'User-Agent': 'StackTeam' }
+          })
+          .then(repos => JSON.parse(repos))
+          .catch(err => null)
+        )
       },
+//    Accesses User Data from Codewars API, see './userSubTypes/codeWarsType' for details
       codeWarsData: {
         type: codeWarsType,
-        resolve({ codeWars }) {
-
-          return rp(`https://www.codewars.com/api/v1/users/lassiterda`)
-            .then(response => {
-              return JSON.parse(response)
-            })
-            .catch(err => null)
-        }
-      },
-      codeSchoolData: {
-        type: codeSchoolType,
-        resolve({ codeSchool }) {
-          return rp(`https://www.codeschool.com/users/${codeSchool}.json`)
-            .then(data => {
-              return JSON.parse(data).user
-            })
-            .catch(err => null)
-        }
+        resolve: user => 
+          rp(`https://www.codewars.com/api/v1/users/${user.codeWarsUsername}`)
+          .then(data => JSON.parse(data))
+          .catch(err => null)
       },
       treehouseData: {
         type: treehouseType,
-        resolve ({ treehouse }) {
-          return rp('http://teamtreehouse.com/jonathanschneider.json')
-            .then(data => {
-              return JSON.parse(data)
-            })
-            .catch(err => null)
-        }
+        resolve: user =>
+          rp(`http://teamtreehouse.com/${user.treehouseUsername}.json`)
+          .then(data =>  JSON.parse(data))
+          .catch(err => null)
       },
       createdDate: {
         type: GraphQLString,
-        resolve (user) {
-          return user.createdDate
-        }
-      },
-      modifiedDate: {
-        type: GraphQLString,
-        resolve () {
-          return userSettingsType.modifiedDate
-        }
+        resolve: user => user.createdDate
       }
     }
   )
