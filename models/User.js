@@ -12,10 +12,6 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  localBio: {
-    type: String,
-    default: null
-  },
   githubBio: {
     type: String,
     default: null
@@ -32,14 +28,14 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  profilePictureURL: {
-    type: String
-  },
+  profilePictureURL: String,
+  codeWarsUsername: String,
+  treehouseUsername: String,
   skills: [{
     name: String,
     iconClassName: String,
     stack: String
-  },],
+  }],
   //TODO: highlighted skills
   projects: [{
     type: Schema.Types.ObjectId,
@@ -58,13 +54,6 @@ const UserSchema = new Schema({
     location: String
   },
   UserSettings: {
-    codeWarsUsername: String,
-    codeSchoolUsername: String,
-    treehouseUsername: String,
-    useLocalBio: {
-      type: Boolean,
-      default: false
-    },
     showCodewars: {
       type: Boolean,
       default: false
@@ -77,7 +66,7 @@ const UserSchema = new Schema({
       type: Boolean,
       default: false
     },
-  },
+  },S
   createdDate: {
     type: Date,
     default: new Date(),
